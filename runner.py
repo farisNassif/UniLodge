@@ -47,7 +47,7 @@ def reg():
     result = {'username': username, "password": password}
 
     # Returning back to the frontend
-    return jsonify("user ", username)
+    return jsonify("user", username)
 
 # Runs the application
 if __name__ == "__main__":

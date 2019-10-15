@@ -21,8 +21,8 @@ export class AppComponent implements OnInit{
       this.appService.getMessage().subscribe(msgFromTheBackend => (this.msgFromTheBackend = msgFromTheBackend))
   }
   
-  loginUser(event) {
+  loginUser(event, username, password) {
     event.preventDefault()
-    console.log(event)  
+    console.log("Username: " + username + " Password: " + password)  
   }
 }
