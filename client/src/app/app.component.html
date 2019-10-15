@@ -1,2 +1,8 @@
 <h1>in app.component.html</h1>
 {{msgFromTheBackend}}
+
+<form (submit)="loginUser($event)">
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
+    <input type="submit" value="submit">
+</form>

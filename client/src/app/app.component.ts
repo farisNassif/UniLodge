@@ -20,4 +20,9 @@ export class AppComponent implements OnInit{
   getBackendMsg (): void {
       this.appService.getMessage().subscribe(msgFromTheBackend => (this.msgFromTheBackend = msgFromTheBackend))
   }
+  
+  loginUser(event) {
+    event.preventDefault()
+    console.log(event)
+  }
 }
