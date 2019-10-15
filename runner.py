@@ -37,17 +37,16 @@ def sampleMsg():
 
 @app.route('/api/registerUser', methods=['POST'])
 def reg():
-    # What we expect to receive
-    username = request.get_json()['username']
-    password = request.get_json()['password']
+    # What we expect to receive  
+    username = request.get_data()
+    print(username)
+    # password = request.get_json()['password']
     
     # TODO Logic here for inserting user into mongo
 
-    # Compiling results into single var
-    result = {'username': username, "password": password}
-
     # Returning back to the frontend
-    return jsonify("user", username)
+    # Doesn't do anything yet in frontend
+    return jsonify("User Registered on the Backend!")
 
 # Runs the application
 if __name__ == "__main__":

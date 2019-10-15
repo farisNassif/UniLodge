@@ -11,7 +11,7 @@ export class AppService {
         return this.http.get<any>('api/outputMessage')
     }
 
-    registerUser(): Observable<any> {
-        return this.http.get<any>('api/registerUser')
+    registerUser(username): Observable<String> {
+        return this.http.post<String>('api/registerUser', username)
     }
 }   

@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http'
 export class AppComponent implements OnInit{
   msgFromTheBackend
   username
+  registrationConfirmation
   constructor(private appService: AppService, private http: HttpClient) { }
 
   ngOnInit () {
@@ -22,7 +23,11 @@ export class AppComponent implements OnInit{
   }
   
   loginUser(event, username, password) {
+    this.username = username
+    this.appService.registerUser(this.username)
+    .subscribe(registrationConfirmation => (this.registrationConfirmation = registrationConfirmation))
     event.preventDefault()
     console.log("Username: " + username + " Password: " + password)  
+    // TODO - Just like in getBackendMsg(), print out the return object from the backend method in the frontend
   }
 }
