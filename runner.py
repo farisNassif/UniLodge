@@ -12,6 +12,7 @@ from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token)
 from datetime import datetime
 
+
 # MongoString generated on my https://cloud.mongodb.com account || https://prnt.sc/pgi59k - Explaination
 cluster = MongoClient("mongodb+srv://Faris:loughrea@cluster0-dewud.mongodb.net/test?retryWrites=true&w=majority")
 database = cluster["FinalProjectDatabase"]
@@ -33,6 +34,20 @@ def sampleMsg():
     
     # Sending off the message, for some reason doesn't work
     return jsonify(result)
+
+@app.route('/api/registerUser', methods=['POST'])
+def reg():
+    # What we expect to receive
+    username = request.get_json()['username']
+    password = request.get_json()['password']
+    
+    # TODO Logic here for inserting user into mongo
+
+    # Compiling results into single var
+    result = {'username': username, "password": password}
+
+    # Returning back to the frontend
+    return jsonify("user ", username)
 
 # Runs the application
 if __name__ == "__main__":

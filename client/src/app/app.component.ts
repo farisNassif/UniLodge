@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http'
 })
 export class AppComponent implements OnInit{
   msgFromTheBackend
-
+  username
   constructor(private appService: AppService, private http: HttpClient) { }
 
   ngOnInit () {
@@ -23,6 +23,6 @@ export class AppComponent implements OnInit{
   
   loginUser(event) {
     event.preventDefault()
-    console.log(event)
+    console.log(event)  
   }
 }

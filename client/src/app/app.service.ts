@@ -10,4 +10,8 @@ export class AppService {
     getMessage(): Observable<any> {
         return this.http.get<any>('api/outputMessage')
     }
+
+    registerUser(): Observable<any> {
+        return this.http.get<any>('api/registerUser')
+    }
 }   
