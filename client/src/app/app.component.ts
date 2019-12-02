@@ -9,9 +9,11 @@ import { HttpClient } from '@angular/common/http'
   providers: [AppService]
 })
 export class AppComponent implements OnInit{
-  msgFromTheBackend
-  username
-  registrationConfirmation
+  msgFromTheBackend: String
+  username: String
+  loggedInUser: String
+  password: String
+  registrationConfirmation: String
   constructor(private appService: AppService, private http: HttpClient) { }
 
   ngOnInit () {
@@ -22,12 +24,23 @@ export class AppComponent implements OnInit{
       this.appService.getMessage().subscribe(msgFromTheBackend => (this.msgFromTheBackend = msgFromTheBackend))
   }
   
-  loginUser(event, username, password) {
+  loginUser(event: void, username: string, password: string) {
     this.username = username
-    this.appService.registerUser(this.username)
-    .subscribe(registrationConfirmation => (this.registrationConfirmation = registrationConfirmation))
-    event.preventDefault()
-    console.log("Username: " + username + " Password: " + password)  
-    // TODO - Just like in getBackendMsg(), print out the return object from the backend method in the frontend
+    this.password = password
+    // Since username/pw is being cleared - want a temp way to store username for login purposes 'Welcome user [loggedInUser]'
+    this.loggedInUser = username
+
+    // Cowboy code, honestly no idea why it works but it did??
+    // If the username/password field isn't blank
+    if ((this.username != undefined) && (this.password != undefined)) {
+      // This just sends username/password to the backend in the format 'username_password'
+      this.appService.registerUser(this.username + "_" + this.password)
+      .subscribe(registrationConfirmation => (this.registrationConfirmation = registrationConfirmation))  
+      // Just printing to the console the temp logged in user
+      console.log("Username: " + this.loggedInUser + " Password: " + password)  
+      // 'Clearing' the fields after someone logged in, don't need em anymore - data sent to backend already
+      this.username = undefined
+      this.password = undefined    
+    } 
   }
 }

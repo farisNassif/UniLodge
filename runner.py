@@ -37,9 +37,16 @@ def sampleMsg():
 
 @app.route('/api/registerUser', methods=['POST'])
 def reg():
-    # What we expect to receive  
-    username = request.get_data()
-    print(username)
+
+    # The returned result (userLogin) is coming back as bytes, need to call .decode() to get the actual String
+    userLogin = request.get_data().decode()
+    print(userLogin)
+    username_password = userLogin.split("_")
+    print (username_password[0])
+    print (username_password[1])
+
+    if userLogin.isalpha():
+        print("It's all letters")
     # password = request.get_json()['password']
     
     # TODO Logic here for inserting user into mongo
