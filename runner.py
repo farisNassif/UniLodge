@@ -12,6 +12,9 @@ from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token)
 from datetime import datetime
 
+# Leave these for now
+# UPLOAD_FOLDER = "./uploads"
+# ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
 # MongoString generated on my https://cloud.mongodb.com account || https://prnt.sc/pgi59k - Explaination
 cluster = MongoClient("mongodb+srv://Faris:loughrea@cluster0-dewud.mongodb.net/test?retryWrites=true&w=majority")
@@ -27,11 +30,10 @@ app = Flask(__name__)
 
 CORS(app)
 
-@app.route('/api/outputMessage', methods=['GET'])
-def sampleMsg():
+@app.route('/api/home', methods=['GET'])
+def home():
     # Message should appear in frontend 
-    result = 'Hello World from runner.py'
-    
+    result = ('Hello World from runner.py - /api/welcomeMessage')
     # Sending off the message, for some reason doesn't work
     return jsonify(result)
 
@@ -40,22 +42,27 @@ def reg():
 
     # The returned result (userLogin) is coming back as bytes, need to call .decode() to get the actual String
     userLogin = request.get_data().decode()
-    print(userLogin)
+    # Data is coming back in the form of 'username_password', split the data from 'username_password' to 'username' and 'password'
     username_password = userLogin.split("_")
-    print (username_password[0])
-    print (username_password[1])
+    # Testing it works
+    username = username_password[0]
+    password = username_password[1]
 
-    if userLogin.isalpha():
-        print("It's all letters")
+    # Print for testing
+    print ("Username: " + username) # Print username
+    print ("Password: " + password) # Print password
+
+    # https://stackoverflow.com/questions/18667410/how-can-i-check-if-a-string-only-contains-letters-in-python
+    if username.endswith('@gmit.ie'): 
+        result = ("good job, it ends with @gmit.ie!")
+    else: 
+        result = ("Username must end with @gmit.ie")
     # password = request.get_json()['password']
-    
-    # TODO Logic here for inserting user into mongo
 
-    # Returning back to the frontend
-    # Doesn't do anything yet in frontend
-    return jsonify("User Registered on the Backend!")
+    # Returning back to the frontend a String
+    return jsonify(result)
 
 # Runs the application
 if __name__ == "__main__":
-    # If theres any errors they'll pop up on the page
+    # Debug = True - If theres any errors they'll pop up on the page
     app.run(debug=True) 

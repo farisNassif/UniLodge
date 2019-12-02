@@ -7,8 +7,8 @@ import { Observable } from 'rxjs'
 export class AppService {
     constructor(private http: HttpClient) { }
 
-    getMessage(): Observable<any> {
-        return this.http.get<any>('api/outputMessage')
+    home(): Observable<any> {
+        return this.http.get<any>('api/home')
     }
 
     registerUser(username): Observable<String> {

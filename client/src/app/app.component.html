@@ -2,7 +2,6 @@
 {{msgFromTheBackend}}
 
 <form (submit)="loginUser($event, username, password)">
-    
     <input type="text" [(ngModel)]="username" name="username_input" placeholder="Username">
     <input type="password" [(ngModel)]="password" name="password_input" placeholder="Password">
     <input type="submit" (ngModelChange)="submit = $event" value="submit ">
