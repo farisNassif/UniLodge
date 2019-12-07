@@ -40,7 +40,6 @@ def home():
 
 @app.route('/api/registerUser', methods=['POST'])
 def reg():
-
     # The returned result (userLogin) is coming back as bytes, need to call .decode() to get the actual String
     userLogin = request.get_data().decode()
     # Data is coming back in the form of 'username_password', split the data from 'username_password' to 'username' and 'password'
@@ -53,18 +52,22 @@ def reg():
     print ("Username: " + username) # Print username
     print ("Password: " + password) # Print password
 
-    # https://stackoverflow.com/questions/18667410/how-can-i-check-if-a-string-only-contains-letters-in-python
+    # If username ends correctly (TODO At some point gotta change this to not just be '@gmit.ie')
     if username.endswith('@gmit.ie'): 
-        result = ("good job, it ends with @gmit.ie!, now adding to mongo")
-        # Preparing data to be inserted into mongo
-        new_user = {"Username":username,"Password":password}
-        try:        
-            # Posting data stored above to mongo
-            users.insert_one(new_user)
-        # Error Handling
-        except: 
-            # If for some reason data couldn't be commit throw an error message
-            result = ("there was an issue adding you to our database")
+        # Basically if theres already an email in mongo the same as what was just entered
+        if users.find_one( {'Username':username} ):
+            result = ("There is already an account associated with that email.")
+        else:
+            # Preparing data to be inserted into mongo, data will be inserted with this schema
+            new_user = {"Username":username,"Password":password}
+            try:        
+                # Posting data stored above to mongo
+                users.insert_one(new_user)
+                result = ("Success! Added to database")
+            # Error Handling
+            except: 
+                # If for some reason data couldn't be commit throw an error message
+                result = ("There was an issue adding you to our database.")
     else: 
         result = ("Username must end with @gmit.ie")
     # password = request.get_json()['password']
