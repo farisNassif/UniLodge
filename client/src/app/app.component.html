@@ -6,5 +6,7 @@
     <input type="password" [(ngModel)]="password" name="password_input" placeholder="Password">
     <input type="submit" (ngModelChange)="submit = $event" value="submit ">
 </form>
+<!-- After 'Submit' is clicked, display this message -->
 {{registrationConfirmation}}
+<!-- Two way data bound, really just for testing purposes -->
 <p>Username: {{username}} Password: {{password}}</p>

@@ -18,6 +18,7 @@ from datetime import datetime
 
 # MongoString generated on my https://cloud.mongodb.com account || https://prnt.sc/pgi59k - Explaination
 cluster = MongoClient("mongodb+srv://Faris:loughrea@cluster0-dewud.mongodb.net/test?retryWrites=true&w=majority")
+# Database may contain multiple collections (tables), eg 'Employees' table, 'Appointments' table etc
 database = cluster["FinalProjectDatabase"]
 # Referenced whenever inserting/deleting from the users collection(table)
 users = database["Users"]
@@ -54,7 +55,16 @@ def reg():
 
     # https://stackoverflow.com/questions/18667410/how-can-i-check-if-a-string-only-contains-letters-in-python
     if username.endswith('@gmit.ie'): 
-        result = ("good job, it ends with @gmit.ie!")
+        result = ("good job, it ends with @gmit.ie!, now adding to mongo")
+        # Preparing data to be inserted into mongo
+        new_user = {"Username":username,"Password":password}
+        try:        
+            # Posting data stored above to mongo
+            users.insert_one(new_user)
+        # Error Handling
+        except: 
+            # If for some reason data couldn't be commit throw an error message
+            result = ("there was an issue adding you to our database")
     else: 
         result = ("Username must end with @gmit.ie")
     # password = request.get_json()['password']
