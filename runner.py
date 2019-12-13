@@ -38,7 +38,7 @@ def home():
     # Sending off the message, for some reason doesn't work
     return jsonify(result)
 
-@app.route('/api/registerUser', methods=['POST'])
+@app.route('/api/register', methods=['POST'])
 def reg():
     # The returned result (userLogin) is coming back as bytes, need to call .decode() to get the actual String
     userLogin = request.get_data().decode()
