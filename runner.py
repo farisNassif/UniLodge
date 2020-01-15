@@ -92,10 +92,7 @@ def delete_user():
         print("workd")
     except:
         print("didn't work")
-    return jsonify("Test")
-    userList = list(users.find({}, {'_id': False}))
-    print(userList)
-    return jsonify(userList)
+    return jsonify("nothing")
 
 # Runs the application
 if __name__ == "__main__":
