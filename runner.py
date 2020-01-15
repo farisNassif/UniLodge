@@ -75,6 +75,30 @@ def reg():
     # Returning back to the frontend a String
     return jsonify(result)
 
+@app.route('/api/users', methods=['GET'])
+def list_users():
+<<<<<<< HEAD
+    # Making userList equal to whatever is in the users table. So return Username/Password WITHOUT the _id
+    userList = list(users.find({}, {'_id': False}))
+    # Send the list of users (more specifically a users Username+Password) to the frontend
+    return jsonify(userList)
+
+@app.route('/api/users/remove', methods=['POST'])
+def delete_user():
+    email_to_delete = request.get_data().decode()
+    print (email_to_delete + "DAD")
+    try: 
+        users.delete_one( {'Username': email_to_delete } ) 
+        print("workd")
+    except:
+        print("didn't work")
+    return jsonify("Test")
+=======
+    userList = list(users.find({}, {'_id': False}))
+    print(userList)
+    return jsonify(userList)
+
+>>>>>>> a3f74a0cce25b32ea3469320584dc0900a6ea4be
 # Runs the application
 if __name__ == "__main__":
     # Debug = True - If theres any errors they'll pop up on the page

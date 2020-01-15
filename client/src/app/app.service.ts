@@ -10,8 +10,4 @@ export class AppService {
     home(): Observable<any> {
         return this.http.get<any>('api/home')
     }
-
-    register(username_and_password: string): Observable<String> {
-        return this.http.post<String>('api/register', username_and_password)
-    }
 }   
