@@ -26,11 +26,11 @@ export class UserService {
     return this.http.get<User[]>(this.userUrl + '/api/users');
   }
 
+
   /** Delete a user from the DB */
   removeUser(Username: string) {
     if (confirm("Are you sure to delete?")) {
         return this.http.post<String>('/api/users/remove', Username);
       }
-    
   }
 }
