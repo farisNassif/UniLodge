@@ -92,16 +92,17 @@ def list_users():
     # Send the list of users (more specifically a users Username+Password) to the frontend
     return jsonify(userList)
 
-@app.route('/api/users/remove', methods=['POST'])
-def delete_user():
-    email_to_delete = request.get_data().decode()
-    print (email_to_delete + "DAD")
+# This should really be DELETE instead of POST but it works for now, can be changed another time
+@app.route('/api/users/remove/<string:Username>', methods=['DELETE'])
+def delete_user(Username):
+    # Username being the email, since it will be unique in the database it's pretty much the primary key for users
     try: 
-        users.delete_one( {'Username': email_to_delete } ) 
-        print("workd")
+        users.delete_one( {'Username': Username } ) 
     except:
         print("didn't work")
-    return jsonify("nothing")
+    return jsonify("doesn't matter what goes here, it just expects something to return")
+        
+
 
 @app.route('/api/users/update', methods=['POST'])
 def update_user():
