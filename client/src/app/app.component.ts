@@ -14,15 +14,16 @@ export class AppComponent implements OnInit{
   loggedInUser: String
   password: String
   registrationConfirmation: String
+  
   constructor(private appService: AppService, private http: HttpClient) { }
 
   ngOnInit () {
-      this.getBackendMsg()
+    this.getBackendMsg()
   }
 
   // Backend setup previously and linked with angular via 'proxy.conf.json'
   getBackendMsg (): void {
-      this.appService.home().subscribe(msgFromTheBackend => (this.msgFromTheBackend = msgFromTheBackend))
+    this.appService.home().subscribe(msgFromTheBackend => (this.msgFromTheBackend = msgFromTheBackend))
   }
   
   loginUser(event: void, username: string, password: string) {
