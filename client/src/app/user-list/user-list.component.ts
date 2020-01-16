@@ -22,12 +22,16 @@ export class UserListComponent implements OnInit {
 
   getUsers(): void {
 		this.userService.getUsers().subscribe(users => this.users = users);
-
   }
+
   removeUser(Username: string):  void {
-    this.userService.removeUser(Username).subscribe(success=> {this.getUsers()});
+    this.userService.removeUser(Username).subscribe(success=> { this.getUsers() });
   }
 
-	}
+  updateUser(Username: string):  void {
+    this.userService.updateUser(Username).subscribe(success=> { this.getUsers() });
+  }
+
+}
 
 

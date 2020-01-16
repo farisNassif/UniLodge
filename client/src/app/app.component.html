@@ -1,9 +1,9 @@
-<h1>in app.component.html</h1>
-<a routerLink="/">Home</a>
-<br>
-<a routerLink="register">Register</a>
-<br>
-<a routerLink="users">Users</a>
-<br>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {{msgFromTheBackend}}
+<div class="topnav">
+    <a class="active" routerLink="/">Home</a>
+    <a routerLink="register">Register</a>
+    <a routerLink="users">Users</a>
+</div>
+
 <router-outlet></router-outlet>

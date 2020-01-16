@@ -17,20 +17,29 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  /** GET single user from the DB */
+  getUser(Username: string): Observable<User[]> {
+    return this.http.post<User[]>(this.userUrl + '/api/user', Username);
+  }  
 
   /** GET users from the DB */
-
-  /** GET users from the server */
-
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl + '/api/users');
   }
 
-
   /** Delete a user from the DB */
   removeUser(Username: string) {
-    if (confirm("Are you sure to delete?")) {
+    if (confirm("Are you sure you want to delete?")) {
         return this.http.post<String>('/api/users/remove', Username);
       }
   }
+
+  /** Update a user in the DB */
+  updateUser(Username: string) {
+    if (confirm("Are you sure you want to update?")) {
+        return this.http.post<String>('/api/users/update', Username);
+      }
+  }  
+
+
 }

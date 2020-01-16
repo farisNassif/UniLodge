@@ -7,15 +7,16 @@
 <table>
 
   <tr>
-    <th>ID</th>
-    <th>Name</th>
+    <th>Email</th>
+    <th>Password</th>
 	  <th>Actions</th>
   </tr>
   <tr *ngFor="let user of users">
     <td>{{user.Username}}</td>
     <td>{{user.Password}}</td>
 	<td>
-		<button title="Delete User" (click)="removeUser(user.Username)">Delete</button>
+    <button title="Delete User" (click)="removeUser(user.Username)">Delete </button>
+    <a routerLink="/users/update/{{user.Username}}">Edit</a>
 	</td>
   </tr>
 </table>
