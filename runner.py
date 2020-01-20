@@ -100,7 +100,7 @@ def delete_user(Username):
         users.delete_one( {'Username': Username } ) 
     except:
         print("didn't work")
-    return jsonify("doesn't matter what goes here, it just expects something to return")
+    return jsonify("User with Email: [" + Username + "] has been successfully removed.")
         
 
 

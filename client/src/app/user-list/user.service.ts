@@ -30,6 +30,7 @@ export class UserService {
   /** Delete a user from the DB */
   removeUser(Username: string) {
     if (confirm("Are you sure you want to delete?")) {
+      
         return this.http.delete<String>('/api/users/remove/' +Username);
       }
   }
@@ -40,6 +41,4 @@ export class UserService {
         return this.http.post<String>('/api/users/update', Username);
       }
   }  
-
-
 }
