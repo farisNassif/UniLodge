@@ -11,12 +11,12 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 export class RegisterService {
 
-  private userUrl = 'http://localhost:5000';  // URL to REST API
+  public userUrl = 'http://localhost:5000';  // URL to REST API
 
   constructor(private http: HttpClient) { }
 
   register(username_and_password: string): Observable<String> {
-    return this.http.post<String>('api/register', username_and_password)
+    return this.http.post<String>(this.userUrl + '/api/register', username_and_password)
 }
 
 }

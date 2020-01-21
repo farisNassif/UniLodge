@@ -7,10 +7,10 @@ from bson.objectid import ObjectId
 # ('CORS': Cross origin resource sharing; so we can access frontend with different urls)
 from flask_cors import CORS
 # ('Bcrypt': Used for hashing of password)
-from flask_bcrypt import Bcrypt
-from flask_jwt_extended import JWTManager
-from flask_jwt_extended import (create_access_token)
-from datetime import datetime
+# from flask_bcrypt import Bcrypt
+# from flask_jwt_extended import JWTManager
+# from flask_jwt_extended import (create_access_token)
+# from datetime import datetime
 
 # Leave these for now
 # UPLOAD_FOLDER = "./uploads"
@@ -92,7 +92,6 @@ def list_users():
     # Send the list of users (more specifically a users Username+Password) to the frontend
     return jsonify(userList)
 
-# This should really be DELETE instead of POST but it works for now, can be changed another time
 @app.route('/api/users/remove/<string:Username>', methods=['DELETE'])
 def delete_user(Username):
     # Username being the email, since it will be unique in the database it's pretty much the primary key for users
@@ -102,8 +101,6 @@ def delete_user(Username):
         print("didn't work")
     return jsonify("User with Email: [" + Username + "] has been successfully removed.")
         
-
-
 @app.route('/api/users/update', methods=['POST'])
 def update_user():
     email_to_update = request.get_data().decode()

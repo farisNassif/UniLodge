@@ -10,7 +10,8 @@
   <tr>
     <th>Email</th>
     <th>Password</th>
-	  <th>Actions</th>
+    <th>Actions</th>
+    <th>Image</th>
   </tr>
   <tr *ngFor="let user of users">
     <td>{{user.Username}}</td>
@@ -18,6 +19,11 @@
 	<td>
     <button title="Delete User" (click)="removeUser(user.Username)">Delete </button>
     <a routerLink="/users/update/{{user.Username}}">Edit</a>
+  </td>
+  <td>
+    <input type='file'  accept="image/*" (change)="changeListener($event)"> <br>
+    <button title="Submit Image" (click)="submitImage()">Submit Image</button>
+    <!-- <img id="file" [src]="imageSrc || 'http://placehold.it/46'" alt="your image" />  -->
 	</td>
   </tr>
 </table>

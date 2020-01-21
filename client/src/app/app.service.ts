@@ -7,9 +7,9 @@ import { Observable } from 'rxjs'
 export class AppService {
     constructor(private http: HttpClient) { }
 
-    private userUrl = 'http://localhost:5000';  // URL to REST API
+    private userUrl = 'http://localhost:5000/';  // URL to REST API
 
     home(): Observable<any> {
-        return this.http.get<any>(this.userUrl + 'api/  home')
+        return this.http.get<any>(this.userUrl + 'api/home')
     }
 }   
