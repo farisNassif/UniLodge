@@ -1,20 +1,12 @@
 <table>
   <tr>
-    <th>Email</th>
-    <th>Password</th>
+    <th>{{message_from_backend}}</th>
   </tr>
-  <tr>
-  <!-- <td>{{user.Username}}</td> -->  
-  <!-- <td>{{user.Password}}</td> -->  
-	<td>
-	</td>
-  </tr>
-
 </table>
+
 <form>
-    <input type="text" placeholder="Should be the chosen email">
-    <input type="password"placeholder="New password for this email">
-    <input type="submit" value="submit ">
+  <input type="password"placeholder="New Password .." [(ngModel)]="new_password" [ngModelOptions]="{standalone: true}">
+  <br>  
+  <button (click)="goBack()">go back</button>
+  <button (click)="save(password)">save</button>
 </form>
-<button (click)="goBack()">go back</button>
-<button (click)="save()">save</button>

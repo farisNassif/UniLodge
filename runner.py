@@ -96,16 +96,37 @@ def list_users():
 def delete_user(Username):
     # Username being the email, since it will be unique in the database it's pretty much the primary key for users
     try: 
-        users.delete_one( {'Username': Username } ) 
+        users.delete_one( {'Username': Username } )
+        result = "User with Email: [" + Username + "] has been successfully removed."
     except:
         print("didn't work")
-    return jsonify("User with Email: [" + Username + "] has been successfully removed.")
+        result = "There was an error deleting that user, try again."
+    return jsonify(result)
         
-@app.route('/api/users/update', methods=['POST'])
-def update_user():
-    email_to_update = request.get_data().decode()
-    users.update_one({ "Username": email_to_update }, { "$set": { "Password": "pls_change" } } )
-    return jsonify("REEEE")
+@app.route('/api/users/update/<string:Username>', methods=['PUT'])
+def update_user(Username):
+    new_password = request.get_data().decode()
+    # email_to_update = request.get_data().decode()
+    email_to_update = Username
+    try: 
+        users.update_one({ "Username": email_to_update }, { "$set": { "Password": new_password } } )
+        result = (email_to_update + " your password was successfully updated!")
+    except: 
+        result = ("There was an error updating " + email_to_update + ".")
+    return jsonify(result)
+
+@app.route('/api/users/add-image/<string:Username>', methods=['PUT'])
+def add_image():
+    # email_to_update = request.get_data().decode()
+    email_to_update = "test@gmit.ie"
+    try: 
+        print("check to get back b64 string")
+        result = "Working"
+    except:
+        print ("not working")
+        result = "Not working"
+    return jsonify(result)
+
 
 # Runs the application
 if __name__ == "__main__":

@@ -17,6 +17,5 @@ export class RegisterService {
 
   register(username_and_password: string): Observable<String> {
     return this.http.post<String>(this.userUrl + '/api/register', username_and_password)
-}
-
+  }
 }

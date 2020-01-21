@@ -31,13 +31,12 @@ export class UserListComponent implements OnInit {
 
   removeUser(Username: string):  void {
     this.userService.removeUser(Username)
-    .subscribe(msgFromTheBackend => (this.msgFromTheBackend = msgFromTheBackend));
-    this.ngOnInit();
+    .subscribe(msgFromTheBackend => (this.ngOnInit()));
     //this.userService.removeUser(Username).subscribe(success=> { this.getUsers() });
   }
 
-  updateUser(Username: string):  void {
-    this.userService.updateUser(Username).subscribe(success=> { this.getUsers() });
+  updateUser(Username: string, NewPassword: string):  void {
+    this.userService.updateUser(Username, NewPassword).subscribe(success=> { this.getUsers() });
   }
 
   changeListener($event: { target: any; }) : void {
@@ -50,15 +49,20 @@ export class UserListComponent implements OnInit {
   
     myReader.onloadend = (e) => {
       // Cuts off the first part of the base64 String, don't need it
-      this.base64textString = (<string>myReader.result).split(',')[1];  
+      //this.base64textString = (<string>myReader.result).split(',')[1]; 
+      this.base64textString = myReader.result; 
     }
     myReader.readAsDataURL(file);
   }
 
-  submitImage() {
-    this.uploadedImage = 'data:image/png;base64,' + this.base64textString;
-  }
-   
-}
+  displayImage(Username: string) {
+    this.uploadedImage = this.base64textString;
 
+    this.addImage(Username)
+  }
+
+  addImage(Username: string) {
+    this.userService.addImage(Username, this.uploadedImage).subscribe(msgFromTheBackend => (this.msgFromTheBackend = msgFromTheBackend));
+  }
+}
 

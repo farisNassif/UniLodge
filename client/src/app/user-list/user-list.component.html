@@ -18,13 +18,13 @@
     <td>{{user.Username}}</td>
     <td>{{user.Password}}</td>
 	<td>
-    <button title="Delete User" (click)="removeUser(user.Username)">Delete </button>
-    <a routerLink="/users/update/{{user.Username}}">Edit</a>
+    <button title="Delete User" (click)="removeUser(user.Username)">Delete</button>
+    <br>
+    <button title="Delete User" routerLink="/users/update/{{user.Username}}">Edit</button>
   </td>
   <td>
     <input type='file'  accept="image/*" (change)="changeListener($event)"> <br>
-    <button title="Submit Image" (click)="submitImage()">Submit Image</button>
-    <!-- <img id="file" [src]="imageSrc || 'http://placehold.it/46'" alt="your image" />  -->
+    <button title="Submit Image" (click)="displayImage(user.Username)">Submit Image</button>
   </td>
   <td>
     <img id="file" [src]="uploadedImage || 'http://placehold.it/128'" alt="your image" />

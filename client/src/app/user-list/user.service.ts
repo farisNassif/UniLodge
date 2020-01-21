@@ -36,9 +36,17 @@ export class UserService {
   }
 
   /** Update a user in the DB */
-  updateUser(Username: string) {
+  updateUser(Username: string, NewPassword: string) {
     if (confirm("Are you sure you want to update?")) {
-        return this.http.post<String>('/api/users/update', Username);
+        return this.http.put<String>(this.userUrl + '/api/users/update/' + Username, NewPassword);
       }
   }  
+
+  /** Add an Image to the DB */
+  addImage(Username: string, Image: string) {
+    if (confirm("Are you sure you want to add this picture?")) {
+        return this.http.put<String>(this.userUrl + '/api/users/add-image/' + Username, Image);
+      }
+  }  
+
 }
