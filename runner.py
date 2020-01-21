@@ -116,15 +116,15 @@ def update_user(Username):
     return jsonify(result)
 
 @app.route('/api/users/add-image/<string:Username>', methods=['PUT'])
-def add_image():
-    # email_to_update = request.get_data().decode()
-    email_to_update = "test@gmit.ie"
+def add_image(Username):
+    email_to_update = Username
+    image_to_add = request.get_data().decode()
     try: 
-        print("check to get back b64 string")
-        result = "Working"
+        users.update_one({ "Username": email_to_update }, { "$set": { "Image": image_to_add } } )
+        result = "Image successfully added"
     except:
         print ("not working")
-        result = "Not working"
+        result = "Image not added"
     return jsonify(result)
 
 
