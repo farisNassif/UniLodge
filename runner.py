@@ -53,7 +53,7 @@ def reg():
     print ("Password: " + password) # Print password
 
     # If username ends correctly (TODO At some point gotta change this to not just be '@gmit.ie')
-    if username.endswith('@gmit.ie'): 
+    if (username.endswith('@gmit.ie') and (len(password) > 4)): 
         # Basically if theres already an email in mongo the same as what was just entered
         if users.find_one( {'Username':username} ):
             result = ("There is already an account associated with that email.")
@@ -69,7 +69,7 @@ def reg():
                 # If for some reason data couldn't be commit throw an error message
                 result = ("There was an issue adding you to our database.")
     else: 
-        result = ("Username must end with @gmit.ie")
+        result = ("Username must end with @gmit.ie and Password must be 4+ characters")
     # password = request.get_json()['password']
 
     # Returning back to the frontend a String

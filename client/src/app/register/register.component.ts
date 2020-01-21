@@ -27,14 +27,12 @@ export class RegisterComponent implements OnInit {
 
     // Cowboy code, honestly no idea why it works but it did??
     // If the username/password field isn't blank
-    if ((this.username != undefined) && (this.password != undefined)) {
-      // This just sends username/password to the backend in the format 'username_password'
-      this.registerService.register(this.username + "_" + this.password).subscribe(registrationConfirmation => (this.registrationConfirmation = registrationConfirmation))  
-      // Just printing to the console the temp logged in user
-      console.log("Username: " + this.loggedInUser + " Password: " + password)  
-      // 'Clearing' the fields after someone logged in, don't need em anymore - data sent to backend already
-      this.username = undefined
-      this.password = undefined    
-    } 
+    // This just sends username/password to the backend in the format 'username_password'
+    this.registerService.register(this.username + "_" + this.password).subscribe(registrationConfirmation => (this.registrationConfirmation = registrationConfirmation))  
+    // Just printing to the console the temp logged in user
+    console.log("Username: " + this.loggedInUser + " Password: " + password)  
+    // 'Clearing' the fields after someone logged in, don't need em anymore - data sent to backend already
+    this.username = undefined
+    this.password = undefined    
   }
 }
