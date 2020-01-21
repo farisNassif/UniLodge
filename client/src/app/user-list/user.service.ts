@@ -31,7 +31,7 @@ export class UserService {
   removeUser(Username: string) {
     if (confirm("Are you sure you want to delete?")) {
       
-        return this.http.delete<String>('/api/users/remove/' +Username);
+        return this.http.delete<String>(this.userUrl + '/api/users/' + Username);
       }
   }
 

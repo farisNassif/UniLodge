@@ -92,7 +92,7 @@ def list_users():
     # Send the list of users (more specifically a users Username+Password) to the frontend
     return jsonify(userList)
 
-@app.route('/api/users/remove/<string:Username>', methods=['DELETE'])
+@app.route('/api/users/<string:Username>', methods=['DELETE'])
 def delete_user(Username):
     # Username being the email, since it will be unique in the database it's pretty much the primary key for users
     try: 

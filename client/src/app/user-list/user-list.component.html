@@ -11,7 +11,8 @@
     <th>Email</th>
     <th>Password</th>
     <th>Actions</th>
-    <th>Image</th>
+    <th>Image Upload</th>
+    <th>Images</th>
   </tr>
   <tr *ngFor="let user of users">
     <td>{{user.Username}}</td>
@@ -24,6 +25,9 @@
     <input type='file'  accept="image/*" (change)="changeListener($event)"> <br>
     <button title="Submit Image" (click)="submitImage()">Submit Image</button>
     <!-- <img id="file" [src]="imageSrc || 'http://placehold.it/46'" alt="your image" />  -->
-	</td>
+  </td>
+  <td>
+    <img id="file" [src]="uploadedImage || 'http://placehold.it/128'" alt="your image" />
+  </td>
   </tr>
 </table>

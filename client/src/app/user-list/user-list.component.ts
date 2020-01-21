@@ -13,14 +13,15 @@ import { ReadVarExpr } from '@angular/compiler';
 export class UserListComponent implements OnInit {
   msgFromTheBackend: String
   users: User[] = [];
-  imageSrc: any;
-  base64textString = [];
+  public base64textString: any | ArrayBuffer;
   Username : String
   image: string | ArrayBuffer;
+  uploadedImage: any = [];
 
   constructor(private route: ActivatedRoute, private userService: UserService) {}
   ngOnInit() {
-    this.msgFromTheBackend = "dada"
+    
+    this.msgFromTheBackend = "dada";
     this.getUsers();
   }
 
@@ -40,34 +41,23 @@ export class UserListComponent implements OnInit {
   }
 
   changeListener($event: { target: any; }) : void {
-    this.readThis($event.target);
+    this.readImage($event.target);
   }
 
-  readThis(inputValue: any): void {
+  readImage(inputValue: any): void {
     var file:File = inputValue.files[0];
     var myReader:FileReader = new FileReader();
   
     myReader.onloadend = (e) => {
-      this.image = (<string>myReader.result).split(',')[1];
-      
-      // Base64 String of image
-      console.log(this.image);
-      
+      // Cuts off the first part of the base64 String, don't need it
+      this.base64textString = (<string>myReader.result).split(',')[1];  
     }
     myReader.readAsDataURL(file);
   }
-  
-  readURL(event: Event): void {
-      //const file = (<HTMLInputElement>event.target).files[0];
-    
-      //const reader:FileReader = new FileReader();
 
-      //reader.onload = e => this.imageSrc = reader.result;
-
-      //console.log(reader.readAsDataURL(event.target.files[0]));
-      //console.log(file.name)
-      // console.log(reader.readAsDataURL(file));
-  } 
+  submitImage() {
+    this.uploadedImage = 'data:image/png;base64,' + this.base64textString;
+  }
    
 }
 
