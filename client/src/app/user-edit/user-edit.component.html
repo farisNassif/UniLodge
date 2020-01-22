@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <th>{{message_from_backend}}</th>
+  </tr>
+</table>
+
+<form>
+  <input type="password"placeholder="New Password .." [(ngModel)]="new_password" [ngModelOptions]="{standalone: true}">
+  <br>  
+  <button (click)="goBack()">go back</button>
+  <button (click)="save(password)">save</button>
+</form>

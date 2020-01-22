@@ -9,13 +9,17 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    UserListComponent
+    UserListComponent,
+    UserEditComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

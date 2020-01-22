@@ -1,0 +1,38 @@
+<h3>Users</h3>
+{{ msgFromTheBackend }}
+<div>
+	<a routerLink="/register">
+		Add New User
+	</a>
+</div>
+<table>
+
+  <tr>
+    <th>Email</th>
+    <th>Password</th>
+    <th>Actions</th>
+    <th>Image Upload</th>
+    <th>Images</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{ user.Username }}</td>
+    <td>{{ user.Password }}</td>
+	<td>
+    <button title="Delete User" (click)="removeUser(user.Username)">Delete</button>
+    <br>
+    <button title="Delete User" routerLink="/users/update/{{user.Username}}">Edit</button>
+  </td>
+  <td>
+    <input type='file'  accept="image/*" (change)="changeListener($event)"> <br>
+    <button title="Submit Image" (click)="displayImage(user.Username)">Submit Image</button>
+  </td>
+  <!-- 
+  <td>
+    <img id="file" [src]="uploadedImage || 'http://placehold.it/128'" alt="your image" />
+  </td>
+  -->
+    <td>
+      <img src="{{ user.Image }}" />
+      <!-- {{autoLoadImage(user.Image)}} -->
+    </td>
+</table>

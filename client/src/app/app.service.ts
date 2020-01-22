@@ -7,11 +7,9 @@ import { Observable } from 'rxjs'
 export class AppService {
     constructor(private http: HttpClient) { }
 
-    home(): Observable<any> {
-        return this.http.get<any>('api/home')
-    }
+    private userUrl = 'http://localhost:5000/';  // URL to REST API
 
-    register(username_and_password: string): Observable<String> {
-        return this.http.post<String>('api/register', username_and_password)
+    home(): Observable<any> {
+        return this.http.get<any>(this.userUrl + 'api/home')
     }
 }   

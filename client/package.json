@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,11 +21,19 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+<<<<<<< HEAD
+=======
+    "angular-base64": "^2.0.5",
+>>>>>>> 8b8367bc75c4b465b5a2c4e2d5a49646a46737ca
     "core-js": "^2.6.11",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
+<<<<<<< HEAD
+=======
+    "@angular-devkit/build-angular": "^0.10.7",
+>>>>>>> 8b8367bc75c4b465b5a2c4e2d5a49646a46737ca
     "@angular/cli": "~7.0.5",
     "@angular/compiler-cli": "^8.2.14",
     "@angular/language-service": "~7.0.0",

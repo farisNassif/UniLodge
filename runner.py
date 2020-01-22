@@ -53,7 +53,7 @@ def reg():
     print ("Password: " + password) # Print password
 
     # If username ends correctly (TODO At some point gotta change this to not just be '@gmit.ie')
-    if username.endswith('@gmit.ie'): 
+    if (username.endswith('@gmit.ie') and (len(password) > 4)): 
         # Basically if theres already an email in mongo the same as what was just entered
         if users.find_one( {'Username':username} ):
             result = ("There is already an account associated with that email.")
@@ -69,11 +69,64 @@ def reg():
                 # If for some reason data couldn't be commit throw an error message
                 result = ("There was an issue adding you to our database.")
     else: 
-        result = ("Username must end with @gmit.ie")
+        result = ("Username must end with @gmit.ie and Password must be 4+ characters")
     # password = request.get_json()['password']
 
     # Returning back to the frontend a String
     return jsonify(result)
+
+@app.route('/api/user', methods=['POST', 'GET'])
+def list_user():
+    username_to_find = request.get_data().decode()
+    print(username_to_find)
+    # Making userList equal to whatever is in the users table. So return Username/Password WITHOUT the _id
+    user = users.find_one({"Username": username_to_find}, {'_id': False})
+    # Return a single user (Username/Password)
+   
+    return jsonify(user)
+
+@app.route('/api/users', methods=['GET'])
+def list_users():
+    # Making userList equal to whatever is in the users table. So return Username/Password WITHOUT the _id
+    userList = list(users.find({}, {'_id': False}))
+    # Send the list of users (more specifically a users Username+Password) to the frontend
+    return jsonify(userList)
+
+@app.route('/api/users/<string:Username>', methods=['DELETE'])
+def delete_user(Username):
+    # Username being the email, since it will be unique in the database it's pretty much the primary key for users
+    try: 
+        users.delete_one( {'Username': Username } )
+        result = "User with Email: [" + Username + "] has been successfully removed."
+    except:
+        print("didn't work")
+        result = "There was an error deleting that user, try again."
+    return jsonify(result)
+        
+@app.route('/api/users/update/<string:Username>', methods=['PUT'])
+def update_user(Username):
+    new_password = request.get_data().decode()
+    # email_to_update = request.get_data().decode()
+    email_to_update = Username
+    try: 
+        users.update_one({ "Username": email_to_update }, { "$set": { "Password": new_password } } )
+        result = (email_to_update + " your password was successfully updated!")
+    except: 
+        result = ("There was an error updating " + email_to_update + ".")
+    return jsonify(result)
+
+@app.route('/api/users/add-image/<string:Username>', methods=['PUT'])
+def add_image(Username):
+    email_to_update = Username
+    image_to_add = request.get_data().decode()
+    try: 
+        users.update_one({ "Username": email_to_update }, { "$set": { "Image": image_to_add } } )
+        result = "Image successfully added"
+    except:
+        print ("not working")
+        result = "Image not added"
+    return jsonify(result)
+
 
 # Runs the application
 if __name__ == "__main__":
