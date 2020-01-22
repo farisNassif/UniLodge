@@ -9,11 +9,14 @@ import { HttpClient } from '@angular/common/http'
   providers: [AppService]
 })
 export class AppComponent implements OnInit{
-  msgFromTheBackend: String
-  username: String
-  loggedInUser: String
+  msgFromTheBackend: String // Whatever is returned from python - Eg "Registration Successful/Unsuccessful"
+
   password: String
-  registrationConfirmation: String
+  username: String
+  
+  loggedInUser: String // Temp logged in user 
+  
+  
   
   constructor(private appService: AppService, private http: HttpClient) { }
 
