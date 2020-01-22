@@ -22,7 +22,7 @@ export class UserService {
     return this.http.post<User[]>(this.userUrl + '/api/user', Username);
   }  
 
-  /** GET users from the DB */
+  /** GET users from the DB test */
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl + '/api/users');
   }
