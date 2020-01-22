@@ -15,8 +15,8 @@
     <th>Images</th>
   </tr>
   <tr *ngFor="let user of users">
-    <td>{{user.Username}}</td>
-    <td>{{user.Password}}</td>
+    <td>{{ user.Username }}</td>
+    <td>{{ user.Password }}</td>
 	<td>
     <button title="Delete User" (click)="removeUser(user.Username)">Delete</button>
     <br>
@@ -26,8 +26,13 @@
     <input type='file'  accept="image/*" (change)="changeListener($event)"> <br>
     <button title="Submit Image" (click)="displayImage(user.Username)">Submit Image</button>
   </td>
+  <!-- 
   <td>
     <img id="file" [src]="uploadedImage || 'http://placehold.it/128'" alt="your image" />
   </td>
-  </tr>
+  -->
+    <td>
+      <img src="{{ user.Image }}" />
+      <!-- {{autoLoadImage(user.Image)}} -->
+    </td>
 </table>

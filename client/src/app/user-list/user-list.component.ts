@@ -16,11 +16,12 @@ export class UserListComponent implements OnInit {
   public base64textString: any | ArrayBuffer;
   Username : String
   image: string | ArrayBuffer;
+  
   uploadedImage: any = [];
+  userImage: any = [];
 
   constructor(private route: ActivatedRoute, private userService: UserService) {}
   ngOnInit() {
-    
     this.msgFromTheBackend = "dada";
     this.getUsers();
   }
@@ -58,7 +59,7 @@ export class UserListComponent implements OnInit {
   displayImage(Username: string) {
     this.uploadedImage = this.base64textString;
 
-    this.addImage(Username)
+    this.addImage(Username);
   }
 
   addImage(Username: string) {
