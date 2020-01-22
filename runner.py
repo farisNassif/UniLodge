@@ -7,10 +7,10 @@ from bson.objectid import ObjectId
 # ('CORS': Cross origin resource sharing; so we can access frontend with different urls)
 from flask_cors import CORS
 # ('Bcrypt': Used for hashing of password)
-from flask_bcrypt import Bcrypt
-from flask_jwt_extended import JWTManager
-from flask_jwt_extended import (create_access_token)
-from datetime import datetime
+# from flask_bcrypt import Bcrypt
+# from flask_jwt_extended import JWTManager
+# from flask_jwt_extended import (create_access_token)
+# from datetime import datetime
 
 # Leave these for now
 # UPLOAD_FOLDER = "./uploads"
