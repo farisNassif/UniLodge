@@ -29,14 +29,14 @@ export class UserService {
 
   /** Delete a user from the DB */
   removeUser(Username: string) {
-    if (confirm("Are you sure you want to delete?")) {
+    if (confirm("Are you sure you want to delete " + Username + "?")) {
         return this.http.delete<String>(this.userUrl + '/api/users/' + Username);
       }
   }
 
   /** Update a user in the DB */
   updateUser(Username: string, NewPassword: string) {
-    if (confirm("Are you sure you want to update?")) {
+    if (confirm("Are you sure you want to update " + Username + "?")) {
         return this.http.put<String>(this.userUrl + '/api/users/update/' + Username, NewPassword);
       }
   }  

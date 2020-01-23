@@ -12,25 +12,12 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    RegisterComponent,
-    UserListComponent,
-    UserEditComponent,
-    HomeComponent,
-    ProfileComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+  declarations: [AppComponent, RegisterComponent, UserListComponent, UserEditComponent, HomeComponent, ProfileComponent],
+  imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule, HttpClientModule, NgbModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
