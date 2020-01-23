@@ -63,7 +63,7 @@ export class UserListComponent implements OnInit {
   }
 
   addImage(Username: string) {
-    this.userService.addImage(Username, this.uploadedImage).subscribe(msgFromTheBackend => (this.msgFromTheBackend = msgFromTheBackend));
+    this.userService.addImage(Username, this.uploadedImage).subscribe(success=> { this.getUsers() });
   }
 }
 
