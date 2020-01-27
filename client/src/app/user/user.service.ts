@@ -17,7 +17,6 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  /** GET single user from the DB */
   getUser(Username: string): Observable<User[]> {
     return this.http.post<User[]>(this.userUrl + '/api/user', Username);
   }  

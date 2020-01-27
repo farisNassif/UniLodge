@@ -7,16 +7,17 @@ import { RouterModule, Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { RegisterComponent } from './register/register.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { UserEditComponent } from './user-edit/user-edit.component';
+import { RegisterComponent } from './user/register/register.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './user/profile/profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserLoginComponent } from './user/user-login/user-login.component';
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, UserListComponent, UserEditComponent, HomeComponent, ProfileComponent, PageNotFoundComponent],
+  declarations: [AppComponent, RegisterComponent, UserListComponent, UserEditComponent, HomeComponent, ProfileComponent, PageNotFoundComponent, UserLoginComponent],
   imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule, HttpClientModule, NgbModule],
   providers: [],
   bootstrap: [AppComponent],

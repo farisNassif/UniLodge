@@ -40,7 +40,7 @@ export class AppComponent implements OnInit{
     .filter((route) => route.outlet === 'primary')
     .mergeMap((route) => route.data)
     .subscribe((event) => {
-        let title = 'Change this in routing.ts'
+        let title = 'Change this in routing.ts  '
         if(event['title']) {
             title = event['title'];
         }
