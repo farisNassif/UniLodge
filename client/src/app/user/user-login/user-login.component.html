@@ -15,10 +15,10 @@
     <form (submit)="loginUser($event, username, password)">
         <input type="text" [(ngModel)]="username" name="username_input" placeholder="Username">
         <input type="password" [(ngModel)]="password" name="password_input" placeholder="Password">
-        <input type="submit" (ngModelChange)="submit = $event" value="submit " routerLink="/profile">
+        <input type="submit" (ngModelChange)="submit = $event" value="submit">
     </form>
     <!-- After 'Submit' is clicked, display this message -->
-    In user login
+    {{ loginConfirmation }}
     <!-- Two way data bound, really just for testing purposes -->
     <p>Username: {{username}} Password: {{password}}</p>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

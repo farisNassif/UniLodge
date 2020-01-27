@@ -12,11 +12,22 @@ const httpOptions = {
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-
+  registrationConfirmation: String;
   private userUrl = 'http://localhost:5000';  // URL to REST API
 
   constructor(private http: HttpClient) { }
 
+  /** Registers a User **/
+  register(username_and_password: string): Observable<String> {
+    return this.http.post<String>(this.userUrl + '/api/register', username_and_password)
+  }
+
+  /** Logs in a user **/
+  loginUser(username_and_password: string): Observable<String> {
+    return this.http.post<String>(this.userUrl + '/api/login', username_and_password)
+  }
+
+  /** Retrieves a specific user **/
   getUser(Username: string): Observable<User[]> {
     return this.http.post<User[]>(this.userUrl + '/api/user', Username);
   }  
@@ -31,7 +42,7 @@ export class UserService {
     if (confirm("Are you sure you want to delete " + Username + "?")) {
         return this.http.delete<String>(this.userUrl + '/api/users/' + Username);
       }
-  }
+  } 
 
   /** Update a user in the DB */
   updateUser(Username: string, NewPassword: string) {

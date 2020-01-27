@@ -67,6 +67,29 @@ def reg():
     # Returning back to the frontend a String
     return jsonify(result)
 
+@app.route('/api/login', methods=['POST'])
+def login():
+    # Similar stuff to the Register route
+    # The returned result (userLogin) is coming back as bytes, need to call .decode() to get the actual String
+    userLogin = request.get_data().decode()
+    # Data is coming back in the form of 'username_password', split the data from 'username_password' to 'username' and 'password'
+    username_password = userLogin.split("_")
+    # Testing it works
+    username = username_password[0]
+    password = username_password[1]
+
+    # Print for testing
+    print ("Username: " + username) # Print username
+    print ("Password: " + password) # Print password
+
+    if users.find_one( {'Username': username, 'Password': password} ):
+        result = ("Login Successful")
+        # TODO Generate web token for logged in user
+    else:
+        result = ("Username and Password don't match")
+
+    return jsonify(result)
+
 @app.route('/api/user', methods=['POST', 'GET'])
 def list_user():
     username_to_find = request.get_data().decode()

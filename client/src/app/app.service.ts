@@ -12,8 +12,4 @@ export class AppService {
     home(): Observable<any> {
         return this.http.get<any>(this.userUrl + 'api/home')
     }
-
-    test(): string {
-        return 'working';
-    }
-}   
+}       
