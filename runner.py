@@ -12,10 +12,6 @@ from flask_cors import CORS
 # from flask_jwt_extended import (create_access_token)
 # from datetime import datetime
 
-# Leave these for now
-# UPLOAD_FOLDER = "./uploads"
-# ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
-
 # MongoString generated on my https://cloud.mongodb.com account || https://prnt.sc/pgi59k - Explaination
 cluster = MongoClient("mongodb+srv://Faris:loughrea@cluster0-dewud.mongodb.net/test?retryWrites=true&w=majority")
 # Database may contain multiple collections (tables), eg 'Employees' table, 'Appointments' table etc
@@ -24,10 +20,6 @@ database = cluster["FinalProjectDatabase"]
 users = database["Users"]
 
 app = Flask(__name__)
-
-# app.config['JWT_SECRET_KEY'] = 'secret'
-# bcrypt = Bcrypt(app)
-# jwt = JWTManager(app)
 
 CORS(app)
 
@@ -53,7 +45,7 @@ def reg():
     print ("Password: " + password) # Print password
 
     # If username ends correctly (TODO At some point gotta change this to not just be '@gmit.ie')
-    if (username.endswith('@gmit.ie') and (len(password) > 4)): 
+    if ((username.endswith('@gmit.ie') or username.endswith('@nuig.ie') or "gti" in username or "gcc" in username) and (len(password) > 4)): 
         # Basically if theres already an email in mongo the same as what was just entered
         if users.find_one( {'Username':username} ):
             result = ("There is already an account associated with that email.")
@@ -69,7 +61,7 @@ def reg():
                 # If for some reason data couldn't be commit throw an error message
                 result = ("There was an issue adding you to our database.")
     else: 
-        result = ("Username must end with @gmit.ie and Password must be 4+ characters")
+        result = ("Username must be associated with a College and Password must be 4+ characters")
     # password = request.get_json()['password']
 
     # Returning back to the frontend a String
@@ -99,7 +91,6 @@ def delete_user(Username):
         users.delete_one( {'Username': Username } )
         result = "User with Email: [" + Username + "] has been successfully removed."
     except:
-        print("didn't work")
         result = "There was an error deleting that user, try again."
     return jsonify(result)
         
@@ -123,8 +114,7 @@ def add_image(Username):
         users.update_one({ "Username": email_to_update }, { "$set": { "Image": image_to_add } } )
         result = "Image successfully added"
     except:
-        print ("not working")
-        result = "Image not added"
+        result = ("Image not added")
     return jsonify(result)
 
 
