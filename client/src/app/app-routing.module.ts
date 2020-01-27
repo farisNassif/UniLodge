@@ -10,12 +10,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'users', component: UserListComponent },
-  { path: 'users/update/:Username', component: UserEditComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent},
-  { path: '404', component: PageNotFoundComponent},
+  { path: 'home', component: HomeComponent, data: { title: 'UniLodge - Home' } },
+  { path: 'users', component: UserListComponent, data: { title: 'UniLodge - Users'} },
+  { path: 'users/update/:Username', component: UserEditComponent, data: { title: 'UniLodge - Update User' } },
+  { path: 'register', component: RegisterComponent, data: { title: 'UniLodge - Register User' } },
+  { path: 'profile', component: ProfileComponent, data: { title: 'UniLodge - Profile' }},
+  { path: '404', component: PageNotFoundComponent, data: { title: 'UniLodge - 404 Not Found' }},
    {path: '**', redirectTo: '/404'}
 ];
 
