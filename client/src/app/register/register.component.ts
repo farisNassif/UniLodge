@@ -33,6 +33,6 @@ export class RegisterComponent implements OnInit {
     console.log("Username: " + this.loggedInUser + " Password: " + password)  
     // 'Clearing' the fields after someone logged in, don't need em anymore - data sent to backend already
     this.username = undefined
-    this.password = undefined    
+    this.password = undefined 
   }
 }
