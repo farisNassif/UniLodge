@@ -85,13 +85,15 @@ def login():
         # Very painful way of retrieving password from mongo based on username given but it works as it is
         user_to_login_to_list = list(users.find( { 'Username': username } ))
 
-        for i in user_to_login_to_list: # Will always only loop 1, this is how it ended up working with retrieving a single value from mongo
+        for i in user_to_login_to_list: # Will always only loop once, this is how it ended up working with retrieving a single value from mongo
             stored_hash = i["Password"] # Gets the value of "Password" from the user in mongo and stores the hash as stored_hash
         
         if (p_h.check_password(password, stored_hash)): # Return true if entered pw hash matches stored hash
             result = ("Login Successful")
         else:
             result = ("Username and Password don't match") # False condition
+    else:
+        result = ("Username doesn't exist")
     return jsonify(result)
 
 @app.route('/api/user', methods=['POST', 'GET'])
