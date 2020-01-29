@@ -1,3 +1,4 @@
+import password_handler as p_h
 # ('json': For json format, 'jsonify': Again for format 'request': For http requests, 'Flask': Main flask library)
 from flask import Flask, request, jsonify, json, render_template
 # ('PyMongo': Connects flask with mongo database)
@@ -7,7 +8,7 @@ from bson.objectid import ObjectId
 # ('CORS': Cross origin resource sharing; so we can access frontend with different urls)
 from flask_cors import CORS
 # ('Bcrypt': Used for hashing of password)
-# from flask_bcrypt import Bcrypt
+import bcrypt
 # from flask_jwt_extended import JWTManager
 # from flask_jwt_extended import (create_access_token)
 # from datetime import datetime
@@ -20,11 +21,13 @@ database = cluster["FinalProjectDatabase"]
 users = database["Users"]
 
 app = Flask(__name__)
-
 CORS(app)
 
 @app.route('/api/home', methods=['GET'])
-def home():
+def home():    
+    hashss = p_h.generate_hash("password")
+    print(hashss)
+    print(p_h.check_password("password", hashss))
     # Message should appear in frontend 
     result = ('Hello World from runner.py - /api/welcomeMessage')
     # Sending off the message, for some reason doesn't work
