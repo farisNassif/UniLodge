@@ -7,8 +7,7 @@ from flask_pymongo import MongoClient
 from bson.objectid import ObjectId
 # ('CORS': Cross origin resource sharing; so we can access frontend with different urls)
 from flask_cors import CORS
-# ('Bcrypt': Used for hashing of password)
-import bcrypt
+
 # from flask_jwt_extended import JWTManager
 # from flask_jwt_extended import (create_access_token)
 # from datetime import datetime
@@ -25,9 +24,6 @@ CORS(app)
 
 @app.route('/api/home', methods=['GET'])
 def home():    
-    hashss = p_h.generate_hash("password")
-    print(hashss)
-    print(p_h.check_password("password", hashss))
     # Message should appear in frontend 
     result = ('Hello World from runner.py - /api/welcomeMessage')
     # Sending off the message, for some reason doesn't work
@@ -39,9 +35,9 @@ def reg():
     userLogin = request.get_data().decode()
     # Data is coming back in the form of 'username_password', split the data from 'username_password' to 'username' and 'password'
     username_password = userLogin.split("_")
-    # Testing it works
+    # Username / Password setting
     username = username_password[0]
-    password = username_password[1]
+    password = p_h.generate_hash(username_password[1])
 
     # Print for testing
     print ("Username: " + username) # Print username
@@ -77,7 +73,7 @@ def login():
     userLogin = request.get_data().decode()
     # Data is coming back in the form of 'username_password', split the data from 'username_password' to 'username' and 'password'
     username_password = userLogin.split("_")
-    # Testing it works
+    # Username / Password setting
     username = username_password[0]
     password = username_password[1]
 
@@ -85,12 +81,17 @@ def login():
     print ("Username: " + username) # Print username
     print ("Password: " + password) # Print password
 
-    if users.find_one( {'Username': username, 'Password': password} ):
-        result = ("Login Successful")
-        # TODO Generate web token for logged in user
-    else:
-        result = ("Username and Password don't match")
+    if users.find_one( {'Username': username } ):
+        # Very painful way of retrieving password from mongo based on username given but it works as it is
+        user_to_login_to_list = list(users.find( { 'Username': username } ))
 
+        for i in user_to_login_to_list: # Will always only loop 1, this is how it ended up working with retrieving a single value from mongo
+            stored_hash = i["Password"] # Gets the value of "Password" from the user in mongo and stores the hash as stored_hash
+        
+        if (p_h.check_password(password, stored_hash)): # Return true if entered pw hash matches stored hash
+            result = ("Login Successful")
+        else:
+            result = ("Username and Password don't match") # False condition
     return jsonify(result)
 
 @app.route('/api/user', methods=['POST', 'GET'])
