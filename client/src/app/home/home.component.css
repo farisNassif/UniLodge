@@ -1,8 +1,13 @@
 body,h1,h2,h3,h4,h5,h6 
 {
-    font-family: "Raleway", Arial, Helvetica, sans-serif
+    font-family: "Raleway", Arial, Helvetica, sans-serif;
 }
 
 .mySlides {
-    display: none
+    display: none;
+}
+
+.img-responsive {
+    width: 90%;
+    height: 70%;
 }

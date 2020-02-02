@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../../app.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -24,7 +23,7 @@ export class UserLoginComponent implements OnInit {
     // Since username/pw is being cleared - want a temp way to store username for login purposes 'Welcome user [loggedInUser]'
     this.loggedInUser = username
 
-    // Cowboy code, honestly no idea why it works but it did??
+    // Cowboy code, honestly no idea why it works
     // If the username/password field isn't blank
     // This just sends username/password to the backend in the format 'username_password'
     this.userService.loginUser(this.username + "_" + this.password).subscribe(loginConfirmation => (this.loginConfirmation = loginConfirmation))  
