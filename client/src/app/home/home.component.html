@@ -27,9 +27,11 @@
   <div class="container-fluid bg-3 text-center" >    
       <p>load some images from the database to display?<br>so far have placeholders :[</p>
       <div class="row">
-        <div *ngFor="let user of users" class="col-sm-3">
-          <p>here should be the location<br>image just off a random house image from the database<br>{{ user.Username }}</p>
-          <img src="{{ user.Image }}" class="img-responsive" alt="Image">
+        <div *ngFor="let user of users; let i=index" class="col-sm-3">
+          <ion-slide *ngIf="i<5" >   
+            <p>here should be the location<br>image just off a random house image from the database<br>{{ user.Username }}</p>
+            <img src="{{ user.Image }}" class="img-responsive" alt="Image">
+        </ion-slide>
         </div>
       </div>
     </div>

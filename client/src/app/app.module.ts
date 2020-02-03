@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { HttpModule } from '@angular/http'
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
@@ -22,5 +22,6 @@ import { AccommodationComponent } from './accommodation/accommodation.component'
   imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule, HttpClientModule, NgbModule],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }
