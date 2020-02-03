@@ -8,8 +8,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
+  profileUserName : String = "Username Placeholder"
+
+
   ngOnInit() {
   }
   
-
+  getCurrentUser()
+  {
+    
+  }// getCurrentUser
 }
