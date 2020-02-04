@@ -1,8 +1,10 @@
-<h2 align="center">UniLodge</h2>
-<h3 align="center>An AirBnB service specifically designed for both students and property owners in Galway</h3>
-## Project Details
+<p>
+  <h2 align="center">UniLodge</h2>
+  <i><h3 align="center">An AirBnB service specifically designed for both students and property owners in Galway</h3></i>
+</p>
 
-|   |   |
+
+| Details  |   |
 | --- | --- |
 | **Project**  | Applied Project & Minor Dissertation
 | **Course** | BSc (Hons) in Software Development
