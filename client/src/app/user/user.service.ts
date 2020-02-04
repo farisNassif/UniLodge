@@ -12,6 +12,7 @@ const httpOptions = {
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+  test : any
   registrationConfirmation: String;
   private userUrl = 'http://localhost:5000';  // URL to REST API
 
@@ -29,7 +30,7 @@ export class UserService {
 
   /** Retrieves a specific user **/
   getUser(Username: string): Observable<User[]> {
-    return this.http.post<User[]>(this.userUrl + '/api/user', Username);
+    return this.http.get<User[]>(this.userUrl + '/api/user/' + Username);
   }  
 
   /** GET users from the DB test */

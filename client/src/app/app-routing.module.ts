@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'users', component: UserListComponent, data: { title: 'UniLodge - Users'} },
   { path: 'users/update/:Username', component: UserEditComponent, data: { title: 'UniLodge - Update User' } },
   { path: 'register', component: RegisterComponent, data: { title: 'UniLodge - Register User' } },
-  { path: 'profile', component: ProfileComponent, data: { title: 'UniLodge - Profile' } },
+  { path: 'profile/:Username', component: ProfileComponent, data: { title: 'UniLodge - Profile' } },
   { path: '404', component: PageNotFoundComponent, data: { title: 'UniLodge - 404 Not Found' } },
   { path: '**', redirectTo: '/404' }
 ];

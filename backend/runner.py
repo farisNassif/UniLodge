@@ -96,14 +96,15 @@ def login():
         result = ("Username doesn't exist")
     return jsonify(result)
 
-@app.route('/api/user', methods=['POST', 'GET'])
-def list_user():
-    username_to_find = request.get_data().decode()
-    print(username_to_find)
+@app.route('/api/user/<string:Username>', methods=['GET'])
+def list_user(Username):
+    print("in user get " + Username)
     # Making userList equal to whatever is in the users table. So return Username/Password WITHOUT the _id
-    user = users.find_one({"Username": username_to_find}, {'_id': False})
+    user = list(users.find({"Username": Username}, {'_id': False}))
+    print("test")
+    print(user)
+
     # Return a single user (Username/Password)
-   
     return jsonify(user)
 
 @app.route('/api/users', methods=['GET'])
@@ -146,6 +147,17 @@ def add_image(Username):
         result = ("Image not added")
     return jsonify(result)
 
+@app.route('/api/profile/<string:Username>', methods=['GET'])
+def user_profile(Username):
+    new_password = request.get_data().decode()
+    # email_to_update = request.get_data().decode()
+    email_to_update = Username
+    try: 
+        users.update_one({ "Username": email_to_update }, { "$set": { "Password": new_password } } )
+        result = (email_to_update + " your password was successfully updated!")
+    except: 
+        result = ("There was an error updating " + email_to_update + ".")
+    return jsonify(result)
 
 # Runs the application
 if __name__ == "__main__":

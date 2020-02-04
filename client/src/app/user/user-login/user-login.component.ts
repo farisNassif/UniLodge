@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-user-login',
@@ -8,7 +9,7 @@ import { UserService } from '../user.service';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public router: Router) { }
   username: String
   loggedInUser: String
   password: String
@@ -28,7 +29,7 @@ export class UserLoginComponent implements OnInit {
     // Cowboy code, honestly no idea why it works
     // If the username/password field isn't blank
     // This just sends username/password to the backend in the format 'username_password'
-    this.userService.loginUser(this.username + "_" + this.password).subscribe(logged_in => this.checkLogin(this.logged_in = logged_in))
+    this.userService.loginUser(this.username + "_" + this.password).subscribe(logged_in => this.checkLogin(this.logged_in = logged_in, this.loggedInUser))
 
     // Just printing to the console the temp logged in user
     console.log("Username: " + this.loggedInUser + " Password: " + password)  
@@ -38,9 +39,9 @@ export class UserLoginComponent implements OnInit {
 
   }
 
-  checkLogin(login_result: String) {
+  checkLogin(login_result: String, username: String) {
     if (login_result == "true") {
-      // Do login stuff ...
+        this.router.navigate(['/profile/' + username]);
       console.log("logged in")
     } else {
       // Try again
