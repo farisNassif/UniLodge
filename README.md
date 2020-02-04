@@ -1,10 +1,10 @@
-<h3 align="center">UniLodge - An AirBnB service specifically designed for both students and property owners in Galway</h3>
-
+<h2 align="center">UniLodge</h2>
+<h3 align="center>An AirBnB service specifically designed for both students and property owners in Galway</h3>
 ## Project Details
 
-|Details  |    |
+|   |   |
 | --- | --- |
-| **Project**  | [Applied Project & Minor Dissertation]
+| **Project**  | Applied Project & Minor Dissertation
 | **Course** | BSc (Hons) in Software Development
 | **Authors** | [Faris Nassif](https://github.com/farisNassif) & [Aaron Burns](https://github.com/aaronBurns59) |
 | **Supervisors** | Dr John French & Dr Martin Kenirons |
