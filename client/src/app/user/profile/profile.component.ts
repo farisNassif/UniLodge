@@ -10,9 +10,9 @@ import { Location } from '@angular/common';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  // Obtains the username
   username: string = window.location.pathname.substring(9,40);
   users: User[] = [];
-  profileUserName : String = "Username Placeholder"
 
   constructor(private route: ActivatedRoute, private userService: UserService) {}
   ngOnInit() {

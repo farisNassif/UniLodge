@@ -10,17 +10,18 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-  <body>
-    {{ profileUserName }}
-    <tr *ngFor="let user of users">
-      <td>{{ user.Username }}</td>
-      <td>{{ user.Password }}</td>
-    </tr>
-    <div class="parent-display">
-      <div class="textarea-display">
-        <textarea placeholder="Enter something about the premises you would like to say" cols="75" rows="10"></textarea>
+<body class="w3-content w3-border-left w3-border-right">
+  <div class="container-fluid bg-3 text-center" >    
+    <div class="row">
+      <div *ngFor="let user of users; let i=index" class="col-sm-3">
+        <ion-slide *ngIf="i<8" >   
+          <p>here should be the location<br>{{ user.Username }} {{ user.Password }}</p>
+          <img src="{{ user.Image }}" class="img-responsive" alt="Image" (click)="myfunction(user.Username)">
+        </ion-slide>
       </div>
     </div>
-  </body>
+  </div>
+  <br><br>
+</body>
 </html>
 

@@ -14,7 +14,7 @@
   <form (submit)="loginUser($event, username, password)" class="was-validated">
     <div class="form-group">
       <label for="email" class="control-label">Email</label>
-      <input type="email" [(ngModel)]="username" class="form-control" name="username_input" placeholder="Username" required>
+      <input type="email" [(ngModel)]="username" class="form-control" name="username_input" placeholder="Email" required>
       <div class="valid-feedback">All Good!</div>
       <div class="invalid-feedback">Please fill out this field.</div>
     </div>
@@ -40,7 +40,8 @@
     <button type="submit" (ngModelChange)="submit = $event" value="submit" class="btn btn-primary">Submit</button>
     <br>
     <br>
-    {{ logged_in }}
+    <b>{{ logged_in }}</b>
+    <br>
     <br>
   </form>
 </body>

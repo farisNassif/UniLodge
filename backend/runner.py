@@ -8,6 +8,10 @@ from bson.objectid import ObjectId
 # ('CORS': Cross origin resource sharing; so we can access frontend with different urls)
 from flask_cors import CORS
 
+from functools import wraps
+import jwt
+import datetime
+
 # from flask_jwt_extended import JWTManager
 # from flask_jwt_extended import (create_access_token)
 # from datetime import datetime
@@ -20,6 +24,7 @@ database = cluster["FinalProjectDatabase"]
 users = database["Users"]
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'JustTesting'
 CORS(app)
 
 @app.route('/api/home', methods=['GET'])
@@ -90,19 +95,22 @@ def login():
         
         if (p_h.check_password(password, stored_hash)): # Return true if entered pw hash matches stored hash
             result = "true"
+            token = jwt.encode ({
+                'user': username,
+                'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
+            },
+            app.config['SECRET_KEY'])
+            print(token.decode('utf-8'))
         else:
-            result = "false"
+            result = "Login Credentials are Invalid"
     else:
         result = ("Username doesn't exist")
     return jsonify(result)
 
 @app.route('/api/user/<string:Username>', methods=['GET'])
 def list_user(Username):
-    print("in user get " + Username)
     # Making userList equal to whatever is in the users table. So return Username/Password WITHOUT the _id
     user = list(users.find({"Username": Username}, {'_id': False}))
-    print("test")
-    print(user)
 
     # Return a single user (Username/Password)
     return jsonify(user)
