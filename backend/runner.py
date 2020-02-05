@@ -27,6 +27,19 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'JustTesting'
 CORS(app)
 
+def check_for_token(func):
+    @wraps(func)
+    def wrapped(*args, **kwargs):
+        token = request.args.get('token')
+        if not token:
+            return jsonify( {'message': 'Missing Token'} ), 403
+        try: 
+            data = jwt.decode(token, app.config['SECRET_KEY'])
+        except:
+            return jsonify( {'message': 'Invalid Token' } ), 403
+        return func(*args, **kwargs)
+    return wrapped
+
 @app.route('/api/home', methods=['GET'])
 def home():    
     # Message should appear in frontend 
@@ -100,9 +113,9 @@ def login():
                 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
             },
             app.config['SECRET_KEY'])
-            print(token.decode('utf-8'))
+            print ({token.decode('utf-8')})
         else:
-            result = "Login Credentials are Invalid"
+            result = "Invalid login"
     else:
         result = ("Username doesn't exist")
     return jsonify(result)
@@ -156,6 +169,7 @@ def add_image(Username):
     return jsonify(result)
 
 @app.route('/api/profile/<string:Username>', methods=['GET'])
+@check_for_token
 def user_profile(Username):
     new_password = request.get_data().decode()
     # email_to_update = request.get_data().decode()
