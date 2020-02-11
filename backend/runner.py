@@ -27,19 +27,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'JustTesting'
 CORS(app)
 
-def check_for_token(func):
-    @wraps(func)
-    def wrapped(*args, **kwargs):
-        token = request.args.get('token')
-        if not token:
-            return jsonify( {'message': 'Missing Token'} ), 403
-        try: 
-            data = jwt.decode(token, app.config['SECRET_KEY'])
-        except:
-            return jsonify( {'message': 'Invalid Token' } ), 403
-        return func(*args, **kwargs)
-    return wrapped
-
 @app.route('/api/home', methods=['GET'])
 def home():    
     # Message should appear in frontend 
@@ -56,10 +43,6 @@ def reg():
     # Username / Password setting
     username = username_password[0]
     password = p_h.generate_hash(username_password[1])
-
-    # Print for testing
-    print ("Username: " + username) # Print username
-    print ("Password: " + password) # Print password
 
     # If username ends correctly (TODO At some point gotta change this to not just be '@gmit.ie')
     if ((username.endswith('@gmit.ie') or username.endswith('@nuig.ie') or "gti" in username or "gcc" in username) and (len(password) > 4)): 
@@ -95,10 +78,6 @@ def login():
     username = username_password[0]
     password = username_password[1]
 
-    # Print for testing
-    print ("Username: " + username) # Print username
-    print ("Password: " + password) # Print password
-
     if users.find_one( {'Username': username } ):
         # Very painful way of retrieving password from mongo based on username given but it works as it is
         user_to_login_to_list = list(users.find( { 'Username': username } ))
@@ -107,13 +86,7 @@ def login():
             stored_hash = i["Password"] # Gets the value of "Password" from the user in mongo and stores the hash as stored_hash
         
         if (p_h.check_password(password, stored_hash)): # Return true if entered pw hash matches stored hash
-            result = "true"
-            token = jwt.encode ({
-                'user': username,
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
-            },
-            app.config['SECRET_KEY'])
-            print ({token.decode('utf-8')})
+            result = "Return web token here in future"
         else:
             result = "Invalid login"
     else:
@@ -168,11 +141,10 @@ def add_image(Username):
         result = ("Image not added")
     return jsonify(result)
 
+# This doesn't actually even do anything right now, can remove it and profile still works fine
 @app.route('/api/profile/<string:Username>', methods=['GET'])
-@check_for_token
 def user_profile(Username):
     new_password = request.get_data().decode()
-    # email_to_update = request.get_data().decode()
     email_to_update = Username
     try: 
         users.update_one({ "Username": email_to_update }, { "$set": { "Password": new_password } } )

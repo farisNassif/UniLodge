@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../app.service'
 import { HttpClient } from '@angular/common/http'
 import { UserService } from '../user.service';
+import { FormBuilder, Validators  } from "@angular/forms";
 
 @Component({
   selector: 'app-register',
@@ -13,8 +14,8 @@ export class RegisterComponent implements OnInit {
   loggedInUser: String
   password: String
   registrationConfirmation: String
-
-  constructor(private userService: UserService, private http: HttpClient) { }
+  
+  constructor(private userService: UserService, private http: HttpClient, public fb: FormBuilder) { }
 
   ngOnInit() {
   }
@@ -35,5 +36,4 @@ export class RegisterComponent implements OnInit {
     this.username = undefined
     this.password = undefined 
   }
-
 }

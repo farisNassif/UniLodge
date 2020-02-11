@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../user/user'
 import { UserService } from '../user/user.service';
 import { Router } from '@angular/router'
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
 		this.userService.getUsers().subscribe(users => this.users = users);
   }
 
-  public myfunction(username : string){
-    this.router.navigate(['/profile']);
+  public profileRedirect(username : string) {
+    this.router.navigate(['/profile/' + username]);
   }
 }

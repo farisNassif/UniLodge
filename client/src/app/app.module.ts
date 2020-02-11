@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http'
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule, Router } from '@angular/router';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './user/register/register.component';
@@ -19,7 +19,7 @@ import { AccommodationComponent } from './accommodation/accommodation.component'
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent, UserListComponent, UserEditComponent, HomeComponent, ProfileComponent, PageNotFoundComponent, UserLoginComponent, AccommodationComponent],
-  imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule, HttpClientModule, NgbModule],
+  imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule, HttpClientModule, NgbModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

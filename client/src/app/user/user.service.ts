@@ -14,7 +14,7 @@ const httpOptions = {
 export class UserService {
   test : any
   registrationConfirmation: String;
-  private userUrl = 'http://localhost:5000';  // URL to REST API
+  private userUrl = 'http://localhost:5000'; 
 
   constructor(private http: HttpClient) { }
 
