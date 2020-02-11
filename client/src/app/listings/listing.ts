@@ -2,8 +2,8 @@ export class Listing {
   constructor(
     public Title: string,
     public Seller: string,
-    public Location: string,
-    public Price: Number,
+    public Location: any,
+    public Price: string,
     public ContactNumber: string,
     public Image?: string,
     public _id?: number

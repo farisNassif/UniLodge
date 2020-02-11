@@ -4,25 +4,16 @@
      
       <div class="form-group">
         <label for="Title">*Title</label>
-        <input type="text" class="form-control" id="Title" [(ngModel)]="model.Title" name="Title" #Title="ngModel" required>
+        <input type="text" class="form-control" id="Title" [(ngModel)]="model.Title" name="Title" #Title="ngModel" placeholder="Eg - 2 Bedroom Flat" required>
             <div [hidden]="Title.valid || Title.pristine"
                 class="alert alert-danger">
                 Title is required
             </div>
       </div>
 
-      <div class="form-group">  
-        <label for="Seller">*Seller (Should be included automatically without this)</label>
-        <input type="text" class="form-control" id="Seller" [(ngModel)]="model.Seller" #Seller="ngModel" name="Seller" required>
-            <div [hidden]="Seller.valid || Seller.pristine"
-                class="alert alert-danger">
-                Seller is required
-            </div>
-      </div>
-
       <div class="form-group">
         <label for="Location">*Location</label>
-        <select class="form-control" id="Location" required>
+        <select class="form-control" id="Location" (change)="setLocation($event.target.value)" required [(ngModel)]="model.Location" name="Location" >
           <option *ngFor="let location of Location" [value]="location">{{location}}</option>
         </select>
       </div>
@@ -38,7 +29,7 @@
 
       <div class="form-group">
         <label for="ContactNumber">*Contact Number</label>
-        <input type="text" class="form-control" id="ContactNumber" [(ngModel)]="model.ContactNumber" name="ContactNumber" #ContactNumber="ngModel" required>
+        <input type="text" class="form-control" id="ContactNumber" [(ngModel)]="model.ContactNumber" placeholder="087 123 4567" name="ContactNumber" #ContactNumber="ngModel" required>
             <div [hidden]="ContactNumber.valid || ContactNumber.pristine"
                 class="alert alert-danger">
                 Contact Number is required
@@ -47,16 +38,16 @@
 
       <div class="form-group">
         <label for="Image">Image</label>
-        <input type="text" class="form-control" id="Image" [(ngModel)]="model.Image" name="Image">
+        <input type="text" class="form-control" id="Image" [(ngModel)]="model.Image" placeholder="This is a string for now, will add upload functionality later" name="Image" >
       </div>
 
       <div class="form-group">
         <label for="_id">ID</label>
-        <input type="text" class="form-control" id="_id" [(ngModel)]="model._id" name="_id">
+        <input type="text" class="form-control" id="_id" [(ngModel)]="model._id" name="_id" placeholder="Again this is just temp, prolly gonna remove this">
       </div>
 
     </form>
-    <button type="submit" class="btn btn-success" [disabled]="!listingForm.form.valid">Submit</button>
+    <button type="submit" class="btn btn-success" (click)="newListing(model.Title, model.Price, model.ContactNumber)" [disabled]="!listingForm.form.valid">Submit</button>
     <br>
     <br>
 
