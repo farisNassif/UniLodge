@@ -13,4 +13,34 @@ export class ListingComponent implements OnInit {
   ngOnInit() {
   }
 
+  Location = ['Please choose a Location', 'Loughrea', 'Galway City',
+            'Craughwell', 'Ballybrit'];
+
+  model = new Listing(  
+  "MyTitle",
+  "MySeller",
+  this.Location[0],
+  5.55,
+  "MyNumber",
+  "OptionalImage",
+  123);
+
+  submitted = false;
+
+  onSubmit() { this.submitted = true; }
+
+  clearForm(form: any) {
+      form.reset();
+  }
+  
+  newListing() {
+    this.model = new Listing(  
+      "",
+      "",
+      "",
+      0,
+      "",
+      "",
+      123);
+  }
 }

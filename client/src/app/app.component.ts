@@ -3,6 +3,7 @@ import { AppService } from './app.service'
 import { HttpClient } from '@angular/common/http'
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { FormsModule }   from '@angular/forms';
 
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
