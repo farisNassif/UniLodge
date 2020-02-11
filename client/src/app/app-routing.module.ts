@@ -8,15 +8,22 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
+import { ListingComponent } from './listings/listing/listing.component';
 
 const routes: Routes = [
+  // General Routes
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, data: { title: 'UniLodge - Home' } },
+  // User relevant routes
   { path: 'login', component: UserLoginComponent, data: { title: 'UniLodge - User Login' } },
-  { path: 'users', component: UserListComponent, data: { title: 'UniLodge - Users'} },
-  { path: 'users/update/:Username', component: UserEditComponent, data: { title: 'UniLodge - Update User' } },
   { path: 'register', component: RegisterComponent, data: { title: 'UniLodge - Register User' } },
   { path: 'profile/:Username', component: ProfileComponent, data: { title: 'UniLodge - Profile' } },
+  // These are mainly for testing - user shouldn't see these in production
+  { path: 'users', component: UserListComponent, data: { title: 'UniLodge - Users'} },
+  { path: 'users/update/:Username', component: UserEditComponent, data: { title: 'UniLodge - Update User' } },
+  // Listings relevant routes
+  { path: 'listing', component: ListingComponent, data: { title: 'UniLodge - Listing' } },
+  // Redirections
   { path: '404', component: PageNotFoundComponent, data: { title: 'UniLodge - 404 Not Found' } },
   { path: '**', redirectTo: '/404' }
 ];
