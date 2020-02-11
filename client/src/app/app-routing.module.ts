@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'users', component: UserListComponent, data: { title: 'UniLodge - Users'} },
   { path: 'users/update/:Username', component: UserEditComponent, data: { title: 'UniLodge - Update User' } },
   // Listings relevant routes
-  { path: 'listing', component: ListingComponent, data: { title: 'UniLodge - Listing' } },
+  { path: 'listing/:Username', component: ListingComponent, data: { title: 'UniLodge - Listing' } },
   // Redirections
   { path: '404', component: PageNotFoundComponent, data: { title: 'UniLodge - 404 Not Found' } },
   { path: '**', redirectTo: '/404' }
