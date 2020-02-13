@@ -150,7 +150,7 @@ def new_listing(Username):
     creator_of_listing = Username
     listing_data = request.get_data().decode()
     try: 
-        print("in try")
+        print(listing_data)
         # Check to see if user is a valid user
         # If true then add new listing to listing database
     except:

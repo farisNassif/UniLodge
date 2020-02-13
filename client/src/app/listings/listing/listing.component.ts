@@ -60,7 +60,7 @@ export class ListingComponent implements OnInit {
       "Imagebase64 String",
       123);
     console.log(this.model);
-    this.listingService.newListing(this.Seller).subscribe(success=>{ console.log("success?")});
+    this.listingService.newListing(this.Seller, this.model).subscribe(success=>{ console.log("success?")});
   }
 
   changeListener($event: { target: any; }) : void {
