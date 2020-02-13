@@ -1,3 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularBootstrap</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+</head>
+<body>
 <div class="container">
     <h1>New Listing</h1>
     <form (ngSubmit)="onSubmit()" #listingForm="ngForm" class="needs-validation" novalidate>
@@ -37,18 +49,16 @@
       </div>
 
       <div class="form-group">
-        <label for="Image">Image</label>
-        <input type="text" class="form-control" id="Image" [(ngModel)]="model.Image" placeholder="This is a string for now, will add upload functionality later" name="Image" >
-      </div>
-
-      <div class="form-group">
-        <label for="_id">ID</label>
-        <input type="text" class="form-control" id="_id" [(ngModel)]="model._id" name="_id" placeholder="Again this is just temp, prolly gonna remove this">
+          <label for="Image">Upload Images</label>
+          <br>
+          <input type='file' accept="image/*" (change)="changeListener($event)"> <br>
+          <button title="Submit Image" (click)="displayImage()">Submit Image</button>
       </div>
 
     </form>
     <button type="submit" class="btn btn-success" (click)="newListing(model.Title, model.Price, model.ContactNumber)" [disabled]="!listingForm.form.valid">Submit</button>
     <br>
     <br>
-
 </div>
+</body>
+</html>

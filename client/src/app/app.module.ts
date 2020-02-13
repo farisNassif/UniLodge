@@ -18,6 +18,7 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { AccommodationComponent } from './accommodation/accommodation.component';
 import { ListingComponent } from './listings/listing/listing.component';
 
+
 @NgModule({
   declarations: [AppComponent, RegisterComponent, UserListComponent, UserEditComponent, HomeComponent, ProfileComponent, PageNotFoundComponent, UserLoginComponent, AccommodationComponent, ListingComponent],
   imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule, HttpClientModule, NgbModule, ReactiveFormsModule],

@@ -48,7 +48,7 @@ export class UserListComponent implements OnInit {
     var myReader:FileReader = new FileReader();
   
     myReader.onloadend = (e) => {
-      // Cuts off the first part of the base64 String, don't need it
+      // Cuts off the first part of the base64 String, don't need it (turns out we actually do need it)
       //this.base64textString = (<string>myReader.result).split(',')[1]; 
       this.base64textString = myReader.result; 
     }

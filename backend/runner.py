@@ -8,23 +8,15 @@ from bson.objectid import ObjectId
 # ('CORS': Cross origin resource sharing; so we can access frontend with different urls)
 from flask_cors import CORS
 
-from functools import wraps
-import jwt
-import datetime
-
-# from flask_jwt_extended import JWTManager
-# from flask_jwt_extended import (create_access_token)
-# from datetime import datetime
-
 # MongoString generated on my https://cloud.mongodb.com account || https://prnt.sc/pgi59k - Explaination
 cluster = MongoClient("mongodb+srv://Faris:loughrea@cluster0-dewud.mongodb.net/test?retryWrites=true&w=majority")
 # Database may contain multiple collections (tables), eg 'Employees' table, 'Appointments' table etc
 database = cluster["FinalProjectDatabase"]
-# Referenced whenever inserting/deleting from the users collection(table)
+# Referenced whenever inserting/deleting from the users/listings collection(table)
 users = database["Users"]
+listings = database["Listings"]
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'JustTesting'
 CORS(app)
 
 @app.route('/api/home', methods=['GET'])
@@ -152,6 +144,19 @@ def user_profile(Username):
     except: 
         result = ("There was an error updating " + email_to_update + ".")
     return jsonify(result)
+
+@app.route('/api/new-listing/<string:Username>', methods=['POST'])
+def new_listing(Username):
+    creator_of_listing = Username
+    listing_data = request.get_data().decode()
+    try: 
+        print("in try")
+        # Check to see if user is a valid user
+        # If true then add new listing to listing database
+    except:
+        result = ("Image not added")
+        
+    return jsonify("result")
 
 # Runs the application
 if __name__ == "__main__":

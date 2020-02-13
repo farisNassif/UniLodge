@@ -20,12 +20,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  RegisterUser(event: void, username: string, password: string) {
+  async RegisterUser(event: void, username: string, password: string) {
     this.username = username
     this.password = password
     // Since username/pw is being cleared - want a temp way to store username for login purposes 'Welcome user [loggedInUser]'
     this.loggedInUser = username
-
+    
     // Cowboy code, honestly no idea why it works but it did??
     // If the username/password field isn't blank
     // This just sends username/password to the backend in the format 'username_password'

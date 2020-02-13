@@ -15,4 +15,8 @@ export class ListingService {
 
   constructor(private http: HttpClient) { }
   
+  /** Posts a listing **/
+  newListing(username: string): Observable<any> {
+    return this.http.post<any>(this.userUrl + '/api/new-listing/' + username, username)
+  }  
 }
