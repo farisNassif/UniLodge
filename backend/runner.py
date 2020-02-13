@@ -151,15 +151,9 @@ def new_listing(Username):
     creator_of_listing = Username
     listing_data = json.loads(request.get_data().decode()) # Using json module convert to json
     try: 
-        print(creator_of_listing)
-        print(listing_data)
-
-        try:        
-            # Posting data stored above to mongo
-            listings.insert_one(listing_data)
-            result = ("Success! Added to database")
-        except:
-            print("error?")
+        # Posting data stored above to mongo
+        listings.insert_one(listing_data) # Sticking direct json data into database from frontend
+        result = ("Success! Added to database")
     except:
         result = ("Some error thrown")
         

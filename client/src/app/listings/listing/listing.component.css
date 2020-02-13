@@ -5,3 +5,8 @@
 .ng-invalid:not(form)  {
     border-left: 5px solid #a94442; /* red */
 }
+
+.img-responsive {
+  width: 25%;
+  height: 25%;
+}
