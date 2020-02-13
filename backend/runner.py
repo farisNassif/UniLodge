@@ -150,11 +150,18 @@ def new_listing(Username):
     creator_of_listing = Username
     listing_data = request.get_data().decode()
     try: 
+        print(creator_of_listing)
         print(listing_data)
-        # Check to see if user is a valid user
-        # If true then add new listing to listing database
+        new_listing = {"Title":"this is my title", "Seller":creator_of_listing,
+        "Location": "my location", "Price": "€6969", "Contact": "0874576678", "Image": "my image"}
+        try:        
+            # Posting data stored above to mongo
+            listings.insert_one(new_listing)
+            result = ("Success! Added to database")
+        except:
+            result = ("Listing not added")
     except:
-        result = ("Image not added")
+        result = ("Some error thrown")
         
     return jsonify("result")
 
