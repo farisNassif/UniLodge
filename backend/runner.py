@@ -7,6 +7,7 @@ from flask_pymongo import MongoClient
 from bson.objectid import ObjectId
 # ('CORS': Cross origin resource sharing; so we can access frontend with different urls)
 from flask_cors import CORS
+import json
 
 # MongoString generated on my https://cloud.mongodb.com account || https://prnt.sc/pgi59k - Explaination
 cluster = MongoClient("mongodb+srv://Faris:loughrea@cluster0-dewud.mongodb.net/test?retryWrites=true&w=majority")
@@ -148,18 +149,17 @@ def user_profile(Username):
 @app.route('/api/new-listing/<string:Username>', methods=['POST'])
 def new_listing(Username):
     creator_of_listing = Username
-    listing_data = request.get_data().decode()
+    listing_data = json.loads(request.get_data().decode()) # Using json module convert to json
     try: 
         print(creator_of_listing)
         print(listing_data)
-        new_listing = {"Title":"this is my title", "Seller":creator_of_listing,
-        "Location": "my location", "Price": "€6969", "Contact": "0874576678", "Image": "my image"}
+
         try:        
             # Posting data stored above to mongo
-            listings.insert_one(new_listing)
+            listings.insert_one(listing_data)
             result = ("Success! Added to database")
         except:
-            result = ("Listing not added")
+            print("error?")
     except:
         result = ("Some error thrown")
         

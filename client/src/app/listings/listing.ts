@@ -6,6 +6,5 @@ export class Listing {
     public Price: string,
     public ContactNumber: string,
     public Image?: string,
-    public _id?: number
   ) {  }
 }

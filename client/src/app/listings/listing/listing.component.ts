@@ -37,7 +37,6 @@ export class ListingComponent implements OnInit {
   this.Location[0],
   null,
   null,
-  null,
   null);
 
   submitted = false;
@@ -57,8 +56,7 @@ export class ListingComponent implements OnInit {
       this.UserLocation,
       price,
       contact_num,
-      "Imagebase64 String",
-      123);
+      "Imagebase64 String");
     console.log(this.model);
     this.listingService.newListing(this.Seller, this.model).subscribe(success=>{ console.log("success?")});
   }
