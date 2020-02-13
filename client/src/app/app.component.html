@@ -14,12 +14,13 @@
         <a routerLink="/">Home</a>
         <a routerLink="register">Register</a>
         <a routerLink="users">Users</a>
-        <a routerLink="login" class="right">Login</a>
+        <a *ngIf="loginStatus===''" routerLink="login" class="right">Login</a>
+        <a *ngIf="loginStatus!=''"  (click)="logout()" routerLink="/" class="right">Logout</a>   
     </div>
     
-    <div>
+    <div> 
         <!-- The content contained within other routed components will display here -->
-        <router-outlet></router-outlet>  
+        <router-outlet>{{loginStatus}}</router-outlet>  
     </div>   
         <footer class="page-footer font-small mdb-color lighten-4 pt-4">
             <div class="container text-center text-md-left">

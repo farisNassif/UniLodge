@@ -4,6 +4,7 @@ import { User } from '../user'
 import { UserService } from '../user.service';
 import { Location } from '@angular/common';
 import { Router, } from "@angular/router";
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-profile',
@@ -21,6 +22,7 @@ export class ProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute, private userService: UserService, private location: Location, private router: Router) {}
   ngOnInit() {
     this.getUser();
+    AppComponent.loggedInUser = this.username;
   }
 
   getUser(): void {

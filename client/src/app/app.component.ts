@@ -20,8 +20,7 @@ export class AppComponent implements OnInit{
 
   password: String
   username: String
-  
-  loggedInUser: String // Temp logged in user 
+  public static loggedInUser: String;// Temp logged in user 
   
   
   
@@ -30,23 +29,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit () {
     this.getBackendMsg();
-
-    this.router.events
-    .filter((event) => event instanceof NavigationEnd)
-    .map(() => this.activatedRoute)
-    .map((route) => {
-        while (route.firstChild) route = route.firstChild;
-        return route;
-    })
-    .filter((route) => route.outlet === 'primary')
-    .mergeMap((route) => route.data)
-    .subscribe((event) => {
-        let title = 'Change this in routing.ts  '
-        if(event['title']) {
-            title = event['title'];
-        }
-        this.titleService.setTitle(title);
-    });
+    AppComponent.loggedInUser = ""
   }
 
   // Backend setup previously and linked with angular via 'proxy.conf.json'
@@ -58,6 +41,14 @@ export class AppComponent implements OnInit{
     this.username = username
     this.password = password
     // Since username/pw is being cleared - want a temp way to store username for login purposes 'Welcome user [loggedInUser]'
-    this.loggedInUser = username
+    AppComponent.loggedInUser = username;
+  }
+
+  logout() {
+    AppComponent.loggedInUser = ""
+  }
+
+  get loginStatus() {
+    return AppComponent.loggedInUser;
   }
 }

@@ -148,7 +148,6 @@ def user_profile(Username):
 
 @app.route('/api/new-listing/<string:Username>', methods=['POST'])
 def new_listing(Username):
-    creator_of_listing = Username
     listing_data = json.loads(request.get_data().decode()) # Using json module convert to json
     try: 
         # Posting data stored above to mongo
@@ -156,7 +155,7 @@ def new_listing(Username):
         result = ("Success! Added to database")
     except:
         result = ("Some error thrown")
-        
+
     return jsonify("result")
 
 # Runs the application
