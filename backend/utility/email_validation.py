@@ -1,4 +1,4 @@
-from enum import Enum, unique, IntEnum
+from enum import Enum, unique, IntEnum # Enum used to define valid College addresses
 
 '''
 Enum used for checking if an email belongs to a valid college within Galway
@@ -40,8 +40,13 @@ def manipulate_enum():
 Called when a user registers, to check if an email belongs to a valid College within Galway
 '''
 def check_email(email):
-    for s in manipulate_enum():
-        if (s in email):
-            return True # Email was matched and is valid - Good!
-        else:
-            return False # Email doesn't come from a valid College - Bad! 
+    email = email.lower() # Convert to lowercase
+    email_is_valid = False
+
+    for s in manipulate_enum(): # For items in the enum
+        if s in email: # If entered email contains an element of the Enum
+            if (email.endswith('.ie') or email.endswith('.com')) and '@' in email: # If correct syntax
+                email_is_valid = True
+
+    return email_is_valid
+

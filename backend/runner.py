@@ -1,4 +1,3 @@
-import password_handler as p_h
 # ('json': For json format, 'jsonify': Again for format 'request': For http requests, 'Flask': Main flask library)
 from flask import Flask, request, jsonify, json, render_template
 # ('PyMongo': Connects flask with mongo database)
@@ -8,7 +7,8 @@ from bson.objectid import ObjectId
 # ('CORS': Cross origin resource sharing; so we can access frontend with different urls)
 from flask_cors import CORS
 
-import enums.email_validation as ev
+import utility.email_validation as ev
+import utility.password_handler as p_h
 
 # MongoString generated on my https://cloud.mongodb.com account || https://prnt.sc/pgi59k - Explaination
 cluster = MongoClient("mongodb+srv://Faris:loughrea@cluster0-dewud.mongodb.net/test?retryWrites=true&w=majority")
@@ -23,8 +23,7 @@ CORS(app)
 
 @app.route('/api/home', methods=['GET'])
 def home():    
-    ev.check_email("@gmit")
-
+    
     # Message should appear in frontend 
     result = ('Hello World from runner.py - /api/welcomeMessage')
     # Sending off the message, for some reason doesn't work
@@ -41,7 +40,7 @@ def reg():
     password = p_h.generate_hash(username_password[1])
 
     # If username ends correctly (TODO At some point gotta change this to not just be '@gmit.ie')
-    if ((username.endswith('@gmit.ie') or username.endswith('@nuig.ie') or "gti" in username or "gcc" in username) and (len(password) > 4)): 
+    if (ev.check_email(username)) and (len(password) > 4): 
         # Basically if theres already an email in mongo the same as what was just entered
         if users.find_one( {'Username':username} ):
             result = ("There is already an account associated with that email.")
