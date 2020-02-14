@@ -14,6 +14,8 @@ class valid_email(Enum):
 ''' 
 Converts the enum into a list then to a string to allow for removing unnecessary 
 information within the list then back to a list to allow for iteration
+
+@returns the enum as a list
 '''
 def manipulate_enum():
     # Manipulating the enum into different data structures to allow for iterations
@@ -38,6 +40,8 @@ def manipulate_enum():
 
 ''' 
 Called when a user registers, to check if an email belongs to a valid College within Galway
+
+@returns a boolean depending on if the password was valid
 '''
 def check_email(email):
     email = email.lower() # Convert to lowercase
