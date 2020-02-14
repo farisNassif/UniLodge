@@ -7,7 +7,8 @@ from flask_pymongo import MongoClient
 from bson.objectid import ObjectId
 # ('CORS': Cross origin resource sharing; so we can access frontend with different urls)
 from flask_cors import CORS
-import json
+
+import enums.email_validation as ev
 
 # MongoString generated on my https://cloud.mongodb.com account || https://prnt.sc/pgi59k - Explaination
 cluster = MongoClient("mongodb+srv://Faris:loughrea@cluster0-dewud.mongodb.net/test?retryWrites=true&w=majority")
@@ -22,6 +23,8 @@ CORS(app)
 
 @app.route('/api/home', methods=['GET'])
 def home():    
+    ev.check_email("@gmit")
+
     # Message should appear in frontend 
     result = ('Hello World from runner.py - /api/welcomeMessage')
     # Sending off the message, for some reason doesn't work
