@@ -1,22 +1,18 @@
-# ('json': For json format, 'jsonify': Again for format 'request': For http requests, 'Flask': Main flask library)
-from flask import Flask, request, jsonify, json, render_template
-# ('PyMongo': Connects flask with mongo database)
-from flask_pymongo import MongoClient
-# ('ObjectId': Used to convert to MongoDB id format)
-from bson.objectid import ObjectId
-# ('CORS': Cross origin resource sharing; so we can access frontend with different urls)
-from flask_cors import CORS
+# ('jsonify': For formatting 'request': For http requests, 'Flask': Main flask library)
+from flask import Flask, request, jsonify
 from flask import Blueprint
 
-home_blueprint = Blueprint('home', __name__,)
+# Blueprint definition
+login_blueprint = Blueprint('login_route', __name__,)
+
 # Local utility classes that loosely couples the program 
 import utility.email_validation as ev
 import utility.password_handler as p_h
-import data.database_accessor as d_a
-app = Flask(__name__)
-CORS(app)
 
-@home_blueprint.route('/api/login', methods=['POST'])
+# Local data class that defines all required database logic
+import data.database_accessor as d_a
+
+@login_blueprint.route('/api/login', methods=['POST'])
 def login():
     # Similar stuff to the Register route
     # The returned result (userLogin) is coming back as bytes, need to call .decode() to get the actual String
