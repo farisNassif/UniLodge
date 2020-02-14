@@ -83,7 +83,7 @@ def login():
         else:
             result = "Invalid login"
     else:
-        result = ("Username doesn't exist")
+        result = ("Invalid login")
     return jsonify(result)
 
 @app.route('/api/user/<string:Username>', methods=['GET'])

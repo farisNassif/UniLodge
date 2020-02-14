@@ -17,10 +17,10 @@ import 'rxjs/add/operator/mergeMap';
 })
 export class AppComponent implements OnInit{
   msgFromTheBackend: String // Whatever is returned from python - Eg "Registration Successful/Unsuccessful"
-
+  user: String;
   password: String
   username: String
-  public static loggedInUser: String;// Temp logged in user 
+  public static loggedInUser: String; // Temp logged in user 
   
   
   
@@ -29,6 +29,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit () {
     this.getBackendMsg();
+    this.user = AppComponent.loggedInUser;
     AppComponent.loggedInUser = ""
   }
 
@@ -40,15 +41,16 @@ export class AppComponent implements OnInit{
   loginUser(event: void, username: string, password: string) {
     this.username = username
     this.password = password
-    // Since username/pw is being cleared - want a temp way to store username for login purposes 'Welcome user [loggedInUser]'
-    AppComponent.loggedInUser = username;
+
   }
 
   logout() {
+    this.user = AppComponent.loggedInUser;
     AppComponent.loggedInUser = ""
   }
 
   get loginStatus() {
+    this.user = AppComponent.loggedInUser;
     return AppComponent.loggedInUser;
   }
 }

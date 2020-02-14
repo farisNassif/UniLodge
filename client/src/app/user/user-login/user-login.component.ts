@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router'
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-user-login',
@@ -44,8 +45,10 @@ export class UserLoginComponent implements OnInit {
     if (login_result == "Invalid login") {
       console.log("invalid login")
     } else {
+      console.log(login_result)
       this.router.navigate(['/profile/' + username]);
       console.log("logged in")
+      AppComponent.loggedInUser = username;
     }
   }
 }
