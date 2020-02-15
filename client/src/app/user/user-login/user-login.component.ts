@@ -15,7 +15,7 @@ export class UserLoginComponent implements OnInit {
   loggedInUser: String
   password: String
 
-  logged_in: String;
+  logged_in: any;
 
 
   ngOnInit() {
@@ -41,11 +41,11 @@ export class UserLoginComponent implements OnInit {
 
   }
 
-  checkLogin(login_result: String, username: String) {
+  checkLogin(login_result: any, username: any) {
     if (login_result == "Invalid login") {
       console.log("invalid login")
     } else {
-      console.log(login_result)
+      localStorage.setItem('accessToken', login_result);
       this.router.navigate(['/profile/' + username]);
       AppComponent.loggedInUser = username;
     }

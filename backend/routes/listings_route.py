@@ -1,6 +1,8 @@
 # ('jsonify': For formatting 'request': For http requests, 'Flask': Main flask library)
 from flask import Flask, request, jsonify, json
 from flask import Blueprint
+# Required for authorizing routes with JWT token
+from flask_jwt_extended import jwt_required
 
 # Blueprint definition
 listings_blueprint = Blueprint('listings_route', __name__)
@@ -13,6 +15,7 @@ import utility.password_handler as p_h
 import data.database_accessor as d_a
 
 @listings_blueprint.route('/api/new-listing/<string:Username>', methods=['POST'])
+@jwt_required
 def new_listing(Username):
     listing_data = json.loads(request.get_data().decode()) # Using json module convert to json
     try: 

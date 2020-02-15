@@ -28,23 +28,17 @@ export class AppComponent implements OnInit{
   private activatedRoute: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit () {
-    this.getBackendMsg();
     this.user = AppComponent.loggedInUser;
     AppComponent.loggedInUser = ""
-  }
-
-  // Backend setup previously and linked with angular via 'proxy.conf.json'
-  getBackendMsg (): void {
-    this.appService.home().subscribe(msgFromTheBackend => (this.msgFromTheBackend = msgFromTheBackend))
   }
   
   loginUser(event: void, username: string, password: string) {
     this.username = username
     this.password = password
-
   }
 
   logout() {
+    localStorage.clear(); // Clear localstorage token
     this.user = AppComponent.loggedInUser;
     AppComponent.loggedInUser = ""
   }
