@@ -20,31 +20,41 @@ export class AppComponent implements OnInit{
   user: String;
   password: String
   username: String
-  public static loggedInUser: String; // Temp logged in user 
-  
   
   
   constructor(private appService: AppService, private http: HttpClient, private router: Router,
   private activatedRoute: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit () {
-    this.user = AppComponent.loggedInUser;
-    AppComponent.loggedInUser = ""
-  }
-  
-  loginUser(event: void, username: string, password: string) {
-    this.username = username
-    this.password = password
+    // Required code for setting tab title depending on the route currently accessed
+    this.router.events
+    .filter((event) => event instanceof NavigationEnd)
+    .map(() => this.activatedRoute)
+    .map((route) => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+    })
+    .filter((route) => route.outlet === 'primary')
+    .mergeMap((route) => route.data)
+    .subscribe((event) => {
+        let title = 'Default Title Here'
+        if(event['title']) {
+            title = event['title'];
+        }
+        this.titleService.setTitle(title);
+    });
   }
 
   logout() {
     localStorage.clear(); // Clear localstorage token
-    this.user = AppComponent.loggedInUser;
-    AppComponent.loggedInUser = ""
   }
 
   get loginStatus() {
-    this.user = AppComponent.loggedInUser;
-    return AppComponent.loggedInUser;
+    if (localStorage.getItem('access_token') != null) {
+      this.user = localStorage.getItem('username')
+      return true
+    } else {
+      return false
+    }
   }
 }
