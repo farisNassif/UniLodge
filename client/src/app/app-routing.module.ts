@@ -9,6 +9,7 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { ListingComponent } from './listings/listing/listing.component';
+import { BrowseListingsComponent } from './listings/browse-listings/browse-listings.component';
 
 const routes: Routes = [
   // General Routes
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: UserLoginComponent, data: { title: 'UniLodge - User Login' } },
   { path: 'register', component: RegisterComponent, data: { title: 'UniLodge - Register User' } },
   { path: 'profile/:Username', component: ProfileComponent, data: { title: 'UniLodge - Profile' } },
+  { path: 'browse', component: BrowseListingsComponent, data: { title: 'UniLodge - Browse' } },
   // These are mainly for testing - user shouldn't see these in production
   { path: 'users', component: UserListComponent, data: { title: 'UniLodge - Users'} },
   { path: 'users/update/:Username', component: UserEditComponent, data: { title: 'UniLodge - Update User' } },

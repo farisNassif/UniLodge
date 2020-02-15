@@ -17,10 +17,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { AccommodationComponent } from './accommodation/accommodation.component';
 import { ListingComponent } from './listings/listing/listing.component';
+import { BrowseListingsComponent } from './listings/browse-listings/browse-listings.component';
 
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, UserListComponent, UserEditComponent, HomeComponent, ProfileComponent, PageNotFoundComponent, UserLoginComponent, AccommodationComponent, ListingComponent],
+  declarations: [AppComponent, RegisterComponent, UserListComponent, UserEditComponent, HomeComponent, ProfileComponent, PageNotFoundComponent, UserLoginComponent, AccommodationComponent, ListingComponent, BrowseListingsComponent],
   imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule, HttpClientModule, NgbModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
