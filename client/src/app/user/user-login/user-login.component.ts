@@ -47,7 +47,6 @@ export class UserLoginComponent implements OnInit {
     } else {
       console.log(login_result)
       this.router.navigate(['/profile/' + username]);
-      console.log("logged in")
       AppComponent.loggedInUser = username;
     }
   }
