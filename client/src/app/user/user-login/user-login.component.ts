@@ -19,7 +19,10 @@ export class UserLoginComponent implements OnInit {
 
 
   ngOnInit() {
-
+    // If somebody is already logged in, return to home - Gotta logout before they can access /login again
+    if (localStorage.getItem('access_token') !== null) {
+      this.router.navigate(['/home']);
+    }
   }
   
   loginUser(event: void, username: string, password: string) {
@@ -47,6 +50,7 @@ export class UserLoginComponent implements OnInit {
     } else {
       localStorage.setItem('access_token', login_result);
       localStorage.setItem('username', username);
+
       this.router.navigate(['/profile/' + username]);
     }
   }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Unilodge - Home</title>
+  <title>{{ title }}</title>
 
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,11 +12,11 @@
 <body>
     <div class="topnav">
         <a routerLink="/">Home</a>
-        <a *ngIf="loginStatus===''" routerLink="register">Register</a>
         <a routerLink="users">Users</a>
-        <a *ngIf="loginStatus!=''" routerLink="/profile/{{ user }}">Profile</a>   
-        <a *ngIf="loginStatus===''" routerLink="login" class="right">Login</a>
-        <a *ngIf="loginStatus!=''"  (click)="logout()" routerLink="/" class="right">Logout</a>   
+        <a *ngIf="loginStatus===true" routerLink="/profile/{{ user }}">Profile</a>  
+        <a *ngIf="loginStatus===false" routerLink="register"class="right">Register</a> 
+        <a *ngIf="loginStatus===false" routerLink="login" class="right">Login</a>
+        <a *ngIf="loginStatus===true"  (click)="logout()" routerLink="/" class="right">Logout</a>   
     </div>
     
     <div> 
