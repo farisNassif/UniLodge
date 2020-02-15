@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 from flask import Blueprint
 
 # Blueprint definition
-register_blueprint = Blueprint('register_route', __name__,)
+register_blueprint = Blueprint('register_route', __name__)
 
 # Local utility classes that loosely couples the program 
 import utility.email_validation as ev

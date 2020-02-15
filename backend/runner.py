@@ -16,14 +16,21 @@ from routes.register_route import register_blueprint
 from routes.temp_users_route import temp_users_blueprint
 from routes.listings_route import listings_blueprint
 
+# Required for JWT token
+from flask_jwt_extended import JWTManager
+
+
 app = Flask(__name__)
+app.config.from_envvar('ENV_FILE_LOCATION') # In CLI type: set ENV_FILE_LOCATION=secret_key.env
+
 CORS(app)
+jwt = JWTManager(app)
 
 '''
 All routes required, seperated into their respective classes
 '''
 # Required blueprints for seperating routes into different files while still accessing them here
-app.register_blueprint(login_blueprint)
+app.register_blueprint(login_blueprint) 
 app.register_blueprint(register_blueprint)
 app.register_blueprint(temp_users_blueprint)
 app.register_blueprint(listings_blueprint)

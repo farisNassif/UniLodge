@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 from flask import Blueprint
 
 # Blueprint definition
-temp_users_blueprint = Blueprint('temp_users_route', __name__,)
+temp_users_blueprint = Blueprint('temp_users_route', __name__)
 
 # Local utility classes that loosely couples the program 
 import utility.email_validation as ev

@@ -2,8 +2,10 @@
 from flask import Flask, request, jsonify
 from flask import Blueprint
 
-# Blueprint definition
-login_blueprint = Blueprint('login_route', __name__,)
+# Required imports for JWT token generation
+import datetime
+from flask import Response, request
+from flask_jwt_extended import create_access_token, JWTManager
 
 # Local utility classes that loosely couples the program 
 import utility.email_validation as ev
@@ -11,6 +13,10 @@ import utility.password_handler as p_h
 
 # Local data class that defines all required database logic
 import data.database_accessor as d_a
+
+# Blueprint definition
+login_blueprint = Blueprint('login_route', __name__)
+
 
 @login_blueprint.route('/api/login', methods=['POST'])
 def login():
@@ -32,6 +38,9 @@ def login():
         
         if (p_h.check_password(password, stored_hash)): # Return true if entered pw hash matches stored hash
             result = "Return web token here in future"
+            expires = datetime.timedelta(days=7)
+            access_token = create_access_token(identity=str(username), expires_delta=expires)
+            print(access_token)
         else:
             result = "Invalid login"
     else:
