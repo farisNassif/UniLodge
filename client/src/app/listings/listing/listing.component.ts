@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Listing } from '../listing';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { ListingService } from '../listing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listing',
@@ -24,9 +25,15 @@ export class ListingComponent implements OnInit {
   uploadedImage: any = [];
   userImage: any = [];
   imageStatus: string = '';
-  constructor(private listingService: ListingService) { }
+
+  constructor(private listingService: ListingService, private router: Router) { }
 
   ngOnInit() {
+    if (this.Seller == localStorage.getItem('username')) {
+      console.log("Authorized")
+    } else {
+      this.router.navigate(['/home']);
+    }
   }
 
 
