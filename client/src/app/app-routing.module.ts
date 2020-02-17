@@ -19,12 +19,13 @@ const routes: Routes = [
   { path: 'login', component: UserLoginComponent, data: { title: 'UniLodge - User Login' } },
   { path: 'register', component: RegisterComponent, data: { title: 'UniLodge - Register User' } },
   { path: 'profile/:Username', component: ProfileComponent, data: { title: 'UniLodge - Profile' } },
-  { path: 'browse', component: BrowseListingsComponent, data: { title: 'UniLodge - Browse' } },
   // These are mainly for testing - user shouldn't see these in production
   { path: 'users', component: UserListComponent, data: { title: 'UniLodge - Users'} },
   { path: 'users/update/:Username', component: UserEditComponent, data: { title: 'UniLodge - Update User' } },
   // Listings relevant routes
-  { path: 'listing/:Username', component: ListingComponent, data: { title: 'UniLodge - Listing' } },
+  { path: 'browse', component: BrowseListingsComponent, data: { title: 'UniLodge - Browse' } },
+  { path: 'listing/:Username', component: ListingComponent, data: { title: 'UniLodge - CreateListing' } },
+  { path: 'listing/:Username/:ListingTitle', component: ListingComponent, data: { title: 'UniLodge - Listing' } },
   // Redirections
   { path: '404', component: PageNotFoundComponent, data: { title: 'UniLodge - 404 Not Found' } },
   { path: '**', redirectTo: '/404' }

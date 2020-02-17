@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../user/user'
 import { UserService } from '../user/user.service';
 import { Router } from '@angular/router'
+import { ListingService } from '../listings/listing.service';
+import { Listing } from '../listings/listing';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +13,19 @@ import { Router } from '@angular/router'
 })
 export class HomeComponent implements OnInit {
   users: User[] = [];
-  constructor(private route: ActivatedRoute, private userService: UserService, public router: Router) { }
+  listings: Listing[] = [];
+
+  constructor(private route: ActivatedRoute, private userService: UserService, 
+  public router: Router, private listingService: ListingService) { }
 
   ngOnInit() {
     this.getUsers();
+    this.getListings();
+  }
+
+  // Required for displaying listings
+  getListings(): void {
+    this.listingService.getListings().subscribe(listings => this.listings = listings);
   }
 
   // Required on init for users images to be loaded

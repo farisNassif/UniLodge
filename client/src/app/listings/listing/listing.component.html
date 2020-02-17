@@ -33,7 +33,7 @@
       </div>
 
       <div class="form-group">
-        <label for="Price"><b>*Price </b> <i>(40.2 => €40.20)</i></label>
+        <label for="Price"><b>*Price per night </b> <i>Enter as a num - 40.20 [At some point need to validate this]</i></label>
         <input type="text" class="form-control" id="Price" [(ngModel)]="model.Price" name="Price" #Price="ngModel" required>
             <div [hidden]="Price.valid || Price.pristine"
                 class="alert alert-danger">

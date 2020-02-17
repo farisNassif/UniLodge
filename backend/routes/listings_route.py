@@ -14,6 +14,7 @@ import utility.password_handler as p_h
 # Local data class that defines all required database logic
 import data.database_accessor as d_a
 
+# Create a new Listing
 @listings_blueprint.route('/api/new-listing/<string:Username>', methods=['POST'])
 def new_listing(Username):
     Username = get_jwt_identity()
@@ -26,3 +27,11 @@ def new_listing(Username):
         result = ("Some error thrown")
     
     return jsonify("result")
+
+# Get Listings
+@listings_blueprint.route('/api/listings', methods=['GET'])
+def list_listings():
+    # Making userList equal to whatever is in the users table. So return Username/Password WITHOUT the _id
+    userList = list(d_a.getListings().find({}, {'_id': False}))
+    # Send the list of users (more specifically a users Username+Password) to the frontend
+    return jsonify(userList)

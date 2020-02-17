@@ -15,7 +15,7 @@ export class ListingComponent implements OnInit {
   UserLocation : any;
   Location = ['Please choose a Location', 'Loughrea', 'Galway City',
             'Craughwell', 'Ballybrit'];
-  Price: Number
+  price: any
   ContactNumber: string
   Image?: string
   _id?: number
@@ -60,12 +60,11 @@ export class ListingComponent implements OnInit {
 
   // Listing object, only need some values passed, rest can be auto included as they're already known values
   newListing(title: string, price: string, contact_num: string) {
-    var loc = "";
     this.model = new Listing(  
       title,
       this.Seller,
       this.UserLocation,
-      price,
+      "€" + price,
       contact_num,
       this.base64textString);
     console.log(this.model);
