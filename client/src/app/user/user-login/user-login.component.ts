@@ -48,8 +48,9 @@ export class UserLoginComponent implements OnInit {
     if (login_result == "Invalid login") {
       console.log("invalid login")
     } else {
-      localStorage.setItem('access_token', login_result);
-      localStorage.setItem('username', username);
+      // Mapping username/login token token to their rexpective keys
+      localStorage.setItem("access_token", login_result); 
+      localStorage.setItem("username", username);
 
       this.router.navigate(['/profile/' + username]);
     }

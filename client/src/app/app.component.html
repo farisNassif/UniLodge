@@ -15,6 +15,7 @@
         <a routerLink="users">Users</a>
         <a *ngIf="loginStatus===true" routerLink="/profile/{{ user }}">Profile</a>  
         <a *ngIf="loginStatus===false" routerLink="register"class="right">Register</a> 
+
         <a *ngIf="loginStatus===false" routerLink="login" class="right">Login</a>
         <a *ngIf="loginStatus===true"  (click)="logout()" routerLink="/" class="right">Logout</a>   
     </div>
