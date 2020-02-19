@@ -35,3 +35,20 @@ def list_listings():
     userList = list(d_a.getListings().find({}, {'_id': False}))
     # Send the list of users (more specifically a users Username+Password) to the frontend
     return jsonify(userList)
+
+# Get Listing information for a specific user
+@listings_blueprint.route('/api/listings/<string:Username>', methods=['GET'])
+def list_user_listings(Username):
+    temp = request.get_data().decode()
+    # Getting the listings made by the user who's profile has just been accessed
+    userList = list(d_a.getListings().find({'Seller': Username}, {'_id': False}))
+
+    # Just checking to see if the amount of listings was correct
+    amt = 0
+    for listing in userList:
+        amt = amt + 1
+        
+    print("listings for " + Username + ": " + str(amt))
+    # Return only the listings made by this user
+    
+    return jsonify(userList)

@@ -21,6 +21,11 @@ export class ListingService {
     return this.http.get<Listing[]>(this.userUrl + '/api/listings');
   }
 
+  /** Pretty much whenever a user profile is loaded get information regarding their previous listings */
+  getSingleUserListings(username: string): Observable<Listing[]> {
+    return this.http.get<Listing[]>(this.userUrl + '/api/listings/' + username)
+  } 
+
   /** Posts a listing **/
   newListing(username: string, listing: any): Observable<any> {
     return this.http.post<any>(this.userUrl + '/api/new-listing/' + username, listing)

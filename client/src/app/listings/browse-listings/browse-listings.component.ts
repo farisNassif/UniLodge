@@ -20,7 +20,7 @@ export class BrowseListingsComponent implements OnInit {
 
 
   searchListings(): void {
-
+    
   }
 
   // Required for displaying listings

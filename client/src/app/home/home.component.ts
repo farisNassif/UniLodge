@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   public router: Router, private listingService: ListingService) { }
 
   ngOnInit() {
-    this.getUsers();
     this.getListings();
   }
 
