@@ -13,6 +13,7 @@ import { UserService } from '../user.service';
 })
 export class UserEditComponent implements OnInit {
   username: string;
+  password: string;
   new_password: string;
   message_from_backend: any = "Please enter your new password or press back";
 
@@ -26,7 +27,7 @@ export class UserEditComponent implements OnInit {
 		this.location.back();
   }
 
-  save(): void {
+  save(password: string): void {
     if (this.new_password.length >= 4)  {
       this.username = window.location.pathname.substring(14,40);
       console.log(this.username);

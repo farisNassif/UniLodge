@@ -10,10 +10,10 @@ import { FormBuilder, Validators  } from "@angular/forms";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  username: String
-  loggedInUser: String
-  password: String
-  registrationConfirmation: String
+  username: string
+  loggedInUser: string
+  password: string
+  registrationConfirmation: any
   
   constructor(private userService: UserService, private http: HttpClient, public fb: FormBuilder) { }
 

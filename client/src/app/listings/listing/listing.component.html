@@ -55,7 +55,7 @@
           <br>
           <input type='file' accept="image/*" (change)="changeListener($event)"> <br>
           <br>
-          <img src="{{base64textString}}" class="img-responsive" alt="Image" (click)="profileRedirect(user.Username)">
+          <img src="{{base64textString}}" class="img-responsive" alt="Image">
           <br>
           <button title="Submit Image" (click)="displayImage()">Submit Image</button>
           <div [innerHTML]="imageStatus"></div>

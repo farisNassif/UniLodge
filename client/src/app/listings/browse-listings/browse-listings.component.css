@@ -1,0 +1,10 @@
+
+
+.mySlides {
+    display: none;
+}
+
+.img-responsive {
+    width: 90%;
+    height: 70%;
+}

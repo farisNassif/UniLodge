@@ -11,9 +11,9 @@ import { AppComponent } from 'src/app/app.component';
 export class UserLoginComponent implements OnInit {
 
   constructor(private userService: UserService, public router: Router) { }
-  username: String
-  loggedInUser: String
-  password: String
+  username: string
+  loggedInUser: string
+  password: string
 
   logged_in: any;
 
