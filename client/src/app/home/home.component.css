@@ -11,8 +11,8 @@ p {
 }
 
 .img-responsive {
-    width: 90%;
-    height: 70%;
+    width: 92%;
+    height: 73%;
 }
 
 .img-header {
@@ -30,7 +30,7 @@ p {
 }
 .listing-box {
     background-color: rgb(209, 226, 225);
-    border: 0.6px solid rgb(148, 26, 73);
+    border: 3.5 px solid rgb(148, 26, 73);
     width: 104%;
     height: 96%;
 }

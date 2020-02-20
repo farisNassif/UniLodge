@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { HttpModule } from '@angular/http'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule, Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './user/register/register.component';
@@ -18,11 +17,12 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { AccommodationComponent } from './accommodation/accommodation.component';
 import { ListingComponent } from './listings/listing/listing.component';
 import { BrowseListingsComponent } from './listings/browse-listings/browse-listings.component';
+import { MatAutocompleteModule } from '@angular/material';
 
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent, UserListComponent, UserEditComponent, HomeComponent, ProfileComponent, PageNotFoundComponent, UserLoginComponent, AccommodationComponent, ListingComponent, BrowseListingsComponent],
-  imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule, HttpClientModule, NgbModule, ReactiveFormsModule],
+  imports: [BrowserModule, ReactiveFormsModule, HttpModule, FormsModule, AppRoutingModule, HttpClientModule, NgbModule, ReactiveFormsModule, MatAutocompleteModule],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

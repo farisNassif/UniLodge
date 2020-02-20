@@ -15,9 +15,20 @@
   <div class="jumbotron">
     <div class="container text-center">
       <img src="../../assets/title_image.png" class="img-header" alt="Image">
-    </div>
+    </div> 
   </div>  
 
+  <form>
+    <mat-form-field>
+      <input type="text" matInput [matAutocomplete]="auto" [formControl]="myControl"/> 
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayAutocomplete(selected)">
+          <mat-option *ngFor="let selected of filteredOptions | async" [value]="selected">
+            {{ selected }}
+          </mat-option>
+        </mat-autocomplete> 
+    </mat-form-field>
+  </form>
+  <br>
   <div class="container-fluid bg-3 text-center" >    
     <div class="row">
       <div *ngFor="let listing of listings; let i=index" class="col-sm-3">
