@@ -18,21 +18,26 @@
     </div> 
   </div>  
 
-  <form>
+  <form (submit)="searchListings($event, selected)">
     <mat-form-field>
-      <input type="text" matInput [matAutocomplete]="auto" [formControl]="myControl"/> 
+      <p>Seach for a Location</p>
+      <input type="text" matInput [matAutocomplete]="auto" [formControl]="myControl" [(ngModel)]="selected"/> 
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayAutocomplete(selected)">
           <mat-option *ngFor="let selected of filteredOptions | async" [value]="selected">
             {{ selected }}
           </mat-option>
         </mat-autocomplete> 
     </mat-form-field>
+    <br> <br>
+    <button type="submit" value="submit" class="btn btn-primary">Submit</button> 
+    <button type="clear" value="clear" class="btn btn-primary" (click)="clearSearch()">Refresh Page</button>
   </form>
+  
   <br>
   <div class="container-fluid bg-3 text-center" >    
     <div class="row">
       <div *ngFor="let listing of listings; let i=index" class="col-sm-3">
-        <ion-slide *ngIf="i<8" >   
+        <ion-slide *ngIf="i<20" >   
         <div class="listing-box">
           <p>{{ listing.Location  }} <br> {{ listing.Title }} <br> {{ listing.Price }}</p>
           <img src="{{ listing.Image }}" class="img-responsive" alt="Image" (click)="profileRedirect(listing.Seller)">

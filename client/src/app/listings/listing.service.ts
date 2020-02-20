@@ -26,6 +26,11 @@ export class ListingService {
     return this.http.get<Listing[]>(this.userUrl + '/api/listings/' + username)
   } 
 
+  /** Finds all listings by params */
+  getListingByLocation(location: string): Observable<Listing[]> {
+    return this.http.get<Listing[]>(this.userUrl + '/api/listings-query/' + location)
+  }
+
   /** Posts a listing **/
   newListing(username: string, listing: any): Observable<any> {
     return this.http.post<any>(this.userUrl + '/api/new-listing/' + username, listing)

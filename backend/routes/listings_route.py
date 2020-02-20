@@ -50,5 +50,21 @@ def list_user_listings(Username):
         
     print("listings for " + Username + ": " + str(amt))
     # Return only the listings made by this user
-    
     return jsonify(userList)
+
+# Get Listing information for a specific location
+@listings_blueprint.route('/api/listings-query/<string:Location>', methods=['GET'])
+def list_listings_by_location(Location):
+    temp = request.get_data().decode()
+    # Getting the listings associated with a single location
+    listingList = list(d_a.getListings().find({'Location': Location}, {'_id': False}))
+
+    # Just checking to see if the amount of listings was correct
+    amt = 0
+    for listing in listingList:
+        amt = amt + 1
+        
+    print("listings for " + Location + ": " + str(amt))
+    
+    # Return only the listings associated with the location
+    return jsonify(listingList)

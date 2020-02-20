@@ -20,14 +20,12 @@ export class BrowseListingsComponent implements OnInit {
   /** Below attributes required for autocomplete functionality */ 
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
-  objectOptions = [
-    { name: 'Angular'},
-    { name: 'Angular Material'},
-    { name: 'React'},
-    { name: 'Vue'}
-  ];
   selected: string;
-  options: string[] = ['Loughrea', 'Galway', 'Craughwell', 'Claregalway', 'Athenry', 'Tuam', 'Gort'];
+  options: string[] = ['Loughrea', 'Galway City', 'Craughwell', 'Claregalway', 'Athenry', 'Tuam', 'Gort'];
+  subject_: string
+
+  // Required for setting/getting localstorage var for restoring the page to defaults etc
+  alreadySearched: any;
 
   constructor(private listingService: ListingService, private router: Router) { }
 
@@ -38,13 +36,20 @@ export class BrowseListingsComponent implements OnInit {
       startWith(''),
       map(value => this._filter(value))
     );
+
     // When the page loads just go get all the listings from the backend and populate the listings array
     this.getListings();
   }
 
 
-  searchListings(): void {
-    
+  // When submit is pressed, query the backend for relative params
+  async searchListings(event: void, location:string) {
+    this.listingService.getListingByLocation(location).subscribe(listings => this.listings = listings);
+  }
+
+  // Clears the page back to its original state
+  async clearSearch() {
+    this.getListings();
   }
 
   // Required for displaying listings

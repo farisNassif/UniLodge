@@ -52,8 +52,8 @@ export class AppComponent implements OnInit{
   }
 
   logout() {
-    
-    localStorage.clear(); // Clear localstorage token
+    localStorage.removeItem("access_token"); // Clear localstorage token
+    localStorage.removeItem("username"); // Clear User
   }
 
   get loginStatus() {
