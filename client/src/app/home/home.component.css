@@ -1,4 +1,10 @@
-
+body {
+    background-color: rgba(223, 0, 0, 0.431);
+}
+p {
+    background-color: rgb(100, 26, 26);
+    color: rgb(212, 233, 190)    ;
+}
 
 .mySlides {
     display: none;
@@ -14,7 +20,17 @@
     height: 35%;
 }
 
+
 .jumbotron {
     background-color: grey;
   }
-  
+
+.container-fluid  {
+    padding-right: 1.5%;
+}
+.listing-box {
+    background-color: rgb(209, 226, 225);
+    border: 0.6px solid rgb(148, 26, 73);
+    width: 104%;
+    height: 96%;
+}
