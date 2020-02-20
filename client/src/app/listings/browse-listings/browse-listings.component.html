@@ -14,8 +14,7 @@
 
   <div class="jumbotron">
     <div class="container text-center">
-        <h1>put some logo or something here in the future</h1>      
-      <p>maybe some text about our project / website + add colour</p>
+      <img src="../../assets/title_image.png" class="img-header" alt="Image" (click)="profileRedirect(listing.Seller)">
     </div>
   </div>  
 
@@ -23,8 +22,10 @@
       <div class="row">
         <div *ngFor="let listing of listings; let i=index" class="col-sm-3">
           <ion-slide *ngIf="i<8" >   
+            <div class="listing-box">
             <p>{{ listing.Location  }} <br> {{ listing.Title }} <br> {{ listing.Price }}</p>
             <img src="{{ listing.Image }}" class="img-responsive" alt="Image" (click)="profileRedirect(listing.Seller)">
+          </div>
         </ion-slide>
         </div>
       </div>

@@ -25,8 +25,6 @@ export class ProfileComponent implements OnInit {
 
   public base64textString: any | ArrayBuffer;
 
-  @Input() showSpinner: boolean = true;
-  
   constructor(private route: ActivatedRoute, private userService: UserService,
   private location: Location, private listingService: ListingService) {}
   

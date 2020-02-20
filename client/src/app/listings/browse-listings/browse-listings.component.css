@@ -8,3 +8,22 @@
     width: 90%;
     height: 70%;
 }
+
+.img-header {
+    width: 45%;
+    height: 35%;
+}
+
+.jumbotron {
+    background-color: grey;
+  }
+
+.container-fluid  {
+    padding-right: 1.5%;
+}
+.listing-box {
+    
+    border: 0.6px solid rgb(148, 26, 73);
+    width: 104%;
+    height: 96%;
+}
