@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { AppService } from './app.service'
 import { HttpClient } from '@angular/common/http'
 import { Title } from '@angular/platform-browser';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute, NavigationError, NavigationCancel, NavigationStart, Event } from '@angular/router';
 import { FormsModule }   from '@angular/forms';
 
 import 'rxjs/add/operator/filter';
@@ -16,6 +16,11 @@ import 'rxjs/add/operator/mergeMap';
   providers: [AppService]
 })
 export class AppComponent implements OnInit{
+  // Stuff for spinner
+  // showLoadingIndicator = true;
+  // this.showLoadingIndicator = true;
+  // this.showLoadingIndicator = false;
+
   msgFromTheBackend: String // Whatever is returned from python - Eg "Registration Successful/Unsuccessful"
   user: String;
   password: String
@@ -24,7 +29,7 @@ export class AppComponent implements OnInit{
   
   constructor(private appService: AppService, private http: HttpClient, private router: Router,
   private activatedRoute: ActivatedRoute, private titleService: Title) { }
-
+  
   ngOnInit () {
     // Required code for setting tab title depending on the route currently accessed
     this.router.events
@@ -33,6 +38,7 @@ export class AppComponent implements OnInit{
     .map((route) => {
         while (route.firstChild) route = route.firstChild;
         return route;
+        
     })
     .filter((route) => route.outlet === 'primary')
     .mergeMap((route) => route.data)
@@ -41,11 +47,12 @@ export class AppComponent implements OnInit{
         if(event['title']) {
             title = event['title'];
         }
-        this.titleService.setTitle(title);
+        this.titleService.setTitle(title);    
     });
   }
 
   logout() {
+    
     localStorage.clear(); // Clear localstorage token
   }
 

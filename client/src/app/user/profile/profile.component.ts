@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../user'
 import { UserService } from '../user.service';
@@ -25,6 +25,8 @@ export class ProfileComponent implements OnInit {
 
   public base64textString: any | ArrayBuffer;
 
+  @Input() showSpinner: boolean = true;
+  
   constructor(private route: ActivatedRoute, private userService: UserService,
   private location: Location, private listingService: ListingService) {}
   
