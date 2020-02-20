@@ -22,8 +22,11 @@
     padding-right: 1.5%;
 }
 .listing-box {
-    
     border: 0.6px solid rgb(148, 26, 73);
     width: 104%;
     height: 96%;
 }
+
+input {
+    width: 8%;
+  }

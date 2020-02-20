@@ -21,11 +21,11 @@
         <a routerLink="/listing/{{user.Username}}">Make a listing</a>
       </div>
     </div>
-    <div class="col-sm-3">
-      <p>Current listings associated with this account</p> 
+    <div class="col-sm-6">
+        <p>Current listings associated with this account</p> 
       <div *ngFor="let listing of user_listings; let i=index" class="col-sm-9 "> 
         <ion-slide *ngIf="i<8" >   
-          <p>{{ listing.Location }}<br>{{ listing.Seller }} {{ listing.Price }}</p>
+          <p>{{ listing.Location }}<br>{{ listing.Seller }}<br>{{ listing.Price }}<br><img src="{{ listing.Image }}" class="img-responsive" alt="Image"></p>
         </ion-slide>
         <br>
       </div>

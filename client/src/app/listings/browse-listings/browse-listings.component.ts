@@ -21,11 +21,12 @@ export class BrowseListingsComponent implements OnInit {
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   selected: string;
-  options: string[] = ['Loughrea', 'Galway City', 'Craughwell', 'Claregalway', 'Athenry', 'Tuam', 'Gort'];
-  subject_: string
+  options: string[] = ['Loughrea', 'Galway City', 'Craughwell', 'Claregalway', 'Athenry', 'Tuam', 'Gort', 'Ballybrit'];
+  subject_: string;
 
-  // Required for setting/getting localstorage var for restoring the page to defaults etc
-  alreadySearched: any;
+  searchRes: any;
+  listingsAmt: any;
+
 
   constructor(private listingService: ListingService, private router: Router) { }
 
@@ -44,17 +45,25 @@ export class BrowseListingsComponent implements OnInit {
 
   // When submit is pressed, query the backend for relative params
   async searchListings(event: void, location:string) {
+    // Get the actual results returned
     this.listingService.getListingByLocation(location).subscribe(listings => this.listings = listings);
+
+    // Get the amount of results returned
+    this.listingService.getListingByLocation(location).subscribe(success => {this.searchRes = "Query Returned " + this.listings.length + " Results"});
+   
   }
 
   // Clears the page back to its original state
   async clearSearch() {
+    this.searchRes = ''
+    this.selected = ''
     this.getListings();
   }
 
   // Required for displaying listings
   getListings(): void {
     this.listingService.getListings().subscribe(listings => this.listings = listings);
+    this.listingService.getListings().subscribe(success => { this.listingsAmt = this.getListings.length });
   }
    
   // Redirects to the individual user profile when clicked
