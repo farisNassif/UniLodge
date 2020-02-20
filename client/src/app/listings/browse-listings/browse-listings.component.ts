@@ -49,7 +49,7 @@ export class BrowseListingsComponent implements OnInit {
     this.listingService.getListingByLocation(location).subscribe(listings => this.listings = listings);
 
     // Get the amount of results returned
-    this.listingService.getListingByLocation(location).subscribe(success => {this.searchRes = "Query Returned " + this.listings.length + " Results"});
+    this.listingService.getListingByLocation(location).subscribe(success => {this.searchRes = "Query Returned (" + this.listings.length + ") Results"});
    
   }
 

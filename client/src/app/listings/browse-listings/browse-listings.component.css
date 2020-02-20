@@ -1,4 +1,10 @@
-
+body {
+    background-color: rgba(223, 0, 0, 0.431);
+}
+p {
+    background-color: rgb(100, 26, 26);
+    color: rgb(212, 233, 190)    ;
+}
 
 .mySlides {
     display: none;
