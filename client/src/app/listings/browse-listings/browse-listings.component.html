@@ -19,19 +19,24 @@
   </div>  
 
   <form (submit)="searchListings($event, selected)">
-    <mat-form-field>
-      <h3>Seach for a Location</h3>
-      <input type="text" matInput [matAutocomplete]="auto" [formControl]="myControl" [(ngModel)]="selected" class="form-control"/> 
-        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayAutocomplete(selected)">
-          <mat-option *ngFor="let selected of filteredOptions | async" [value]="selected">
-            {{ selected }}
-          </mat-option>
-        </mat-autocomplete> 
-    </mat-form-field>
-    <h4><b>{{ searchRes }}</b></h4>
+    <div class="container text-center">
+      <mat-form-field>
+          
+        <h3>Seach for a Location</h3>
+        <input type="text" placeholder=" Location" matInput [matAutocomplete]="auto" [formControl]="myControl" [(ngModel)]="selected" class="location_input"/> 
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayAutocomplete(selected)">
+            <mat-option *ngFor="let selected of filteredOptions | async" [value]="selected">
+              {{ selected }}
+            </mat-option>
+          </mat-autocomplete> 
+          
+      </mat-form-field>
+      <h4><b>{{ searchRes }}</b></h4>
 
-    <button type="submit" value="submit" class="btn btn-primary">Submit</button> 
-    <button type="clear" value="clear" class="btn btn-primary" (click)="clearSearch()">Refresh Page</button>
+      <button type="submit" value="submit" class="btn btn-primary">Submit</button> 
+      &nbsp;
+      <button type="clear" value="clear" class="btn btn-primary" (click)="clearSearch()">Refresh Page</button>
+    </div>
   </form>
   <br>
   

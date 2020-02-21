@@ -33,6 +33,7 @@ p {
     height: 96%;
 }
 
-input {
-    width: 8%;
+.location_input {
+    border: 2px solid red;
+    border-radius: 4px;
   }
