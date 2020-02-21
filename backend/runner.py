@@ -1,3 +1,4 @@
+import os
 # ('json': For json format, 'jsonify': Again for format 'request': For http requests, 'Flask': Main flask library)
 from flask import Flask, request, jsonify, json, render_template
 # ('CORS': Cross origin resource sharing; so we can access frontend with different urls)
@@ -19,9 +20,8 @@ from routes.listings_route import listings_blueprint
 # Required for JWT token
 from flask_jwt_extended import JWTManager
 
-ENV_FILE_LOCATION = 'secret_key.env'
 app = Flask(__name__)
-app.config.from_envvar('ENV_FILE_LOCATION') # In CLI type: set ENV_FILE_LOCATION=secret_key.env
+app.config.from_envvar('SECRET_KEY') # In CLI type: set SECRET_KEY=jwt_secret_key.env
 
 CORS(app)
 jwt = JWTManager(app)

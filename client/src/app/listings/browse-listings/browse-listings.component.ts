@@ -79,6 +79,8 @@ export class BrowseListingsComponent implements OnInit {
   // Filters the string for autocompleting it 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
+    
+    // It wont start to auto suggest locations until at least 1 letter has been typed
     if (filterValue.length >= 1) {
       return this.options.filter(option => option.toLowerCase().includes(filterValue))
     }
