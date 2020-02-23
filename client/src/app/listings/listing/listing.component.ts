@@ -13,7 +13,7 @@ export class ListingComponent implements OnInit {
   Title: string
   Seller: string = window.location.pathname.substring(9,999);
   UserLocation : any;
-  Location = ['Please choose a Location', 'Loughrea', 'Galway City',
+  Location = ['Loughrea', 'Galway City',
             'Craughwell', 'Ballybrit'];
   price: any
   ContactNumber: string
@@ -26,10 +26,12 @@ export class ListingComponent implements OnInit {
   uploadedImage: any = [];
   userImage: any = [];
   imageStatus: string = '';
+  r_gen_id: string;
 
   constructor(private listingService: ListingService, private router: Router) { }
 
   ngOnInit() {
+    // Just testing authorization
     if (this.Seller == localStorage.getItem('username')) {
       console.log("Authorized")
     } else {
@@ -39,10 +41,12 @@ export class ListingComponent implements OnInit {
 
 
   // Default model before anything is insert via the form
-  model = new Listing(  
+  model = new Listing(
+  null,
   null,
   this.Seller,
-  this.Location[0],
+  null,
+  null,
   null,
   null,
   null);
@@ -59,10 +63,13 @@ export class ListingComponent implements OnInit {
   }
 
   // Listing object, only need some values passed, rest can be auto included as they're already known values
-  newListing(title: string, price: string, contact_num: string) {
+  newListing(title: string, price: string, contact_num: string, description: any) {
+    let r_gen_id = Math.random().toString(36).substring(1); // Gen random ID
     this.model = new Listing(  
+      r_gen_id.replace('.', '?'),
       title,
       this.Seller,
+      description,
       this.UserLocation,
       "€" + price,
       contact_num,

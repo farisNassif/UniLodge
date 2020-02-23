@@ -17,7 +17,6 @@ import data.database_accessor as d_a
 # Blueprint definition
 login_blueprint = Blueprint('login_route', __name__)
 
-
 @login_blueprint.route('/api/login', methods=['POST'])
 def login():
     # Similar stuff to the Register route

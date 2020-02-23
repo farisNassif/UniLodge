@@ -21,6 +21,7 @@ from routes.listings_route import listings_blueprint
 from flask_jwt_extended import JWTManager
 
 app = Flask(__name__)
+
 app.config.from_envvar('SECRET_KEY') # In CLI type: set SECRET_KEY=jwt_secret_key.env
 
 CORS(app)

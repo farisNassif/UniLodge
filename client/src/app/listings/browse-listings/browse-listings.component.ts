@@ -27,9 +27,7 @@ export class BrowseListingsComponent implements OnInit {
   searchRes: any;
   listingsAmt: any;
 
-
   constructor(private listingService: ListingService, private router: Router) { }
-
 
   ngOnInit() {
     // Autocomplete pipe function
