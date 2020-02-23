@@ -78,6 +78,7 @@ export class ListingComponent implements OnInit {
     this.listingService.newListing(this.Seller, this.model).subscribe(success=>{ console.log("success?")});
   }
 
+  
   // Listens for any changes made to the file upload space
   changeListener($event: { target: any; }) : void {
     this.readImage($event.target);
