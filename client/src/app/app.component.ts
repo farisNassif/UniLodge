@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute, NavigationError, NavigationCancel, NavigationStart, Event } from '@angular/router';
 import { FormsModule }   from '@angular/forms';
 
+/* These imports are required for setting the tab title based on the visited route */
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -26,12 +27,12 @@ export class AppComponent implements OnInit{
   password: String
   username: String
   
-  
   constructor(private appService: AppService, private http: HttpClient, private router: Router,
   private activatedRoute: ActivatedRoute, private titleService: Title) { }
   
   ngOnInit () {
-    // Required code for setting tab title depending on the route currently accessed
+    /* Required code for setting tab title depending on the 
+    route currently accessed */
     this.router.events
     .filter((event) => event instanceof NavigationEnd)
     .map(() => this.activatedRoute)
@@ -51,11 +52,6 @@ export class AppComponent implements OnInit{
     });
   }
 
-  logout() {
-    localStorage.removeItem("access_token"); // Clear localstorage token
-    localStorage.removeItem("username"); // Clear User
-  }
-
   get loginStatus() {
     if (localStorage.getItem('access_token') != null) {
       this.user = localStorage.getItem('username')
@@ -63,5 +59,10 @@ export class AppComponent implements OnInit{
     } else {
       return false
     }
+  }
+  
+  logout() {
+    localStorage.removeItem("access_token"); // Clear localstorage token
+    localStorage.removeItem("username"); // Clear User
   }
 }

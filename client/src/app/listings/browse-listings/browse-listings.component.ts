@@ -65,8 +65,8 @@ export class BrowseListingsComponent implements OnInit {
   }
    
   // Redirects to the individual user profile when clicked
-  public profileRedirect(username : string) {
-    this.router.navigate(['/profile/' + username]);
+  public accommodationRedirect(number : number) {
+    this.router.navigate(['/accommodation/' + number]);
   }
 
   // Methods for enabling autocomplete

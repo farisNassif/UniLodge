@@ -39,7 +39,7 @@
       
       <div class="form-group">
         <label for="Price"><b>*Price per night </b> <i>Enter as a num - 40.20 [At some point need to validate this]</i></label>
-        <input type="text" class="form-control" id="Price" [(ngModel)]="model.Price" name="Price" #Price="ngModel" required>
+        <input type="text" class="form-control" placeholder="00.00" id="Price" [(ngModel)]="model.Price" name="Price" #Price="ngModel" required>
             <div [hidden]="Price.valid || Price.pristine"
                 class="alert alert-danger">
                 Price is required

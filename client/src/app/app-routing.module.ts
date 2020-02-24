@@ -10,25 +10,28 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { ListingComponent } from './listings/listing/listing.component';
 import { BrowseListingsComponent } from './listings/browse-listings/browse-listings.component';
+import { AccommodationComponent } from './accommodation/accommodation.component';
 
 const routes: Routes = [
-  // General Routes
+  /* General Routes */
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, data: { title: 'UniLodge - Home' } },
-  // User relevant routes
+  /* User relevant routes */
   { path: 'login', component: UserLoginComponent, data: { title: 'UniLodge - User Login' } },
   { path: 'register', component: RegisterComponent, data: { title: 'UniLodge - Register User' } },
   { path: 'profile/:Username', component: ProfileComponent, data: { title: 'UniLodge - Profile' } },
-  // These are mainly for testing - user shouldn't see these in production
+  /* These are mainly for testing - user shouldn't see these in production */
   { path: 'users', component: UserListComponent, data: { title: 'UniLodge - Users'} },
   { path: 'users/update/:Username', component: UserEditComponent, data: { title: 'UniLodge - Update User' } },
-  // Listings relevant routes
+  /* Listings relevant routes */
   { path: 'browse', component: BrowseListingsComponent, data: { title: 'UniLodge - Browse' } },
   { path: 'listing/:Username', component: ListingComponent, data: { title: 'UniLodge - CreateListing' } },
   { path: 'listing/:Username/:ListingTitle', component: ListingComponent, data: { title: 'UniLodge - Listing' } },
-  // Redirections
+  /* Specific Accommodation view */
+  { path: 'accommodation/:Unique_Id', component: AccommodationComponent, data: { title: 'UniLodge - Accommodation'}},
+  /* Redirections */
   { path: '404', component: PageNotFoundComponent, data: { title: 'UniLodge - 404 Not Found' } },
-  { path: '**', redirectTo: '/404' }
+  { path: '**', redirectTo: '/404' } // If a random url was entered send em off to the 404 page
 ];
 
 @NgModule({

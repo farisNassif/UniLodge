@@ -66,7 +66,7 @@ export class ListingComponent implements OnInit {
   newListing(title: string, price: string, contact_num: string, description: any) {
     let r_gen_id = Math.random().toString(36).substring(1); // Gen random ID
     this.model = new Listing(  
-      r_gen_id.replace('.', '?'),
+      r_gen_id.replace('.', '?='),
       title,
       this.Seller,
       description,
@@ -78,7 +78,6 @@ export class ListingComponent implements OnInit {
     this.listingService.newListing(this.Seller, this.model).subscribe(success=>{ console.log("success?")});
   }
 
-  
   // Listens for any changes made to the file upload space
   changeListener($event: { target: any; }) : void {
     this.readImage($event.target);
