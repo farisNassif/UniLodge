@@ -26,7 +26,7 @@ def new_listing(Username):
     except:
         result = ("Some error thrown")
     
-    return jsonify("result")
+    return jsonify(result)
 
 # Get Listings
 @listings_blueprint.route('/api/listings', methods=['GET'])
@@ -36,35 +36,35 @@ def list_listings():
     # Send the list of users (more specifically a users Username+Password) to the frontend
     return jsonify(userList)
 
+# Get a single listing based on an ID
+@listings_blueprint.route('/api/listings/<string:Unique_ID>', methods=['GET'])
+def get_listing_by_id(Unique_ID):
+    temp = request.get_data().decode() # Ignore this, something needs to store decoded data or flask whines
+
+    # Returning a single user but it's still more efficient to return as a list (Makes angular happy)
+    userList = list(d_a.getListings().find({'Unique_Id': Unique_ID}, {'_id': False}))
+
+    # Return the Listing with the associated ID
+    return jsonify(userList)
+
 # Get Listing information for a specific user
 @listings_blueprint.route('/api/listings/<string:Username>', methods=['GET'])
 def list_user_listings(Username):
-    temp = request.get_data().decode()
+    temp = request.get_data().decode() # Ignore this, something needs to store decoded data or flask whines
+
     # Getting the listings made by the user who's profile has just been accessed
     userList = list(d_a.getListings().find({'Seller': Username}, {'_id': False}))
 
-    # Just checking to see if the amount of listings was correct
-    amt = 0
-    for listing in userList:
-        amt = amt + 1
-        
-    print("listings for " + Username + ": " + str(amt))
     # Return only the listings made by this user
     return jsonify(userList)
 
 # Get Listing information for a specific location
 @listings_blueprint.route('/api/listings-query/<string:Location>', methods=['GET'])
 def list_listings_by_location(Location):
-    temp = request.get_data().decode()
+    temp = request.get_data().decode() # Ignore this, something needs to store decoded data or flask whines
+
     # Getting the listings associated with a single location
     listingList = list(d_a.getListings().find({'Location': Location}, {'_id': False}))
-
-    # Just checking to see if the amount of listings was correct
-    amt = 0
-    for listing in listingList:
-        amt = amt + 1
-        
-    print("listings for " + Location + ": " + str(amt))
     
     # Return only the listings associated with the location
     return jsonify(listingList)

@@ -26,6 +26,11 @@ export class ListingService {
     return this.http.get<Listing[]>(this.userUrl + '/api/listings/' + username)
   } 
 
+  /** Return a Single Listing by ID */
+  getListingById(unique_id: any): Observable<Listing[]> {
+    return this.http.get<Listing[]>(this.userUrl + '/api/listings/' + unique_id)
+  } 
+
   /** Finds all listings by params */
   getListingByLocation(location: string): Observable<Listing[]> {
     return this.http.get<Listing[]>(this.userUrl + '/api/listings-query/' + location)

@@ -24,7 +24,7 @@
         <ion-slide *ngIf="i<8" >   
         <div class="listing-box">
           <p>{{ listing.Location  }} <br> {{ listing.Title }} <br> {{ listing.Price }}</p>
-          <img src="{{ listing.Image }}" class="img-responsive" alt="Image" (click)="profileRedirect(listing.Seller)">
+          <img src="{{ listing.Image }}" class="img-responsive" alt="Image" (click)="listingRedirect(listing.Unique_Id)">
         </div>
       </ion-slide>
       </div>

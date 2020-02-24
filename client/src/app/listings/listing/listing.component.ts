@@ -13,8 +13,8 @@ export class ListingComponent implements OnInit {
   Title: string
   Seller: string = window.location.pathname.substring(9,999);
   UserLocation : any;
-  Location = ['Loughrea', 'Galway City',
-            'Craughwell', 'Ballybrit'];
+  Location = ['Athenry', 'Ballybrit', 'Claregalway', 'Craughwell', 'Galway City',
+              'Gort','Loughrea'];
   price: any
   ContactNumber: string
   Image?: string
@@ -66,7 +66,7 @@ export class ListingComponent implements OnInit {
   newListing(title: string, price: string, contact_num: string, description: any) {
     let r_gen_id = Math.random().toString(36).substring(1); // Gen random ID
     this.model = new Listing(  
-      r_gen_id.replace('.', '?='),
+      r_gen_id.replace('.', ''),
       title,
       this.Seller,
       description,

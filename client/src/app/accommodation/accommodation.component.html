@@ -1,1 +1,26 @@
-<p>accommodation works!</p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularBootstrap</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+</head>
+<body class="w3-content w3-border-left w3-border-right">
+  <div class="container-fluid bg-3 text-center" >    
+    <div class="col-sm-6">
+        <p>bla bla this is a single listing</p> 
+      <div *ngFor="let listing of listings; let i=index" class="col-sm-9 "> 
+        <ion-slide *ngIf="i<8" >   
+          <p>{{ listing.Location }}<br>{{ listing.Seller }}<br>{{ listing.Price }}<br><img src="{{ listing.Image }}" class="img-responsive" alt="Image"></p>
+        </ion-slide>
+        <br>
+      </div>
+    </div>
+  </div>
+  <br><br>
+</body>
+</html>

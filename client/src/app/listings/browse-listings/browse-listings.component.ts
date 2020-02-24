@@ -48,7 +48,6 @@ export class BrowseListingsComponent implements OnInit {
 
     // Get the amount of results returned
     this.listingService.getListingByLocation(location).subscribe(success => {this.searchRes = "Query Returned (" + this.listings.length + ") Results"});
-   
   }
 
   // Clears the page back to its original state

@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 		this.userService.getUsers().subscribe(users => this.users = users);
   }
 
-  public profileRedirect(username : string) {
-    this.router.navigate(['/profile/' + username]);
+  public listingRedirect(listing_id : any) {
+    this.router.navigate(['/accommodation/' + listing_id]);
   }
 }
