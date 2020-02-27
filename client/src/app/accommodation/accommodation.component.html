@@ -9,18 +9,39 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
 </head>
-<body class="w3-content w3-border-left w3-border-right">
-  <div class="container-fluid bg-3 text-center" >    
-    <div class="col-sm-6">
-        <p>bla bla this is a single listing</p> 
-      <div *ngFor="let listing of listings; let i=index" class="col-sm-9 "> 
-        <ion-slide *ngIf="i<8" >   
-          <p>{{ listing.Location }}<br>{{ listing.Seller }}<br>{{ listing.Price }}<br><img src="{{ listing.Image }}" class="img-responsive" alt="Image"></p>
-        </ion-slide>
-        <br>
-      </div>
-    </div>
-  </div>
-  <br><br>
-</body>
+    <body>
+        <div class="jumbotron">
+            <div class="container text-center">
+                <img src="../../assets/title_image.png" class="img-header" alt="Image">
+            </div>
+        </div>  
+
+        <div class="container-fluid bg-3 text-center">    
+            <div class="col-sm-6">
+                <div class="content">
+                    
+                    
+                    <div *ngFor="let listing of listings; let i=index" class="col-sm-9 "> 
+                        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+                        <ion-slide *ngIf="i<8" >   
+                            <p><br>{{ listing.Description }}</p>{{ listing.Location }}<br>{{ listing.Seller }}<br>{{ listing.Price }}<br>
+                        </ion-slide>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comments-content">
+            <article>
+                <h1>Comments</h1>
+                <p>I hate this..</p>
+                <p>Pull these from database for each specific image</p>
+            </article>
+        </div>
+
+                
+
+    <br><br>
+    </body>
 </html>

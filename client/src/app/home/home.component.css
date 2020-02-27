@@ -20,9 +20,8 @@ p {
     height: 35%;
 }
 
-
 .jumbotron {
-    background-color: grey;
+    background-color: rgb(24, 20, 20);
   }
 
 .container-fluid  {
@@ -30,7 +29,7 @@ p {
 }
 .listing-box {
     background-color: rgb(209, 226, 225);
-    border: 3.5 px solid rgb(148, 26, 73);
+    border: 3.6px solid rgb(148, 26, 73);
     width: 104%;
     height: 96%;
 }

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, Injectable  } from '@angular/core';
 import { HttpModule } from '@angular/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
@@ -18,12 +18,48 @@ import { AccommodationComponent } from './accommodation/accommodation.component'
 import { ListingComponent } from './listings/listing/listing.component';
 import { BrowseListingsComponent } from './listings/browse-listings/browse-listings.component';
 import { MatAutocompleteModule } from '@angular/material';
+import { NgxGalleryModule } from 'ngx-gallery';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import * as Hammer from 'hammerjs';
 
+@Injectable()
+export class CustomHammerConfig extends HammerGestureConfig {
+  overrides = {
+    'pan': {
+      direction: Hammer.DIRECTION_ALL,
+    },
+    pinch: { enable: false },
+    rotate: { enable: false }
+  }
+}
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, UserListComponent, UserEditComponent, HomeComponent, ProfileComponent, PageNotFoundComponent, UserLoginComponent, AccommodationComponent, ListingComponent, BrowseListingsComponent],
-  imports: [BrowserModule, ReactiveFormsModule, HttpModule, FormsModule, AppRoutingModule, HttpClientModule, NgbModule, ReactiveFormsModule, MatAutocompleteModule],
-  providers: [],
+  declarations: [
+    AppComponent,
+    RegisterComponent, 
+    UserListComponent, 
+    UserEditComponent, 
+    HomeComponent, 
+    ProfileComponent, 
+    PageNotFoundComponent, 
+    UserLoginComponent, 
+    AccommodationComponent, 
+    ListingComponent, 
+    BrowseListingsComponent],
+  imports: [
+    BrowserModule, 
+    ReactiveFormsModule, 
+    HttpModule, 
+    NgxGalleryModule, 
+    FormsModule, 
+    AppRoutingModule, 
+    HttpClientModule, 
+    NgbModule, 
+    ReactiveFormsModule, 
+    MatAutocompleteModule],
+  providers: [
+    {provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig}
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
