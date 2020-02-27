@@ -27,11 +27,6 @@ export class HomeComponent implements OnInit {
     this.listingService.getListings().subscribe(listings => this.listings = listings);
   }
 
-  // Required on init for users images to be loaded
-  getUsers(): void {
-		this.userService.getUsers().subscribe(users => this.users = users);
-  }
-
   public listingRedirect(listing_id : any) {
     this.router.navigate(['/accommodation/' + listing_id]);
   }

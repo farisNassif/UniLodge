@@ -52,33 +52,37 @@ export class AccommodationComponent implements OnInit {
 
   this.galleryImages = [
       {
-          small: this.image,
-          medium: this.image,
-          big: this.image
+        small: this.image,
+        medium: this.image,
+        big: this.image
       },
       {
-          small: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612',
-          medium: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612',
-          big: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612'
+        small: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612',
+        medium: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612',
+        big: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612'
       },
       {
-          small: 'https://cdn.cnn.com/cnnnext/dam/assets/191203174105-edward-whitaker-1-large-169.jpg',
-          medium: 'https://cdn.cnn.com/cnnnext/dam/assets/191203174105-edward-whitaker-1-large-169.jpg',
-          big: 'https://cdn.cnn.com/cnnnext/dam/assets/191203174105-edward-whitaker-1-large-169.jpg'
+        small: this.image,
+        medium: this.image,
+        big: this.image
+      },
+      {
+        small: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612',
+        medium: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612',
+        big: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612'
       }
   ];
   }
   getImages(b64: string): void {
     this.image = b64;
   }
+  
   getListing(): void {
     this.listingService.getListingById(this.listing_id).subscribe(listings => this.listings = listings)
   }
   
   getImgs(): void {
     this.listingService.getListingById(this.listing_id).subscribe(listings => {this.image =  listings[0].Image; this.setupGallery()})
-    
-
   }
 
 }

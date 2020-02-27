@@ -30,7 +30,6 @@ export class ProfileComponent implements OnInit {
   
   ngOnInit() {
     this.getUser();
-    this.getListingInfo(window.location.pathname.substring(9,40));
   }
 
   // Gets the individual user information for which the profile is relevant
@@ -51,7 +50,7 @@ export class ProfileComponent implements OnInit {
   }
 
   addImage(Username: string) {
-    this.userService.addImage(Username, this.uploadedImage).subscribe(success => { this.getUser() });
+    this.userService.addImage(Username, this.uploadedImage).subscribe(success => { this.getUser(); this.getListingInfo(window.location.pathname.substring(9,40))});
   }
 
   changeListener($event: { target: any; }) : void {

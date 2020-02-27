@@ -18,9 +18,7 @@
 
         <div class="container-fluid bg-3 text-center">    
             <div class="col-sm-6">
-                <div class="content">
-                    
-                    
+                <div class="content">                    
                     <div *ngFor="let listing of listings; let i=index" class="col-sm-9 "> 
                         <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
                         <ion-slide *ngIf="i<8" >   
