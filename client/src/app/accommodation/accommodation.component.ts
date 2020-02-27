@@ -30,23 +30,16 @@ export class AccommodationComponent implements OnInit {
   setupGallery() {
     this.galleryOptions = [
       {
-          width: '600px',
-          height: '400px',
+          width: '89%',
+          height: '450px',
           thumbnailsColumns: 4,
+          lazyLoading: true,
+          imageAutoPlay: false,
+          previewZoom: true,
+          previewRotate: true,
+          previewDownload: true,
+          previewBullets: true,
           imageAnimation: NgxGalleryAnimation.Slide
-      },
-      {
-          breakpoint: 800,
-          width: '100%',
-          height: '600px',
-          imagePercent: 80,
-          thumbnailsPercent: 20,
-          thumbnailsMargin: 20,
-          thumbnailMargin: 20
-      },
-      {
-          breakpoint: 400,
-          preview: false
       }
   ];
 
