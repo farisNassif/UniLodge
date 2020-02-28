@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Listing } from '../listing';
 import { ListingService } from '../listing.service';
 import { Router } from '@angular/router';
-
+// For the slider
+import { Options, LabelType } from 'ng5-slider';
 // Required for autocomplete element
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -14,6 +15,23 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./browse-listings.component.css']
 })
 export class BrowseListingsComponent implements OnInit {
+  /** For the Slider */
+  minValue: number = 100;
+  maxValue: number = 400;
+  options: Options = {
+    floor: 0,
+    ceil: 500,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return '<b>Min price:</b> $' + value;
+        case LabelType.High:
+          return '<b>Max price:</b> $' + value;
+        default:
+          return '$' + value;
+      }
+    }
+  };
   /** Gets all the listings from mongo/python and stores them */
   listings: Listing[] = [];
 
@@ -21,7 +39,7 @@ export class BrowseListingsComponent implements OnInit {
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   selected: string;
-  options: string[] = ['Loughrea', 'Galway City', 'Craughwell', 'Claregalway', 'Athenry', 'Tuam', 'Gort', 'Ballybrit'];
+  listing_options: string[] = ['Loughrea', 'Galway City', 'Craughwell', 'Claregalway', 'Athenry', 'Tuam', 'Gort', 'Ballybrit'];
   subject_: string;
 
   searchRes: any;
@@ -79,7 +97,7 @@ export class BrowseListingsComponent implements OnInit {
     
     // It wont start to auto suggest locations until at least 1 letter has been typed
     if (filterValue.length >= 1) {
-      return this.options.filter(option => option.toLowerCase().includes(filterValue))
+      return this.listing_options.filter(listing_options => listing_options.toLowerCase().includes(filterValue))
     }
   }
 }

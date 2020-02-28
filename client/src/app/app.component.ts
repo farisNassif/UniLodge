@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { AppService } from './app.service'
 import { HttpClient } from '@angular/common/http'
 import { Title } from '@angular/platform-browser';
-import { Router, NavigationEnd, ActivatedRoute, NavigationError, NavigationCancel, NavigationStart, Event } from '@angular/router';
+import { Router, NavigationEnd, RouterOutlet, ActivatedRoute, NavigationError, NavigationCancel, NavigationStart, Event } from '@angular/router';
 import { FormsModule }   from '@angular/forms';
 
 /* These imports are required for setting the tab title based on the visited route */
@@ -17,11 +17,6 @@ import 'rxjs/add/operator/mergeMap';
   providers: [AppService]
 })
 export class AppComponent implements OnInit{
-  // Stuff for spinner
-  // showLoadingIndicator = true;
-  // this.showLoadingIndicator = true;
-  // this.showLoadingIndicator = false;
-
   msgFromTheBackend: String // Whatever is returned from python - Eg "Registration Successful/Unsuccessful"
   user: String;
   password: String

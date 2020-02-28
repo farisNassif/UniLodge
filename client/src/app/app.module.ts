@@ -20,6 +20,7 @@ import { BrowseListingsComponent } from './listings/browse-listings/browse-listi
 import { MatAutocompleteModule } from '@angular/material';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { Ng5SliderModule } from 'ng5-slider';
 import * as Hammer from 'hammerjs';
 
 @Injectable()
@@ -48,6 +49,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     BrowseListingsComponent],
   imports: [
     BrowserModule, 
+    Ng5SliderModule,
     ReactiveFormsModule, 
     HttpModule, 
     NgxGalleryModule, 
