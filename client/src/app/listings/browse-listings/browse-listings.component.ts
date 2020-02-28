@@ -60,7 +60,8 @@ export class BrowseListingsComponent implements OnInit {
 
 
   // When submit is pressed, query the backend for relative params
-  async searchListings(event: void, location:string) {
+  async searchListings(event: void, location:string, minVal: number, maxVal: number) {
+    console.log(minVal + " " + maxVal)
     // Get the actual results returned
     this.listingService.getListingByLocation(location).subscribe(listings => this.listings = listings);
 
@@ -87,7 +88,7 @@ export class BrowseListingsComponent implements OnInit {
   }
 
   // Methods for enabling autocomplete
-  displayAutocomplete(subject) {
+  public displayAutocomplete(subject) {
     return subject ? subject.name : undefined;
   }
 
