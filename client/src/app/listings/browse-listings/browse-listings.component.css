@@ -17,11 +17,12 @@ p {
 
 .img-header {
     width: 45%;
-    height: 35%;
+    height: 39%;
 }
 
 .jumbotron {
     background-color: rgb(24, 20, 20);
+    width: 100%;
   }
 
 .container-fluid  {

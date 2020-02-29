@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="topnav">
-        <a routerLink="/">Home</a>
+        <a class="navbar-brand" href="#"><b class="fas fa-user-clock"></b>UniLodge</a>
         <a routerLink="users">Users</a>
         <a routerLink="browse">Browse</a>
         <a *ngIf="loginStatus===true" routerLink="/listing/{{ user }}">Create Listing</a>
