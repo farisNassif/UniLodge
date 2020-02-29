@@ -28,7 +28,7 @@ def new_listing(Username):
         d_a.getListings().update_one({'Unique_Id': listing_data['Unique_Id']}, {"$set": {"Price" : float(price_to_modify)} })
         result = ("Success! Added to database")
     except:
-        result = ("Some error thrown")
+        result = ("Error: Could not add your Listing")
     
     return jsonify(result)
 
@@ -37,6 +37,7 @@ def new_listing(Username):
 def list_listings():
     # Making userList equal to whatever is in the users table. So return Username/Password WITHOUT the _id
     userList = list(d_a.getListings().find({}, {'_id': False}))
+    
     # Send the list of users (more specifically a users Username+Password) to the frontend
     return jsonify(userList)
 
@@ -68,11 +69,9 @@ def list_listings_by_location(Query):
     temp = request.get_data().decode() # Ignore this, something needs to store decoded data or flask whines
 
     query_data = json.loads(temp)
-    print(query_data['minVal'])
-    print(query_data['maxVal'])
-    print(query_data['location'])
+
     # Getting the listings associated with a single location
     listingList = list(d_a.getListings().find({'Location': query_data['location'], 'Price': {"$gt": query_data['minVal'], "$lt": query_data['maxVal']} }, {'_id': False}))
-    print(listingList)
+
     # Return only the listings associated with the location
     return jsonify(listingList)

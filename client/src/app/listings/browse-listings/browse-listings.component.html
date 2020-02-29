@@ -18,12 +18,10 @@
     </div> 
   </div>  
 
-  <form (submit)="searchListings($event, selected, minValue, maxValue)">
+  <form>
     <div class="container text-center">
-      <mat-form-field>
-          
+      <mat-form-field>    
         <h3>Seach for a Location</h3>
-        
         <input type="text" placeholder=" Location" matInput [matAutocomplete]="auto" [formControl]="myControl" [(ngModel)]="selected" class="location_input"/> 
         <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayAutocomplete(selected)">
@@ -35,7 +33,7 @@
       </mat-form-field>
       <h4><b>{{ searchRes }}</b></h4>
 
-      <button type="submit" value="submit" class="btn btn-primary">Submit</button> 
+      <button type="submit" value="submit" class="btn btn-primary" (click)="searchListings($event, selected, minValue, maxValue)">Submit</button> 
       &nbsp;
       <button type="clear" value="clear" class="btn btn-primary" (click)="clearSearch()">Refresh Page</button>
     </div>
