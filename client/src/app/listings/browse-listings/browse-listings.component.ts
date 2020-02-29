@@ -16,19 +16,19 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class BrowseListingsComponent implements OnInit {
   /** For the Slider */
-  minValue: number = 100;
-  maxValue: number = 400;
+  minValue: number = 0;
+  maxValue: number = 500;
   options: Options = {
     floor: 0,
     ceil: 500,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return '<b>Min price:</b> $' + value;
+          return '<b>Min price:</b> €' + value;
         case LabelType.High:
-          return '<b>Max price:</b> $' + value;
+          return '<b>Max price:</b> €' + value;
         default:
-          return '$' + value;
+          return '€' + value;
       }
     }
   };
@@ -61,12 +61,16 @@ export class BrowseListingsComponent implements OnInit {
 
   // When submit is pressed, query the backend for relative params
   async searchListings(event: void, location:string, minVal: number, maxVal: number) {
-    console.log(minVal + " " + maxVal)
+    // Plan to send the complete query to the backend as JSON
+    let query = { 
+      location: location, minVal: minVal, maxVal: maxVal 
+    };
+
     // Get the actual results returned
-    this.listingService.getListingByLocation(location).subscribe(listings => this.listings = listings);
+    this.listingService.getListingByLocationAndPrice(query).subscribe(listings => this.listings = listings);
 
     // Get the amount of results returned
-    this.listingService.getListingByLocation(location).subscribe(success => {this.searchRes = "Query Returned (" + this.listings.length + ") Results"});
+    this.listingService.getListingByLocationAndPrice(query).subscribe(success => {this.searchRes = "Query Returned (" + this.listings.length + ") Results"});
   }
 
   // Clears the page back to its original state

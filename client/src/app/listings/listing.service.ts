@@ -28,12 +28,12 @@ export class ListingService {
 
   /** Return a Single Listing by ID */
   getListingById(unique_id: any): Observable<Listing[]> {
-    return this.http.get<Listing[]>(this.userUrl + '/api/listings/' + unique_id)
+    return this.http.get<Listing[]>(this.userUrl + '/api/listings-id/' + unique_id)
   } 
 
   /** Finds all listings by params */
-  getListingByLocation(location: string): Observable<Listing[]> {
-    return this.http.get<Listing[]>(this.userUrl + '/api/listings-query/' + location)
+  getListingByLocationAndPrice(query: any): Observable<Listing[]> {
+    return this.http.post<Listing[]>(this.userUrl + '/api/listings-query/' + query, query)
   }
 
   /** Posts a listing **/

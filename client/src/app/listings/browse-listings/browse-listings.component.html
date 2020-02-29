@@ -23,8 +23,9 @@
       <mat-form-field>
           
         <h3>Seach for a Location</h3>
-        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+        
         <input type="text" placeholder=" Location" matInput [matAutocomplete]="auto" [formControl]="myControl" [(ngModel)]="selected" class="location_input"/> 
+        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayAutocomplete(selected)">
             <mat-option *ngFor="let selected of filteredOptions | async" [value]="selected">
               {{ selected }}
@@ -46,7 +47,7 @@
       <div *ngFor="let listing of listings; let i=index" class="col-sm-3">
         <ion-slide *ngIf="i<99" >   
         <div class="listing-box">
-          <p>{{ listing.Location  }} <br> {{ listing.Title }} <br> {{ listing.Price }}</p>      
+          <p>{{ listing.Location  }} <br> {{ listing.Title }} <br> €{{ listing.Price }}</p>      
           <img src="{{ listing.Image }}" class="img-responsive" alt="Image" (click)="accommodationRedirect(listing.Unique_Id)">
         </div>
         </ion-slide>

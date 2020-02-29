@@ -5,7 +5,7 @@ export class Listing {
     public Seller: string,
     public Description: any,
     public Location: any,
-    public Price: string,
+    public Price: number,
     public ContactNumber: string,
     public Image?: string,
   ) {  }

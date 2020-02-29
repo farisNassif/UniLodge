@@ -18,10 +18,14 @@ import data.database_accessor as d_a
 @listings_blueprint.route('/api/new-listing/<string:Username>', methods=['POST'])
 def new_listing(Username):
     Username = get_jwt_identity()
+    
     listing_data = json.loads(request.get_data().decode()) # Using json module convert to json
+    price_to_modify = listing_data['Price'] # Price needs to be sent in not as a String for search query
+   
     try: 
         # Posting data stored above to mongo
         d_a.getListings().insert_one(listing_data) # Sticking direct json data into database from frontend
+        d_a.getListings().update_one({'Unique_Id': listing_data['Unique_Id']}, {"$set": {"Price" : float(price_to_modify)} })
         result = ("Success! Added to database")
     except:
         result = ("Some error thrown")
@@ -37,13 +41,13 @@ def list_listings():
     return jsonify(userList)
 
 # Get a single listing based on an ID
-@listings_blueprint.route('/api/listings/<string:Unique_ID>', methods=['GET'])
+@listings_blueprint.route('/api/listings-id/<string:Unique_ID>', methods=['GET'])
 def get_listing_by_id(Unique_ID):
     temp = request.get_data().decode() # Ignore this, something needs to store decoded data or flask whines
 
     # Returning a single user but it's still more efficient to return as a list (Makes angular happy)
     userList = list(d_a.getListings().find({'Unique_Id': Unique_ID}, {'_id': False}))
-
+   
     # Return the Listing with the associated ID
     return jsonify(userList)
 
@@ -54,17 +58,21 @@ def list_user_listings(Username):
 
     # Getting the listings made by the user who's profile has just been accessed
     userList = list(d_a.getListings().find({'Seller': Username}, {'_id': False}))
-
+    
     # Return only the listings made by this user
     return jsonify(userList)
 
 # Get Listing information for a specific location
-@listings_blueprint.route('/api/listings-query/<string:Location>', methods=['GET'])
-def list_listings_by_location(Location):
+@listings_blueprint.route('/api/listings-query/<string:Query>', methods=['GET', 'POST'])
+def list_listings_by_location(Query):
     temp = request.get_data().decode() # Ignore this, something needs to store decoded data or flask whines
 
+    query_data = json.loads(temp)
+    print(query_data['minVal'])
+    print(query_data['maxVal'])
+    print(query_data['location'])
     # Getting the listings associated with a single location
-    listingList = list(d_a.getListings().find({'Location': Location}, {'_id': False}))
-    
+    listingList = list(d_a.getListings().find({'Location': query_data['location'], 'Price': {"$gt": query_data['minVal'], "$lt": query_data['maxVal']} }, {'_id': False}))
+    print(listingList)
     # Return only the listings associated with the location
     return jsonify(listingList)

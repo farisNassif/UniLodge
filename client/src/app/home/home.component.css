@@ -13,6 +13,7 @@ p {
 .img-responsive {
     width: 92%;
     height: 73%;
+    padding-bottom: 2%;
 }
 
 .img-header {

@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   username: string = window.location.pathname.substring(9,40);
 
   users: User[] = [];
-  user_listings: Listing[] = []
+  listings: Listing[] = []
 
   uploadedImage: any = [];
   userImage: any = [];
@@ -29,7 +29,10 @@ export class ProfileComponent implements OnInit {
   private location: Location, private listingService: ListingService) {}
   
   ngOnInit() {
+    
     this.getUser();
+    this.getListingInfo(this.username);
+    this.getListingInfo(this.username);
   }
 
   // Gets the individual user information for which the profile is relevant
@@ -39,7 +42,9 @@ export class ProfileComponent implements OnInit {
 
   // Gets the listings information relevant to the user who's profile is currently open
   getListingInfo(username: string) {
-    this.listingService.getSingleUserListings(this.username).subscribe(user_listings => this.user_listings = user_listings)
+    console.log(username)
+    this.listingService.getSingleUserListings(username).subscribe(listings => this.listings = listings)
+    
   }
 
   // Methods for displaying and getting the image 

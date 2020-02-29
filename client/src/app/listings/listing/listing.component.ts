@@ -15,7 +15,7 @@ export class ListingComponent implements OnInit {
   UserLocation : any;
   Location = ['Athenry', 'Ballybrit', 'Claregalway', 'Craughwell', 'Galway City',
               'Gort','Loughrea'];
-  price: any
+  price: number
   ContactNumber: string
   Image?: string
   _id?: number
@@ -63,7 +63,8 @@ export class ListingComponent implements OnInit {
   }
 
   // Listing object, only need some values passed, rest can be auto included as they're already known values
-  newListing(title: string, price: string, contact_num: string, description: any) {
+  newListing(title: string, price: number, contact_num: string, description: any) {
+    
     let r_gen_id = Math.random().toString(36).substring(1); // Gen random ID
     this.model = new Listing(  
       r_gen_id.replace('.', ''),
@@ -71,7 +72,7 @@ export class ListingComponent implements OnInit {
       this.Seller,
       description,
       this.UserLocation,
-      "€" + price,
+      price,
       contact_num,
       this.base64textString);
     console.log(this.model);
