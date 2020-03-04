@@ -25,6 +25,8 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@ng-bootstrap/ng-bootstrap": "^5.2.1",
+    "@ngx-loading-bar/core": "^4.2.0",
+    "@ngx-loading-bar/router": "^4.2.0",
     "angular-base64": "^2.0.5",
     "chart.js": "^2.5.0",
     "core-js": "^2.6.11",

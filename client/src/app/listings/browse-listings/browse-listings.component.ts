@@ -32,8 +32,12 @@ export class BrowseListingsComponent implements OnInit {
       }
     }
   };
+  
   /** Gets all the listings from mongo/python and stores them */
   listings: Listing[] = [];
+
+  /** */
+  searched: boolean = false;
 
   /** Below attributes required for autocomplete functionality */ 
   myControl = new FormControl();
@@ -61,6 +65,7 @@ export class BrowseListingsComponent implements OnInit {
 
   // When submit is pressed, query the backend for relative params
   async searchListings(event: void, location:string, minVal: number, maxVal: number) {
+    this.searched = true
     // Plan to send the complete query to the backend as JSON
     let query = { 
       location: location, minVal: minVal, maxVal: maxVal 

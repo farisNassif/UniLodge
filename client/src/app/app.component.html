@@ -12,7 +12,7 @@
 <body>
     <div class="topnav">
         <a class="navbar-brand" href="#"><b class="fas fa-user-clock"></b>UniLodge</a>
-        <a routerLink="users">Users</a>
+        <!-- <a routerLink="users">Users</a> -->
         <a routerLink="browse">Browse</a>
         <a *ngIf="loginStatus===true" routerLink="/listing/{{ user }}">Create Listing</a>
         <a *ngIf="loginStatus===true" routerLink="/profile/{{ user }}" class="right">Profile</a>  
@@ -22,9 +22,10 @@
         <a *ngIf="loginStatus===true"  (click)="logout()" routerLink="/" class="right">Logout</a>   
     </div>
     
-    <div> 
+    <div>
+        
         <!-- The content contained within other routed components will display here -->
-          <router-outlet></router-outlet>
+          <router-outlet> <ngx-loading-bar [height]=  "'0.7%'" [color]="'	#00FFFF'"></ngx-loading-bar> </router-outlet>
         <!-- <div *ngIf="showLoadingIndicator" class="spinner"></div> -->  
     </div>   
         <footer class="page-footer font-small mdb-color lighten-4 pt-4">

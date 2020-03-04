@@ -23,6 +23,10 @@ import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-br
 import { Ng5SliderModule } from 'ng5-slider';
 import * as Hammer from 'hammerjs';
 
+
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+
 @Injectable()
 export class CustomHammerConfig extends HammerGestureConfig {
   overrides = {
@@ -48,6 +52,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
     ListingComponent, 
     BrowseListingsComponent],
   imports: [
+    LoadingBarRouterModule,
+    LoadingBarModule,
     BrowserModule, 
     Ng5SliderModule,
     ReactiveFormsModule, 
