@@ -21,7 +21,6 @@ export class AppComponent implements OnInit{
   user: String;
   password: String
   username: String
-  loading = false;
   
   constructor(private appService: AppService, private http: HttpClient, private router: Router,
   private activatedRoute: ActivatedRoute, private titleService: Title) { }

@@ -1,6 +1,18 @@
 input {
-    width: 35%;
+    width: 225%;
   }
 form {
     padding-left: 2%;
+}
+
+.makeItCenter {
+  width: 25rem;
+  height:45vh;
+  display:flex;
+  align-items: center;
+  justify-content:center;
+}
+
+.spaceForFooter {
+  height:15vh;
 }

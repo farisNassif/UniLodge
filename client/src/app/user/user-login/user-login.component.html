@@ -10,6 +10,7 @@
 </head>
 <body>
   <br>
+  <div class="makeItCenter">
   <form (submit)="loginUser($event, username, password)" class="was-validated">
     <div class="form-group">
       <label for="email" class="control-label">Email</label>
@@ -41,8 +42,9 @@
     <br>
     <b>{{ logged_in }}</b>
     <br>
-    <br>
   </form>
+</div>
+<div class="spaceForFooter"></div>
 </body>
 </html>
 
