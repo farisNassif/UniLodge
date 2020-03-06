@@ -31,3 +31,14 @@ def getListings():
     listings = database["Listings"] # Referenced whenever inserting/deleting from the listings collection(table)
     return listings
 
+'''
+Function that defines a comments collection that contains all comments within the MongoDB collection on the cloud
+
+@returns a collection of comments that may be manipulated
+'''
+def getComments():
+    comments = database["Comments"] # Referenced whenever inserting/deleting from the comments collection(table)
+    return comments
+
+
+

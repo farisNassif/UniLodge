@@ -6,11 +6,11 @@ form {
 }
 
 .makeItCenter {
-width: 25rem;
-height:55vh;
-display:flex;
-align-items: center;
-justify-content:center;
+  width: 25rem;
+  height:55vh;
+  display:flex;
+  align-items: center;
+  justify-content:center;
 }
 
 .spaceForFooter {

@@ -35,22 +35,22 @@ def new_listing(Username):
 # Get Listings
 @listings_blueprint.route('/api/listings', methods=['GET'])
 def list_listings():
-    # Making userList equal to whatever is in the users table. So return Username/Password WITHOUT the _id
-    userList = list(d_a.getListings().find({}, {'_id': False}))
+    # Making listings equal to whatever is in the listings database
+    listings = list(d_a.getListings().find({}, {'_id': False}))
     
-    # Send the list of users (more specifically a users Username+Password) to the frontend
-    return jsonify(userList)
+    # Send the list of listings to the frontend
+    return jsonify(listings)
 
 # Get a single listing based on an ID
 @listings_blueprint.route('/api/listings-id/<string:Unique_ID>', methods=['GET'])
 def get_listing_by_id(Unique_ID):
     temp = request.get_data().decode() # Ignore this, something needs to store decoded data or flask whines
 
-    # Returning a single user but it's still more efficient to return as a list (Makes angular happy)
-    userList = list(d_a.getListings().find({'Unique_Id': Unique_ID}, {'_id': False}))
+    # Returning a single listing but it's still more efficient to return as a list (Makes angular happy)
+    listing = list(d_a.getListings().find({'Unique_Id': Unique_ID}, {'_id': False}))
    
     # Return the Listing with the associated ID
-    return jsonify(userList)
+    return jsonify(listing)
 
 # Get Listing information for a specific user
 @listings_blueprint.route('/api/listings/<string:Username>', methods=['GET'])
@@ -58,10 +58,10 @@ def list_user_listings(Username):
     temp = request.get_data().decode() # Ignore this, something needs to store decoded data or flask whines
 
     # Getting the listings made by the user who's profile has just been accessed
-    userList = list(d_a.getListings().find({'Seller': Username}, {'_id': False}))
+    specificListing = list(d_a.getListings().find({'Seller': Username}, {'_id': False}))
     
     # Return only the listings made by this user
-    return jsonify(userList)
+    return jsonify(specificListing)
 
 # Get Listing information for a specific location
 @listings_blueprint.route('/api/listings-query/<string:Query>', methods=['GET', 'POST'])
@@ -75,3 +75,14 @@ def list_listings_by_location(Query):
 
     # Return only the listings associated with the location
     return jsonify(listingList)
+
+# Get a single listing based on an ID
+@listings_blueprint.route('/api/listings-id/<string:Unique_ID>/comments', methods=['GET'])
+def listings_comments(Unique_ID): #1
+    temp = request.get_data().decode() # Ignore this, something needs to store decoded even if its blank data or flask whines
+
+    # Returning a single listing but it's still more efficient to return as a list (Makes angular happy)
+    listing = list(d_a.getListings().find({'Unique_Id': Unique_ID}, {'_id': False}))
+   
+    # Return the Listing with the associated ID
+    return jsonify(listing)
