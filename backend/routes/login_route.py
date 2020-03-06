@@ -28,9 +28,9 @@ def login():
     username = username_password[0]
     password = username_password[1]
 
-    if d_a.getUsers().find_one( {'Username': username } ):
+    if d_a.Users().find_one( {'Username': username } ):
         # Very painful way of retrieving password from mongo based on username given but it works as it is
-        user_to_login_to_list = list(d_a.getUsers().find( { 'Username': username } ))
+        user_to_login_to_list = list(d_a.Users().find( { 'Username': username } ))
 
         for i in user_to_login_to_list: # Will always only loop once, this is how it ended up working with retrieving a single attribute value from mongo
             stored_hash = i["Password"] # Gets the value of "Password" from the user in mongo and stores the hash as stored_hash

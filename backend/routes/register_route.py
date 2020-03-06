@@ -25,14 +25,14 @@ def reg():
     # If username ends correctly (TODO At some point gotta change this to not just be '@gmit.ie')
     if (ev.check_email(username)) and (len(password) > 4): 
         # Basically if theres already an email in mongo the same as what was just entered
-        if d_a.getUsers().find_one( {'Username':username} ):
+        if d_a.Users().find_one( {'Username':username} ):
             result = ("There is already an account associated with that email.")
         else:
             # Preparing data to be inserted into mongo, data will be inserted with this schema
             new_user = {"Username":username,"Password":password}
             try:        
                 # Posting data stored above to mongo
-                d_a.getUsers().insert_one(new_user)
+                d_a.Users().insert_one(new_user)
                 result = ("Success! Added to database")
             # Error Handling
             except: 

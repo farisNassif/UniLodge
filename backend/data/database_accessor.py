@@ -18,7 +18,7 @@ Function that defines a users collection that contains all users within the Mong
 
 @returns a collection of users that may be manipulated
 '''
-def getUsers():
+def Users():
     users = database["Users"] # Referenced whenever inserting/deleting from the userscollection(table)
     return users
 
@@ -27,7 +27,7 @@ Function that defines a listings collection that contains all listings within th
 
 @returns a collection of listings that may be manipulated
 '''
-def getListings():
+def Listings():
     listings = database["Listings"] # Referenced whenever inserting/deleting from the listings collection(table)
     return listings
 
@@ -36,7 +36,7 @@ Function that defines a comments collection that contains all comments within th
 
 @returns a collection of comments that may be manipulated
 '''
-def getComments():
+def Comments():
     comments = database["Comments"] # Referenced whenever inserting/deleting from the comments collection(table)
     return comments
 

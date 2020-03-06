@@ -24,8 +24,8 @@ def new_listing(Username):
    
     try: 
         # Posting data stored above to mongo
-        d_a.getListings().insert_one(listing_data) # Sticking direct json data into database from frontend
-        d_a.getListings().update_one({'Unique_Id': listing_data['Unique_Id']}, {"$set": {"Price" : float(price_to_modify)} })
+        d_a.Listings().insert_one(listing_data) # Sticking direct json data into database from frontend
+        d_a.Listings().update_one({'Unique_Id': listing_data['Unique_Id']}, {"$set": {"Price" : float(price_to_modify)} })
         result = ("Success! Added to database")
     except:
         result = ("Error: Could not add your Listing")
@@ -36,7 +36,7 @@ def new_listing(Username):
 @listings_blueprint.route('/api/listings', methods=['GET'])
 def list_listings():
     # Making listings equal to whatever is in the listings database
-    listings = list(d_a.getListings().find({}, {'_id': False}))
+    listings = list(d_a.Listings().find({}, {'_id': False}))
     
     # Send the list of listings to the frontend
     return jsonify(listings)
@@ -47,7 +47,7 @@ def get_listing_by_id(Unique_ID):
     temp = request.get_data().decode() # Ignore this, something needs to store decoded data or flask whines
 
     # Returning a single listing but it's still more efficient to return as a list (Makes angular happy)
-    listing = list(d_a.getListings().find({'Unique_Id': Unique_ID}, {'_id': False}))
+    listing = list(d_a.Listings().find({'Unique_Id': Unique_ID}, {'_id': False}))
    
     # Return the Listing with the associated ID
     return jsonify(listing)
@@ -58,7 +58,7 @@ def list_user_listings(Username):
     temp = request.get_data().decode() # Ignore this, something needs to store decoded data or flask whines
 
     # Getting the listings made by the user who's profile has just been accessed
-    specificListing = list(d_a.getListings().find({'Seller': Username}, {'_id': False}))
+    specificListing = list(d_a.Listings().find({'Seller': Username}, {'_id': False}))
     
     # Return only the listings made by this user
     return jsonify(specificListing)
@@ -71,18 +71,34 @@ def list_listings_by_location(Query):
     query_data = json.loads(temp)
 
     # Getting the listings associated with a single location
-    listingList = list(d_a.getListings().find({'Location': query_data['location'], 'Price': {"$gt": query_data['minVal'], "$lt": query_data['maxVal']} }, {'_id': False}))
+    listingList = list(d_a.Listings().find({'Location': query_data['location'], 'Price': {"$gt": query_data['minVal'], "$lt": query_data['maxVal']} }, {'_id': False}))
 
     # Return only the listings associated with the location
     return jsonify(listingList)
 
-# Get a single listing based on an ID
+# Get all comments associated with a specific Listings ID
 @listings_blueprint.route('/api/listings-id/<string:Unique_ID>/comments', methods=['GET'])
-def listings_comments(Unique_ID): #1
+def listings_comments(Unique_ID):
     temp = request.get_data().decode() # Ignore this, something needs to store decoded even if its blank data or flask whines
 
     # Returning a single listing but it's still more efficient to return as a list (Makes angular happy)
-    listing = list(d_a.getListings().find({'Unique_Id': Unique_ID}, {'_id': False}))
+    comments = list(d_a.Comments().find({'Unique_Id': Unique_ID}, {'_id': False}))
    
     # Return the Listing with the associated ID
-    return jsonify(listing)
+    return jsonify(comments)
+
+# Create a new comment
+@listings_blueprint.route('/api/listings-id/<string:Unique_ID>/new-comment', methods=['POST'])
+def new_comment(Username):
+    Username = get_jwt_identity()
+    
+    comment_data = json.loads(request.get_data().decode()) # Using json module convert to json
+   
+    try: 
+        # Comment data stored above to mongo
+        d_a.Comments().insert_one(comment_data)
+        result = ("Success! Added to database")
+    except:
+        result = ("Error: Could not add your Listing")
+    
+    return jsonify(result)

@@ -15,7 +15,7 @@ import data.database_accessor as d_a
 @temp_users_blueprint.route('/api/user/<string:Username>', methods=['GET'])
 def list_user(Username):
     # Making userList equal to whatever is in the users table. So return Username/Password WITHOUT the _id
-    user = list(d_a.getUsers().find({"Username": Username}, {'_id': False}))
+    user = list(d_a.Users().find({"Username": Username}, {'_id': False}))
 
     # Return a single user (Username/Password)
     return jsonify(user)
@@ -23,7 +23,7 @@ def list_user(Username):
 @temp_users_blueprint.route('/api/users', methods=['GET'])
 def list_users():
     # Making userList equal to whatever is in the users table. So return Username/Password WITHOUT the _id
-    userList = list(d_a.getUsers().find({}, {'_id': False}))
+    userList = list(d_a.Users().find({}, {'_id': False}))
     # Send the list of users (more specifically a users Username+Password) to the frontend
     return jsonify(userList)
 
@@ -31,7 +31,7 @@ def list_users():
 def delete_user(Username):
     # Username being the email, since it will be unique in the database it's pretty much the primary key for users
     try: 
-        d_a.getUsers().delete_one( {'Username': Username } )
+        d_a.Users().delete_one( {'Username': Username } )
         result = "User with Email: [" + Username + "] has been successfully removed."
     except:
         result = "There was an error deleting that user, try again."
@@ -43,7 +43,7 @@ def update_user(Username):
     # email_to_update = request.get_data().decode()
     email_to_update = Username
     try: 
-        d_a.getUsers().update_one({ "Username": email_to_update }, { "$set": { "Password": new_password } } )
+        d_a.Users().update_one({ "Username": email_to_update }, { "$set": { "Password": new_password } } )
         result = (email_to_update + " your password was successfully updated!")
     except: 
         result = ("There was an error updating " + email_to_update + ".")
@@ -54,7 +54,7 @@ def add_image(Username):
     email_to_update = Username
     image_to_add = request.get_data().decode()
     try: 
-        d_a.getUsers().update_one({ "Username": email_to_update }, { "$set": { "Image": image_to_add } } )
+        d_a.Users().update_one({ "Username": email_to_update }, { "$set": { "Image": image_to_add } } )
         result = "Image successfully added"
     except:
         result = ("Image not added")
