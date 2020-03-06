@@ -16,30 +16,52 @@
             </div>
         </div>  
 
-        <div class="container-fluid bg-3 text-center">    
-            <div class="col-sm-6">
-                <div class="content">                    
-                    <div *ngFor="let listing of listings; let i=index" class="col-sm-9 "> 
-                        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-                        <ion-slide *ngIf="i<8" >   
-                            <p><br>{{ listing.Description }}</p>{{ listing.Location }}<br>{{ listing.Seller }}<br>{{ listing.Price }}<br>
-                        </ion-slide>
-                        <br>
+        <div class="row no-gutters">
+            <div class="col-md-6 no-gutters">
+                <div class="leftside">
+                    <div class="container-fluid bg-3 text-center">    
+                        <div class="col-sm-20">
+                            <div class="text-center">                               
+                                <div *ngFor="let listing of listings; let i=index" > 
+                                    <ion-slide *ngIf="i<8" >   
+                                        <br>{{ listing.Description }} <br> {{ listing.Location }}<br>{{ listing.Seller }}<br>{{ listing.Price }}<br>
+                                    </ion-slide>
+                                    <br>
+                                </div>
+                                <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 no-gutters">
+                <div class="rightside">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <span class="glyphicon glyphicon-comment"></span>
+                            Comments
+                        </div>
+                        <div class="text-center">
+                            <div class="comment-box-background">
+                                <b>New Comment</b>
+                                <br/>
+                                <textarea ng-model="Comment" Style="width:65%;display:inline-block;" class="form-control" placeholder="Write your comment .." ></textarea>     
+                                <br>
+                                <button class="btn btn-success btn-lg">Submit Comment</button>
+                                <hr>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="panel-body">
+                            <hr>
+                            <b>Chadman</b>
+                            <p>What a shithole!</p>
+                            <hr>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="comments-content">
-            <article>
-                <h1>Comments</h1>
-                <p>I hate this..</p>
-                <p>Pull these from database for each specific image</p>
-            </article>
-        </div>
-
-                
-
-    <br><br>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </body>
 </html>

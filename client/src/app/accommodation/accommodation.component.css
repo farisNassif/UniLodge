@@ -1,4 +1,43 @@
+body {
+  font-size:22px;
+  background-color: rgba(223, 0, 0, 0.431);
+}
+
+.form-control {
+  font-size: 100%;
+}
+
 .jumbotron {
   background-color: rgb(24, 20, 20);
 }
+
+.panel-heading{
+  font-size:22px;
+  font-weight:bold;
+}
+
+.panel-body b{
+  font-size:20px;
+}
+
+.panel-body p {
+  font-size:18px;
+  padding-left:13px;
+}
+
+.comment-box-background {
+  background-color: grey;
+}
+
+.leftside, .rightside {
+  height :100%;
+  width: 100%;
+}
+
+.leftside {
   
+}
+
+.rightside {
+  padding-right: 55px;
+}
