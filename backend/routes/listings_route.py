@@ -3,6 +3,8 @@ from flask import Flask, request, jsonify, json
 from flask import Blueprint
 # Required for authorizing routes with JWT token
 from flask_jwt_extended import jwt_required, get_jwt_identity
+# Gets the timestamp for posted comments
+from datetime import datetime
 
 # Blueprint definition
 listings_blueprint = Blueprint('listings_route', __name__)
@@ -88,17 +90,18 @@ def listings_comments(Unique_ID):
     return jsonify(comments)
 
 # Create a new comment
-@listings_blueprint.route('/api/listings-id/<string:Unique_ID>/new-comment', methods=['POST'])
-def new_comment(Username):
-    Username = get_jwt_identity()
-    
+@listings_blueprint.route('/api/listings-id/new-comment', methods=['POST'])
+def new_comment():
+    now = datetime.now() # Init datetime
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S") # Getting the current datetime the comment was posted at
     comment_data = json.loads(request.get_data().decode()) # Using json module convert to json
-   
+    
     try: 
-        # Comment data stored above to mongo
+        # Sending comment data into mongo
         d_a.Comments().insert_one(comment_data)
-        result = ("Success! Added to database")
+        result = ("Success!")
     except:
-        result = ("Error: Could not add your Listing")
+        result = ("Error: Comment couldn't be posted")
     
     return jsonify(result)
+

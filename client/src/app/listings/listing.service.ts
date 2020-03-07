@@ -40,4 +40,9 @@ export class ListingService {
   newListing(username: string, listing: any): Observable<any> {
     return this.http.post<any>(this.userUrl + '/api/new-listing/' + username, listing)
   }  
+
+  /** Creates a new Comment **/
+  newComment(comment_content: any): Observable<any> {
+    return this.http.post<any>(this.userUrl + '/api/listings-id/new-comment', comment_content)
+  }
 }
