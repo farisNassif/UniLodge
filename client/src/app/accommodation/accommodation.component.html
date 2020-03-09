@@ -21,14 +21,24 @@
                 <div class="leftside">
                     <div class="container-fluid bg-3 text-center">    
                         <div class="col-sm-20">
-                            <div class="text-center">                               
-                                <div *ngFor="let listing of listings; let i=index" > 
-                                    <ion-slide *ngIf="i<8" >   
-                                        <br>{{ listing.Description }} <br> {{ listing.Location }}<br>{{ listing.Seller }}<br>{{ listing.Price }}<br>
-                                    </ion-slide>
+                            <div class="text-center">   
+                                <div class="listing-box">                       
+                                    <div class="inset-listing-box" *ngFor="let listing of listings; let i=index" > 
+                                        <ion-slide *ngIf="i<8" >   
+                                            <b>TODO->Give Description it's own box: <u>{{ listing.Description }}</u> </b>
+                                            <br> 
+                                            <b>Location: <u>{{ listing.Location }}</u> </b>
+                                            <br>
+                                            <b>Seller: <a routerLink="/profile/{{ listing.Seller }}"> <u>{{ listing.Seller }}</u> </a></b>
+                                            <br>
+                                            <b>Price: €{{ listing.Price }}</b>
+                                            <br>
+                                        </ion-slide>
+                                    </div>
                                     <br>
-                                </div>
-                                <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+                                    <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+                                </div>     
+                                
                             </div>
                         </div>
                     </div>
@@ -44,17 +54,18 @@
                         <div class="text-center">
                             <div class="comment-box-background">
                                 <b>New Comment</b>
-                                <br/>
-                                <textarea ng-model="Comment" Style="width:65%;display:inline-block;" class="form-control" placeholder="Write your comment .." ></textarea>     
                                 <br>
-                                <button class="btn btn-success btn-lg">Submit Comment</button>
+                                <textarea [(ngModel)]="Comment" Style="width:65%;display:inline-block;" name="Comment" class="form-control" placeholder="Write your comment .." ></textarea>     
+                                <br>
+                                <button class="btn btn-success btn-lg" (click)="submitComment(Comment)">Submit Comment</button>
+                                {{ comment_content }}
                                 <hr>
                             </div>
                         </div>
                         <hr>
                         <div class="panel-body">
                             <hr>
-                            <b>Chadman</b>
+                            <b>Joe@gmit.ie</b>
                             <p>What a shithole!</p>
                             <hr>
                         </div>

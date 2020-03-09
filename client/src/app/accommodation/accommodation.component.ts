@@ -17,17 +17,19 @@ export class AccommodationComponent implements OnInit {
   listings: Listing[];
   listing_id: string = window.location.pathname.substring(15,999);
   image: string;
+  comment_content: string = "";
 
   constructor(private route: ActivatedRoute, private userService: UserService, 
   public router: Router, private listingService: ListingService) { }
 
   ngOnInit() {
-    this.getListing()
+    this.getListing();
     this.getImgs();
-
   }
 
+  /* Function that declares and contains all relevant Gallery setup functions */
   setupGallery() {
+    /* Setup Gallery Dimensions */
     this.galleryOptions = [
       {
           width: '89%',
@@ -43,6 +45,7 @@ export class AccommodationComponent implements OnInit {
       }
   ];
 
+  /* Setup Gallery images */
   this.galleryImages = [
       {
         small: this.image,
@@ -66,16 +69,31 @@ export class AccommodationComponent implements OnInit {
       }
   ];
   }
+
+  /* Retrive all images associated with this listing */
   getImages(b64: string): void {
     this.image = b64;
   }
   
+  /* Retrieves the specific listing (Based on which listing was viewed by the user) */
   getListing(): void {
     this.listingService.getListingById(this.listing_id).subscribe(listings => this.listings = listings)
   }
   
+  /* Retrieves the images and displays them in the Gallery */
   getImgs(): void {
     this.listingService.getListingById(this.listing_id).subscribe(listings => {this.image =  listings[0].Image; this.setupGallery()})
   }
 
+  /* Function that handles retrieving comment content and passing it to Mongo via Python */
+  submitComment(content: string): void {
+    if (content != undefined && content.length > 20) {
+      console.log(content);
+      console.log(localStorage.getItem("username"));
+      console.log(this.listing_id);
+      window.location.reload();
+    } else {
+      this.comment_content = "Your comment must be at least 20 Characters";
+    }
+  }
 }

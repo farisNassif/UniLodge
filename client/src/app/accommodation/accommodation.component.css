@@ -35,9 +35,21 @@ body {
 }
 
 .leftside {
-  
+  padding-bottom: 25px;
 }
 
 .rightside {
   padding-right: 55px;
+}
+
+.inset-listing-box {
+  border: 4.6px outset  rgb(117, 28, 59)
+
+}
+.listing-box {
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-top: 65px;
+  border: 3.6px inset  rgb(148, 26, 73);
+  padding-bottom: 25px;
 }
