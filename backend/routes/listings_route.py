@@ -99,6 +99,7 @@ def new_comment():
     try: 
         # Sending comment data into mongo
         d_a.Comments().insert_one(comment_data)
+        d_a.Comments().update_one({'Comment_ID': comment_data['Comment_ID']}, {"$set": {"Timestamp": dt_string} })
         result = ("Success!")
     except:
         result = ("Error: Comment couldn't be posted")

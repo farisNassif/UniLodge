@@ -19,6 +19,7 @@ export class AccommodationComponent implements OnInit {
   listing_id: string = window.location.pathname.substring(15,999);
   image: string;
   comment_content: string = "";
+  r_gen_id: string; // Gen comment ID
   Comment: any; // Unused, but required
 
   constructor(private route: ActivatedRoute, private userService: UserService, 
@@ -90,10 +91,12 @@ export class AccommodationComponent implements OnInit {
   /* Function that handles retrieving comment content and passing it to Mongo via Python */
   submitComment(content: string): void {
     if (content != undefined && content.length > 20) {
+      let r_gen_id = Math.random().toString(36).substring(1); // Gen random ID for the Comment
 
       /* Prepping the comment object before it's sent to the backend */
       let comment_payload = { 
-        Author: localStorage.getItem("username"), listing_id: this.listing_id, Content: content 
+        Comment_ID: r_gen_id.replace('.', ''), Author: localStorage.getItem("username"), 
+        listing_id: this.listing_id, Content: content, Timestamp: ""
       };
 
       this.listingService.newComment(comment_payload).subscribe(success => { window.location.reload() });
