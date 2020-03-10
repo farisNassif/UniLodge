@@ -16,6 +16,7 @@ export class AccommodationComponent implements OnInit {
   galleryImages: NgxGalleryImage[];
   listings: Listing[];
   comments: Comment[];
+  user: any;
   listing_id: string = window.location.pathname.substring(15,999);
   image: string;
   comment_content: string = "";
@@ -73,6 +74,15 @@ export class AccommodationComponent implements OnInit {
       }
   ];
   }
+  /* Compares current logged in user against comment authors */
+  get commentAuth() {
+    if (localStorage.getItem('username') != null) {
+      this.user = localStorage.getItem('username')
+      return this.user
+    } else {
+      return false
+    }
+  }
 
   /* Retrive all images associated with this listing */
   getImages(b64: string): void {
@@ -111,7 +121,13 @@ export class AccommodationComponent implements OnInit {
     }
   }
 
+  /* */
   getComments(): void {
     this.listingService.getComments(this.listing_id).subscribe(comments => this.comments = comments)
+  }
+
+  /* */
+  deleteComment(CommentID: any): void {
+    this.listingService.deleteComment(CommentID).subscribe(success => { window.location.reload() })
   }
 }

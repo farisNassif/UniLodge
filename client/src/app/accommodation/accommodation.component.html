@@ -65,10 +65,11 @@
                         <hr>
                         <div class="panel-body">
                             <div *ngFor="let comment of comments; let j=index" > 
-                                <ion-slide *ngIf="j<8" >   
+                                <ion-slide *ngIf="j<8">   
                                     <b>{{ comment.Poster }}</b>
                                     <p>{{ comment.Content }}</p>
                                     {{ comment.Timestamp }}
+                                    <button *ngIf="commentAuth===comment.Poster" (click)="deleteComment(comment.Comment_ID)">Delete</button>
                                     <hr>
                                 </ion-slide>
                             </div>

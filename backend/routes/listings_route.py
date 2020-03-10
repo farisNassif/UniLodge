@@ -115,3 +115,15 @@ def get_comments(Listing_ID):
     # Send the list of comments to the frontend
     return jsonify(comments)
 
+# Deletes a Comment
+@listings_blueprint.route('/api/listings-id/remove-comment/<string:Comment_ID>', methods=['DELETE'])
+def delete_comment(Comment_ID):
+    try: 
+        print(Comment_ID)
+        d_a.Comments().delete_one({'Comment_ID': Comment_ID })
+        result = "Success"
+    except:
+        result = "Failed to remove"
+    return jsonify(result)
+
+    

@@ -50,4 +50,11 @@ export class ListingService {
   getComments(listing_id: any): Observable<Comment[]> {
     return this.http.get<Comment[]>(this.userUrl + '/api/listings-id/comments/' + listing_id);
   }
+
+  
+  deleteComment(comment_id: any) {
+    if (confirm("Are you sure you want to delete your comment?")) {
+      return this.http.delete<any>(this.userUrl + '/api/listings-id/remove-comment/' + comment_id);
+    }
+  }
 }
