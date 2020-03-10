@@ -28,6 +28,7 @@ export class AccommodationComponent implements OnInit {
   ngOnInit() {
     this.getListing();
     this.getImgs();
+    this.getComments();
   }
 
   /* Function that declares and contains all relevant Gallery setup functions */
@@ -108,5 +109,9 @@ export class AccommodationComponent implements OnInit {
     } else {
       this.comment_content = "Your comment must be at least 20 Characters";
     }
+  }
+
+  getComments(): void {
+    this.listingService.getComments(this.listing_id).subscribe(success => { "REE" })
   }
 }

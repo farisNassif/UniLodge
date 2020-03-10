@@ -106,3 +106,12 @@ def new_comment():
     
     return jsonify(result)
 
+# Get Comments for a Listing
+@listings_blueprint.route('/api/listings-id/comments/<string:listing_id>', methods=['GET'])
+def get_comments(listing_id):
+    # Find all comments for a Listing
+    comments = list(d_a.Comments().find({'listing_id': listing_id}, {'_id': False}))
+
+    # Send the list of comments to the frontend
+    return jsonify(comments)
+

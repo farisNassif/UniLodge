@@ -45,4 +45,9 @@ export class ListingService {
   newComment(comment_content: any): Observable<any> {
     return this.http.post<any>(this.userUrl + '/api/listings-id/new-comment', comment_content)
   }
+
+  /** Gets all the comments for a specific Listing **/
+  getComments(listing_id: any): Observable<Comment[]> {
+    return this.http.get<Comment[]>(this.userUrl + '/api/listings-id/comments/' + listing_id);
+  }
 }
