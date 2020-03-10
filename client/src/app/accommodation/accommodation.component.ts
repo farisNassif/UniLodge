@@ -110,7 +110,7 @@ export class AccommodationComponent implements OnInit {
         Poster: localStorage.getItem("username"), Content: content, Timestamp: ""
       };
 
-      this.listingService.newComment(comment_payload).subscribe(success => { window.location.reload() });
+      this.listingService.newComment(comment_payload).subscribe(success => { this.getComments() });
 
       console.log(content);
       console.log(localStorage.getItem("username"));
@@ -128,6 +128,6 @@ export class AccommodationComponent implements OnInit {
 
   /* */
   deleteComment(CommentID: any): void {
-    this.listingService.deleteComment(CommentID).subscribe(success => { window.location.reload() })
+    this.listingService.deleteComment(CommentID).subscribe(success => { this.getComments() })
   }
 }
