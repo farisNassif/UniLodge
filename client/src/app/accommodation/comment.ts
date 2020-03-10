@@ -1,6 +1,7 @@
 export class User { 
-    Listing_ID?: string;
+    Listing_ID: string;
+    Comment_ID: string;
     Poster: string;
     Content: string;
-    Date: string;
+    Timestamp?: string;
   }

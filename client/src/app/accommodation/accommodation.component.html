@@ -64,10 +64,14 @@
                         </div>
                         <hr>
                         <div class="panel-body">
-                            <hr>
-                            <b>Joe@gmit.ie</b>
-                            <p>What a shithole!</p>
-                            <hr>
+                            <div *ngFor="let comment of comments; let j=index" > 
+                                <ion-slide *ngIf="j<8" >   
+                                    <b>{{ comment.Poster }}</b>
+                                    <p>{{ comment.Content }}</p>
+                                    {{ comment.Timestamp }}
+                                    <hr>
+                                </ion-slide>
+                            </div>
                         </div>
                     </div>
                 </div>

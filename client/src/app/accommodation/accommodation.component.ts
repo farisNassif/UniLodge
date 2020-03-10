@@ -96,8 +96,8 @@ export class AccommodationComponent implements OnInit {
 
       /* Prepping the comment object before it's sent to the backend */
       let comment_payload = { 
-        Comment_ID: r_gen_id.replace('.', ''), Author: localStorage.getItem("username"), 
-        listing_id: this.listing_id, Content: content, Timestamp: ""
+        Comment_ID: r_gen_id.replace('.', ''), Listing_ID: this.listing_id,
+        Poster: localStorage.getItem("username"), Content: content, Timestamp: ""
       };
 
       this.listingService.newComment(comment_payload).subscribe(success => { window.location.reload() });
@@ -112,6 +112,6 @@ export class AccommodationComponent implements OnInit {
   }
 
   getComments(): void {
-    this.listingService.getComments(this.listing_id).subscribe(success => { "REE" })
+    this.listingService.getComments(this.listing_id).subscribe(comments => this.comments = comments)
   }
 }
