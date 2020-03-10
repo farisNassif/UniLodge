@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
     this.getUser();
     this.getListingInfo(this.username);
     this.getListingInfo(this.username);
+    console.log(this.listings)
   }
 
   // Gets the individual user information for which the profile is relevant
@@ -42,7 +43,6 @@ export class ProfileComponent implements OnInit {
 
   // Gets the listings information relevant to the user who's profile is currently open
   getListingInfo(username: string) {
-    console.log(username)
     this.listingService.getSingleUserListings(username).subscribe(listings => this.listings = listings)
     
   }

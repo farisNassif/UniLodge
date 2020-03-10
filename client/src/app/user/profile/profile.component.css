@@ -31,3 +31,36 @@ body {
 }
 
 
+p {
+  background-color: rgb(100, 26, 26);
+  color: rgb(212, 233, 190)    ;
+}
+
+.mySlides {
+  display: none;
+}
+
+.img-responsive {
+  width: 92%;
+  height: 73%;
+  padding-bottom: 2%;
+}
+
+.img-header {
+  width: 45%;
+  height: 35%;
+}
+
+.jumbotron {
+  background-color: rgb(24, 20, 20);
+}
+
+.container-fluid  {
+  padding-right: 1.5%;
+}
+.listing-box {
+  background-color: rgb(209, 226, 225);
+  border: 3.6px solid rgb(148, 26, 73);
+  width: 104%;
+  height: 96%;
+}

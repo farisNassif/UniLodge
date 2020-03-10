@@ -14,8 +14,7 @@
             <div class="container text-center">
                 <img src="../../assets/title_image.png" class="img-header" alt="Image">
             </div>
-        </div>  
-
+        </div> 
         <div class="row no-gutters">
             <div class="col-md-6 no-gutters">
                 <div class="leftside">
@@ -24,21 +23,22 @@
                             <div class="text-center">   
                                 <div class="listing-box">                       
                                     <div class="inset-listing-box" *ngFor="let listing of listings; let i=index" > 
-                                        <ion-slide *ngIf="i<8" >   
-                                            <b>TODO->Give Description it's own box: <u>{{ listing.Description }}</u> </b>
-                                            <br> 
-                                            <b>Location: <u>{{ listing.Location }}</u> </b>
-                                            <br>
-                                            <b>Seller: <a routerLink="/profile/{{ listing.Seller }}"> <u>{{ listing.Seller }}</u> </a></b>
-                                            <br>
-                                            <b>Price: €{{ listing.Price }}</b>
-                                            <br>
+                                        <ion-slide *ngIf="i<8" >
+                                                <div class="list-group">
+                                                    <div class="list-group-item list-group-item-action flex-column align-items-start">
+                                                        <div class="d-flex w-100 justify-content-between">
+                                                            <h5 class="mb-1">Posted by <a routerLink="/profile/{{ listing.Seller }}">{{ listing.Seller }}</a></h5>
+                                                            <small><b>€{{ listing.Price }}</b></small>
+                                                        </div>
+                                                        <p class="mb-1"><u><b>{{ listing.Title}}</b></u> <br><i>{{ listing.Description }}</i></p>
+                                                        <small>{{ listing.Location }}</small>
+                                                    </div>
+                                                </div>
                                         </ion-slide>
                                     </div>
                                     <br>
                                     <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-                                </div>     
-                                
+                                </div>           
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                                     <p>{{ comment.Content }}</p>
                                     {{ comment.Timestamp }}
                                     <button class="btn btn-outline-danger btn-lg" *ngIf="commentAuth===comment.Poster" (click)="deleteComment(comment.Comment_ID)">Delete Comment</button>
-                                    <button class="btn btn-outline-danger btn-lg" *ngIf="commentAuth!==comment.Poster" disabled>Delete Comment</button>
+                                    <button class="btn btn-outline-danger btn-lg" *ngIf="commentAuth!==comment.Poster" placement="top"ngbPopover="You can't delete this comment as you're not the author" popoverTitle="Permission Denied">Delete Comment</button>
                                     <hr>
                                 </ion-slide>
                             </div>
