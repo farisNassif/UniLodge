@@ -7,6 +7,7 @@ import { Router, } from "@angular/router";
 import { AppComponent } from 'src/app/app.component';
 import { ListingService } from 'src/app/listings/listing.service';
 import { Listing } from 'src/app/listings/listing';
+import { MatSnackBar } from "@angular/material";
 
 @Component({
   selector: 'app-profile',
@@ -27,7 +28,7 @@ export class ProfileComponent implements OnInit {
   public base64textString: any | ArrayBuffer = "https://placehold.it/500x500?text=IMAGE";
 
   constructor(private route: ActivatedRoute, private userService: UserService,
-  private location: Location, private listingService: ListingService) {}
+  private location: Location, private listingService: ListingService, public snackBar: MatSnackBar) {}
   
   ngOnInit() {
     this.getUser();
@@ -46,19 +47,16 @@ export class ProfileComponent implements OnInit {
     this.listingService.getSingleUserListings(username).subscribe(listings => this.listings = listings)
   }
 
+
   // Methods for displaying and getting the image 
-  displayImage(Username: string) {
-    this.uploadedImage = this.base64textString;
-
-    this.addImage(Username);
+  addImage(Username: string, Image: any) {
+    this.userService.addImage(Username, Image).subscribe(success => { this.getUser() });
   }
-
-  addImage(Username: string) {
-    this.userService.addImage(Username, this.uploadedImage).subscribe(success => { this.getUser(); this.getListingInfo(window.location.pathname.substring(9,40))});
-  }
-
   changeListener($event: { target: any; }) : void {
-    this.readImage($event.target);
+    if (confirm("Are you sure you want to use this image?")) {
+      this.readImage($event.target);
+      this.openSnackBar("Image uploaded successfully", "Ok")
+    }
   }
 
   readImage(inputValue: any): void {
@@ -66,10 +64,15 @@ export class ProfileComponent implements OnInit {
     var myReader:FileReader = new FileReader();
   
     myReader.onloadend = (e) => {
-      // Cuts off the first part of the base64 String, don't need it
-      //this.base64textString = (<string>myReader.result).split(',')[1]; 
-      this.base64textString = myReader.result; 
+      /* Send image off to Mongo */
+      this.addImage(this.username, myReader.result);
     }
     myReader.readAsDataURL(file);
   }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+       duration: 4500,
+    });
+  } 
 }

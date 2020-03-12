@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule, Router } from '@angular/router';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './user/register/register.component';
 import { UserListComponent } from './user/user-list/user-list.component';
@@ -20,6 +21,7 @@ import { BrowseListingsComponent } from './listings/browse-listings/browse-listi
 import { MatAutocompleteModule } from '@angular/material';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { Ng5SliderModule } from 'ng5-slider';
 import * as Hammer from 'hammerjs';
 
@@ -52,6 +54,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
     ListingComponent, 
     BrowseListingsComponent],
   imports: [
+    MatSnackBarModule,
+    BrowserAnimationsModule,
     LoadingBarRouterModule,
     LoadingBarModule,
     BrowserModule, 

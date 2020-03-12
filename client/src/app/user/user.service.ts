@@ -54,9 +54,7 @@ export class UserService {
 
   /** Add an Image to the DB */
   addImage(Username: string, Image: string) {
-    if (confirm("Are you sure you want to add this picture?")) {
-        return this.http.put<String>(this.userUrl + '/api/users/add-image/' + Username, Image);
-      }
+    return this.http.put<String>(this.userUrl + '/api/users/add-image/' + Username, Image);
   }  
 
 }

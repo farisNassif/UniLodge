@@ -17,12 +17,12 @@
             <ion-slide *ngIf="j<8" >   
               <div *ngIf="!user.Image" class="profile-box">
                 <img  src="{{ base64textString }}" class="profile-image" alt="Image">
-                <button>Upload Image</button>
+                <input class="text-center" type='file' accept="image/*" (change)="changeListener($event)"> <br>
               </div>
               <div *ngIf="user.Image" class="profile-box">
-                  <img  src="{{ user.Image }}" class="profile-image" alt="Image">
-                  <button>Update Image</button>
-                </div>
+                <img  src="{{ user.Image }}" class="profile-image" alt="Image">
+                <input class="text-center" type='file' accept="image/*" (change)="changeListener($event)"> <br>
+              </div>
             </ion-slide>
           </div>
     </div>

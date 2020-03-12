@@ -79,7 +79,7 @@ p {
 .profile-box { 
   width: 54%;
   height: 100%;
-  background-color: grey;
+  background-color: rgb(255, 255, 255);
   border: 3.6px solid indigo;
 }
 
