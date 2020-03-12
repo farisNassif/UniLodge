@@ -18,18 +18,18 @@ export class ProfileComponent implements OnInit {
   username: string = window.location.pathname.substring(9,40);
 
   users: User[] = [];
+  /* All listings associated with the user */
   listings: Listing[] = []
 
   uploadedImage: any = [];
   userImage: any = [];
 
-  public base64textString: any | ArrayBuffer;
+  public base64textString: any | ArrayBuffer = "https://placehold.it/500x500?text=IMAGE";
 
   constructor(private route: ActivatedRoute, private userService: UserService,
   private location: Location, private listingService: ListingService) {}
   
   ngOnInit() {
-    
     this.getUser();
     this.getListingInfo(this.username);
     this.getListingInfo(this.username);
@@ -44,7 +44,6 @@ export class ProfileComponent implements OnInit {
   // Gets the listings information relevant to the user who's profile is currently open
   getListingInfo(username: string) {
     this.listingService.getSingleUserListings(username).subscribe(listings => this.listings = listings)
-    
   }
 
   // Methods for displaying and getting the image 

@@ -22,7 +22,7 @@ export class ListingComponent implements OnInit {
 
   // Required for listing model
   image: string | ArrayBuffer;
-  base64textString: any | ArrayBuffer = "https://placehold.it/150x80?text=IMAGE";
+  base64textString: any | ArrayBuffer = "https://placehold.it/270x80?text=IMAGE";
   uploadedImage: any = [];
   userImage: any = [];
   imageStatus: string = '';

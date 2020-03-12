@@ -44,6 +44,16 @@ p {
   width: 92%;
   height: 73%;
   padding-bottom: 2%;
+  max-width: 400px; 
+  max-height: 400px;
+}
+
+.profile-image {
+
+  min-width: 260px;
+  min-height: 260px;
+  max-width: 260px; 
+  max-height: 260px;
 }
 
 .img-header {
@@ -58,9 +68,29 @@ p {
 .container-fluid  {
   padding-right: 1.5%;
 }
+
 .listing-box {
   background-color: rgb(209, 226, 225);
   border: 3.6px solid rgb(148, 26, 73);
   width: 104%;
   height: 96%;
+}
+
+.profile-box { 
+  width: 54%;
+  height: 100%;
+  background-color: grey;
+  border: 3.6px solid indigo;
+}
+
+div.polaroid {
+  align-content: center;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+}
+
+div.container {
+  width: 25%;
+  text-align: center;
 }

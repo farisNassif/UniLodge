@@ -10,22 +10,41 @@
 
 </head>
 <body class="w3-content w3-border-left w3-border-right">
-
-<br><br><br><br><br><br>
-  <p *ngIf="listings.length <= 0" class="text-center">There are currently no listings for this account<br>Why not <u>make</u> one?</p>
-  <p *ngIf="listings.length > 0" class="text-center">All listings for this account ..</p>
+  <br>
   <div class="container-fluid bg-3 text-center" >    
-      <div class="row">
-        <div *ngFor="let listing of listings; let i=index" class="col-sm-3">
-          <ion-slide *ngIf="i<8" >   
+    <div class="row">
+        <div *ngFor="let user of users; let j=index" class="col-sm-3">
+            <ion-slide *ngIf="j<8" >   
+              <div *ngIf="!user.Image" class="profile-box">
+                <img  src="{{ base64textString }}" class="profile-image" alt="Image">
+                <button>Upload Image</button>
+              </div>
+              <div *ngIf="user.Image" class="profile-box">
+                  <img  src="{{ user.Image }}" class="profile-image" alt="Image">
+                  <button>Update Image</button>
+                </div>
+            </ion-slide>
+          </div>
+    </div>
+  </div>
+
+  <br>
+<p *ngIf="listings.length === 0" class="text-center">There are currently no listings for this account<br>Why not <u>make</u> one?</p>
+<p *ngIf="listings.length > 0" class="text-center">All listings for this account ..</p>
+
+  <div class="container-fluid bg-3 text-center" >    
+    <div class="row">
+      <div *ngFor="let listing of listings; let i=index" class="col-sm-3">
+        <ion-slide *ngIf="i<8" >   
           <div class="listing-box">
             <p>{{ listing.Location  }} <br> {{ listing.Title }} <br> €{{ listing.Price }}</p>
-            <img src="{{ listing.Image }}" class="img-responsive" alt="Image" (click)="listingRedirect(listing.Unique_Id)">
+            <img src="{{ listing.Image }}" class="img-responsive" alt="Image">
           </div>
         </ion-slide>
-        </div>
       </div>
     </div>
+  </div>
+
   <br><br>
 </body>
 </html>
