@@ -18,13 +18,30 @@
 * Requirement_Three
 
 
-### Dissertation Abstract
-Lorem ipsum dolor sit amet, vidit aperiri utroque his id, ei diam detracto ius, at liber possim percipitur nam. Viderer democritum nam et, eos ei delectus recteque eloquentiam, vel in quaestio complectitur. Te legendos suavitate urbanitas mei. Ne magna repudiare cum. Eum id augue quaerendum, mei ea nibh doming petentium. Eu pri feugiat dissentias persequeris.
-
-Simul iudico mediocrem mea an, mel cu modo abhorreant. At praesent assentior has, facilisi gloriatur voluptatum sed at, sed ne facer dicunt mediocrem. Nam movet persecuti id, in mel elit soleat. Noluisse molestiae euripidis ea nam, no amet lorem evertitur vix.
+### Overview
+Talk about the struggles of housing, especailly in relation to students. Project aims, why is it unique?
 
 
-### Project Description 
-Lorem ipsum dolor sit amet, vidit aperiri utroque his id, ei diam detracto ius, at liber possim percipitur nam. Viderer democritum nam et, eos ei delectus recteque eloquentiam, vel in quaestio complectitur. Te legendos suavitate urbanitas mei. Ne magna repudiare cum. Eum id augue quaerendum, mei ea nibh doming petentium. Eu pri feugiat dissentias persequeris.
+### Introduction
+What is the project? What type of project is it? How is it structured? Who is it aimed at?
 
-Simul iudico mediocrem mea an, mel cu modo abhorreant. At praesent assentior has, facilisi gloriatur voluptatum sed at, sed ne facer dicunt mediocrem. Nam movet persecuti id, in mel elit soleat. Noluisse molestiae euripidis ea nam, no amet lorem evertitur vix.
+### Features
+Application features
+-Encryption
+-JWT login tokens
+-Data retrieved directly from flask queries
+-Crud, swagger etc
+-Heroku deployment hopefully
+
+User Features
+-Login/Register
+-Profile
+-Comments on listings
+-Make a listing
+-Can stay logged in session storage etc
+
+### Requirements
+Angular version, npm installs all that stuff, flask pip installs and so on
+
+### ETC
+Links to swaggerhub, dissertation, 
