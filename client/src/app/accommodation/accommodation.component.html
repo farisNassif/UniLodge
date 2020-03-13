@@ -71,7 +71,7 @@
                                     <p>{{ comment.Content }}</p>
                                     {{ comment.Timestamp }}
                                     <button class="btn btn-outline-danger btn-lg" *ngIf="commentAuth===comment.Poster" (click)="deleteComment(comment.Comment_ID)">Delete Comment</button>
-                                    <button class="btn btn-outline-danger btn-lg" *ngIf="commentAuth!==comment.Poster" placement="top" ngbPopover="You can't delete this comment as you're not the author" popoverTitle="Permission Denied">Delete Comment</button>
+                                    <button class="btn btn-outline-danger btn-lg" *ngIf="commentAuth!==comment.Poster" (click)="deleteDenied()">Delete Comment</button>
                                     <hr>
                                 </ion-slide>
                             </div>

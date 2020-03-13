@@ -5,6 +5,7 @@ import { ListingService } from '../listings/listing.service';
 import { Listing } from '../listings/listing';
 import { Lightbox } from 'ngx-lightbox';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { MatSnackBar } from "@angular/material";
 
 @Component({
   selector: 'app-accommodation',
@@ -24,7 +25,7 @@ export class AccommodationComponent implements OnInit {
   Comment: any; // Unused, but required
 
   constructor(private route: ActivatedRoute, private userService: UserService, 
-  public router: Router, private listingService: ListingService) { }
+  public router: Router, private listingService: ListingService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getListing();
@@ -74,6 +75,7 @@ export class AccommodationComponent implements OnInit {
       }
   ];
   }
+
   /* Compares current logged in user against comment authors */
   get commentAuth() {
     if (localStorage.getItem('username') != null) {
@@ -101,7 +103,7 @@ export class AccommodationComponent implements OnInit {
 
   /* Function that handles retrieving comment content and passing it to Mongo via Python */
   submitComment(content: string): void {
-    if (content != undefined && content.length > 20) {
+    if (content != undefined && content.length > 15) {
       let r_gen_id = Math.random().toString(36).substring(1); // Gen random ID for the Comment
 
       /* Prepping the comment object before it's sent to the backend */
@@ -115,19 +117,33 @@ export class AccommodationComponent implements OnInit {
       console.log(content);
       console.log(localStorage.getItem("username"));
       console.log(this.listing_id);
-      
+      this.openSnackBar("Comment successfully added", "Ok")
     } else {
-      this.comment_content = "Your comment must be at least 20 Characters";
+      this.openSnackBar("Comment must be at least 15 Characters", "Ok");
     }
   }
 
-  /* */
+  /* Loads all comments for the viewed listing */
   getComments(): void {
     this.listingService.getComments(this.listing_id).subscribe(comments => this.comments = comments)
   }
 
-  /* */
+  /* Deletes a specific comment if the person logged in is the author */
   deleteComment(CommentID: any): void {
     this.listingService.deleteComment(CommentID).subscribe(success => { this.getComments() })
+    this.openSnackBar("Comment successfully deleted", "Ok")
   }
+
+  /* If someone tries to delete a comment that isn't theirs */
+  deleteDenied(): void {
+    this.openSnackBar("That comment can't be deleted as you're not the author", "Ok")
+  }
+
+  /* Snackbar initializer, popup information message skeleton for the user */
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+       duration: 3500,
+    });
+  } 
+
 }
