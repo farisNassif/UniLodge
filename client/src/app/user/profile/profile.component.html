@@ -27,8 +27,8 @@
           </div>
     </div>
   </div>
-
   <br>
+
 <p *ngIf="listings.length === 0" class="text-center">There are currently no listings for this account<br>Why not <u>make</u> one?</p>
 <p *ngIf="listings.length > 0" class="text-center">All listings for this account ..</p>
 
@@ -38,7 +38,7 @@
         <ion-slide *ngIf="i<8" >   
           <div class="listing-box">
             <p>{{ listing.Location  }} <br> {{ listing.Title }} <br> €{{ listing.Price }}</p>
-            <img src="{{ listing.Image }}" class="img-responsive" alt="Image">
+            <img src="{{ listing.Image }}" class="img-responsive" alt="Image" (click)="editListingRedirect(listing.Unique_Id, listing.Seller)">
           </div>
         </ion-slide>
       </div>

@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
   public base64textString: any | ArrayBuffer = "https://placehold.it/500x500?text=IMAGE";
 
   constructor(private route: ActivatedRoute, private userService: UserService,
-  private location: Location, private listingService: ListingService, public snackBar: MatSnackBar) {}
+  private location: Location, private listingService: ListingService, public snackBar: MatSnackBar, public router: Router) {}
   
   ngOnInit() {
     this.getUser();
@@ -74,5 +74,9 @@ export class ProfileComponent implements OnInit {
     this.snackBar.open(message, action, {
        duration: 4500,
     });
-  } 
+  }
+  
+  editListingRedirect(listing_to_edit: any, seller: any): void {
+    this.router.navigate(['listing/' + seller + "/" + listing_to_edit + "/edit"]);
+  }
 }

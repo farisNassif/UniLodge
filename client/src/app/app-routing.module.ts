@@ -11,6 +11,7 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { ListingComponent } from './listings/listing/listing.component';
 import { BrowseListingsComponent } from './listings/browse-listings/browse-listings.component';
 import { AccommodationComponent } from './accommodation/accommodation.component';
+import { EditListingsComponent } from './listings/edit-listings/edit-listings.component';
 
 const routes: Routes = [
   /* General Routes */
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'browse', component: BrowseListingsComponent, data: { title: 'UniLodge - Browse' } },
   { path: 'listing/:Username', component: ListingComponent, data: { title: 'UniLodge - CreateListing' } },
   { path: 'listing/:Username/:ListingTitle', component: ListingComponent, data: { title: 'UniLodge - Listing' } },
+  { path: 'listing/:Username/:ListingTitle/edit', component: EditListingsComponent, data: { title: 'UniLodge - Edit Listing' } },
   /* Specific Accommodation view */
   { path: 'accommodation/:Unique_Id', component: AccommodationComponent, data: { title: 'UniLodge - Accommodation'}},
   /* Redirections */

@@ -24,11 +24,9 @@ import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-br
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { Ng5SliderModule } from 'ng5-slider';
 import * as Hammer from 'hammerjs';
-
-
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
-import { EditListingsComponent } from './edit-listings/edit-listings.component';
+import { EditListingsComponent } from './listings/edit-listings/edit-listings.component';
 
 @Injectable()
 export class CustomHammerConfig extends HammerGestureConfig {
@@ -49,6 +47,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     UserEditComponent, 
     HomeComponent, 
     ProfileComponent, 
+    EditListingsComponent,
     PageNotFoundComponent, 
     UserLoginComponent, 
     AccommodationComponent, 
