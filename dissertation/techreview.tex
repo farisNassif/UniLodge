@@ -46,7 +46,7 @@ Another technology stack that piqued the attention of the developers was the MER
 \begin{compactitem}[-]
 \item[+] Mastering React is a lot less punishing than delving into Angular, Angular being a complete framework that incorporates associated knowledge of concepts like MVC or familiarity with Typescript.
 \item[+] Unidirectional data flow in applications allow data to flow to more seamlessly check for a change of state.
-\item[+] Very lightweight and less cumbersome than Angular for setup and collaboration. Version control is managed automatically.
+\item[+] Very lightweight and less cumbersome than Angular for setup and collaboration. Dependency control is managed automatically.
 \item[$-$] Relies heavily on third-party libraries for actions and tasks that Angular could perform by on the fly due to it's built in service wrappers like for example Angular's built in wrappers for HTTP calls to the backend. 
 \end{compactitem}
 
@@ -56,10 +56,13 @@ Another technology stack that piqued the attention of the developers was the MER
 \end{table}
 
 \subsection{VueJS}
-VueJS is a JavaScript based framework used for building user interfaces and single page applications that can integrate seamlessly into a project at any stage. VueJS is marketed as an approachable, versatile and performant framework, boasting an incrementally adoptable system that's scaleable between a fully featured framework and a library. However a major downfall of the framework is considered to be it's steep learning curve. VueJS was trialed for two weeks by the team, and following supervisory meetings and discussions between team members the team ultimately decided due to the steep learning curve, the intimidating documentation for beginners and lack of tutorials that it wouldn't see a place in the development stack.
+VueJS is a JavaScript based framework used for building user interfaces and single page applications that can integrate seamlessly into a project at any stage. VueJS is marketed as an approachable, versatile and performant framework, boasting an incrementally adoptable system that's scaleable between a fully featured framework and a library \cite{VUE}. However a major downfall of the framework is considered to be it's steep learning curve. VueJS was trialed for two weeks by the team, and following supervisory meetings and discussions between team members, the team ultimately decided due to the steep learning curve, the intimidating documentation for beginners and lack of tutorials that it wouldn't see a place in the development stack.
 
 \subsection{Redis}
-Redis :))
+Redis, meaning REmote DIctionary Server is an in-memory distributed key-value data-store. Redis supports multiple types of data structures including, streams, bitmaps, sets and spatial indexes to name a few \cite{REDIS_IO}. Key value databases excel at providing rapid access to information that has a corresponding function and following research and discussions with supervisors Redis was initially a very attractive inclusion into the project. The use of in-memory storage offers a number of advantages, namely data retrieval which as mentioned previously is extremely fast as well as memory writing being performed in mono-thread allows the write to be isolated, avoiding data loss \cite{REDIS}.
+
+\paragraph{}
+At early stages in the project, various machine learning implementations were being considered. Redis would have been a perfect inclusion should the project have adopted artificial intelligence in any form, allowing for rapid access and storage of short-lived large scale machine learning data.
 
 \paragraph{}
 TODO - Flask, some other thangs
