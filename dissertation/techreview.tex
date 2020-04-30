@@ -80,4 +80,33 @@ Heroku is an open source cloud application platform, providing extensive and wel
 Initially AWS had been the likely deployment platform for the application. While hands-on experience with AWS would be beneficial, the team ultimately decided to deploy the application via Heroku. Supervisory discussions and research into Heroku's different build-pack and deployment options made Heroku the clear front runner considering the nature of the developed project. The documentation is also extensive and very well written, allowing the team to save valuable time with deployment while still getting hands-on experience with a widely used cloud application platform.
 
 \subsection{Honcho}
+Honcho is a Python port of Foreman, a tool for managing procfile-based applications \cite{HONCHO}. Honcho's purpose is to abstract away any complications of the procfile format and allow the application to be either ran directly or export it to some other process management format. Another benefit of Honcho in this context and the main reason it was employed is down to it's utility of allowing multiple processes to run in unison.
+
+\begin{figure}[H]
+    \centering
+    \textbf{python: gunicorn runner:app -b 0.0.0.0:8087\\ node: npm install \&\& npm start -b 0.0.0.0:8081}
+    \caption{Honcho Procfile}
+    \label{image:honchoProcfile}
+\end{figure}
+
+\paragraph{}
+Honcho allows a procfile to be defined (\textit{As outlined in \textbf{Fig.\ref{image:honchoProcfile}}}) in such a way that permits the specification of multiple processes to be ran on the cloud without employing additional Dyno workers, in this case, both the Python server for the API and the Express server to serve the static files can be ran in unison without any additional workers. The port must also be specified otherwise Heroku will assign a random port number to run on.
+
+\begin{figure}[H]
+    \centering
+    \textbf{web: honcho -f ProcfileHoncho start}
+    \caption{Heroku Procfile}
+    \label{image:herokuProcfile}
+\end{figure}
+
+The Heroku procfile (\textit{As outlined in \textbf{Fig.\ref{image:herokuProcfile}}}) consists of a single line that starts the Honcho procfile, it acts as a type of necessary procfile proxy, since the contents of the Honcho procfile wouldn't run correctly in this procfile, it points Heroku to the Honcho procfile.
+
+\begin{center}
+
+\end{center}
+
+
+
+
+
 \subsection{Ngrok}
