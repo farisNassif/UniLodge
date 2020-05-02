@@ -1,3 +1,39 @@
+%----------------------------------------------------------------------------------------
+%-----------------------------------Script Stuff-----------------------------------------
+%----------------------------------------------------------------------------------------
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+%----------------------------------------------------------------------------------------
+
 \chapter{Technology Review}
 Over the course of the project life cycle a plethora of frameworks, tools and development applications were available for integration or use with our application. This section aims to discuss the tools and technologies that were heavily considered and those that were ultimately used, why they were chosen and what alternatives were available. 
 
@@ -26,6 +62,29 @@ MongoDB is essentially a document-oriented NoSQL database. It's mainly used for 
 The database is considered to be ideal for projects that need to be scalable or deal with vast amounts of data \cite{MONGODB}. An attractive benefit MongoDB yields is its user friendly nature. If an entry is made into a collection that doesn't fit a defined schema, nothing halts and instead the entry is inserted into the collection without issue allowing the developer full control.
 
 \subsubsection{ExpressJS}
+ExpressJS, or simply Express, is a web application framework for NodeJS specialized for building web applications and APIs \cite{EXPRESS}. Express forms the backend cluster of the MEAN stack, handling all interactions between the frontend and the database, making sure data is seamlessly propagated to the user. 
+
+\paragraph{}
+Express is completely reliant on API's exposed by NodeJS, acting as a thin layer over NodeJS, allowing for streamlined routing and server development with very little coding. Serving an application with Express can be accomplished with half a dozen lines of code.
+
+\medskip
+\begin{lstlisting}[caption=Serving with Express]
+const express = require('express');
+const path = require('path');
+
+/* Static path definition */
+app.use(express.static(__dirname + '/dist/client'));
+
+app.get('/*', function(req,res) {
+
+/* Serving static files */
+res.sendFile(path.join(__dirname+'/dist/client/index.html'));
+});
+
+/* Exposing a port to listen for requests on (Served with NodeJS, Discussed below!) */
+app.listen(process.env.PORT || 8081);
+
+\end{lstlisting}
 
 \subsubsection{Angular}
 Angular is a front-end framework built on top of JavaScript and developed by Google that specializes in enabling the development of single-page applications \cite{ANGULAR}. Single-page applications have become increasingly popular since their breakthrough, providing an array of benefits and advantages over the traditional multi-page web application, some of those advantages being:
@@ -38,6 +97,12 @@ Angular is a front-end framework built on top of JavaScript and developed by Goo
 \end{enumerate}
 
 While the benefits listed above \cite{SPA} are some of the more attractive features of single-page applications there are of course drawbacks. The performance of single-page applications on mobile devices has been criticized and the 'all-in' approach may be a an unattractive feature for larger applications, if one element of the page logic causes an issue it's likely the whole page will by extension will suffer.
+
+\subsubsection{NodeJS}
+NodeJS, or simply Node, considered the backbone of the MEAN stack, is an open source, cross-platform, JavaScript run-time environment that executes JavaScipt code outside of a web browser \cite{NODE}. Using asynchronous events, Node allows the processing of multiple connections simultaneously, ideal for cloud-based applications that require scalability on demand. 
+
+\paragraph{}
+Node comes with a complete integrated web server, allowing seamless application and database deployment to the cloud with the ability to support millions of simultaneous connections \cite{NODE_TWO}. Node can be weak to larger processes, while a single thread may protect against process deadlocks, on the same token large scale freezes may occur with frequent high-resource requests.
 
 \subsubsection{Comparing MEAN and MERN}
 Another technology stack that piqued the attention of the developers was the MERN Stack, which is essentially the MEAN Stack excluding Angular and including React. Research was conducted on comparing the two \cite{MEAN_STACK_vs_MERN_STACK} and the following was found:
