@@ -128,7 +128,7 @@ Angular is a front-end framework built on top of JavaScript and developed by Goo
     \item[$\bullet$] Can support the building of applications for offline usage or testing, easing the development experience and allowing the loading of the complete application at once.
 \end{enumerate}
 
-While the benefits listed above \cite{SPA} are some of the more attractive features of single-page applications there are of course drawbacks. The performance of single-page applications on mobile devices has been criticized and the 'all-in' approach may be a an unattractive feature for larger applications, if one element of the page logic causes an issue it's likely the whole page will by extension will suffer.
+While the benefits listed above \cite{SPA} are some of the more attractive features of single-page applications there are of course drawbacks. The performance of single-page applications on mobile devices has been criticized and the 'all-in' approach may be an unattractive feature for larger applications, if one element of the overall page logic causes an issue it's likely the whole page will by extension will suffer.
 
 \subsubsection{NodeJS}
 NodeJS, or simply Node, considered the backbone of the MEAN stack, is an open source, cross-platform, JavaScript run-time environment that executes JavaScipt code outside of a web browser \cite{NODE}. Using asynchronous events, Node allows the processing of multiple connections simultaneously, ideal for cloud-based applications that require scalability on demand. 
@@ -180,6 +180,34 @@ Redis, meaning REmote DIctionary Server is an in-memory distributed key-value da
 
 \paragraph{}
 At early stages in the project, various machine learning implementations were being considered. Redis would have been a perfect inclusion should the project have adopted artificial intelligence in any form, allowing for rapid access and storage of short-lived large scale machine learning data.
+
+\section{Prototyping}
+Prior to commencing development on the project, an initial prototype was built, incorporating technologies and frameworks that the team felt would compliment the scope and nature of the established project. The goal of constructing the prototype was mainly to become familiar with integrating the technologies that were heavily considered and to see if they complimented each other in practice as well as they did in theory.
+
+\begin{figure}[H]
+	\caption{Basic CRUD Prototype}
+	\label{image:prototype}
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/prototype.png}
+\end{figure}	
+
+\paragraph{}
+The resulting prototype consisted of a very basic CRUD web-hosted application that would serve as a skeleton framework for which to build the final project onto \cite{PROTOTYPE}.
+
+\subsection{Prototype Technologies}
+As mentioned, the prototype was build with tools and technologies the team saw to be very likely inclusions in the final project. 
+
+\paragraph{}
+The application was served with \textbf{Flask}, all application logic and endpoints were defined with \textbf{Python}. Initially, \textbf{VueJS} was incorporated into early stages of the prototype, however the decision to made to remove the framework following undesirable performance, documentation and integration. Instead of serving Vue static files, Flask would serve \textbf{HTML} and \textbf{Jinja2} templates, since no frontend was incorporated into the prototype, the design naturally was very basic, with very little CSS, which was mainly used to style and format the input table.
+
+\paragraph{}
+The Python module \textbf{PyMongo} was used to connect to \textbf{MongoAtlas}, which handled the storage of data. Finally the application was (\textit{And is still}) hosted on \textbf{Heroku} \cite{PROTOTYPE_HEROKU}. 
+
+\subsection{Prototype Conclusion}
+Creating and deploying the prototype turned out to be beneficial for the team when initial development of the final project began. The use of some technologies was completely ruled out and a lot of time was saved and put to use on research or development. 
+
+\paragraph{}
+The head start on the final project enabled by the decision to develop the prototype can't be understated, from creating local environments, generating requirements, creating a procfile for which to deploy the application and routing in flask to mention few benefits from a list of many, the team were glad for to have taken the protyping route.
 
 \section{Chosen Technologies}
 Following research, input from supervisors and trials of the aforementioned technologies, a stack was constructed that the developers felt would fit both the objective and scope of the project. This section will outline the technologies, tools, languages, frameworks and concepts that were ultimately implemented and descriptions of relevant implementations will be illustrated at a conceptual level.
@@ -276,3 +304,7 @@ Postman is a specialized tool intended to help test or dissect RESTful API's. Po
 Instead of writing up various tests in Flask to test each route and it's expected responses, a simple JSON body can be created with Postman and used send requests to any available endpoint. While Postman use did fade away as the project became slightly more convoluted, during the initial and prototyping stages it was very valuable.
 
 \subsection{Ngrok}
+
+\subsection{Testing}
+\subsubsection{Karma}
+\subsection{Jasmine}
