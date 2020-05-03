@@ -1,6 +1,7 @@
 %----------------------------------------------------------------------------------------
 %-----------------------------------Script Stuff-----------------------------------------
 %----------------------------------------------------------------------------------------
+% JAVASCRIPT
 
 \lstdefinelanguage{JavaScript}{
   keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
@@ -32,6 +33,37 @@
    showtabs=false,
    captionpos=b
 }
+
+% PYTHON 
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false            % 
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
 %----------------------------------------------------------------------------------------
 
 \chapter{Technology Review}
@@ -154,6 +186,13 @@ Following research, input from supervisors and trials of the aforementioned tech
 
 \subsection{Angular}
 \subsection{The Flask Micro-framework}
+\begin{python}
+class myflask(flask ree):
+    def __init__(self, my, yours):
+        bla = '5 1 2 3 4'
+        print bla
+\end{python}
+
 \subsection{MongoDB}
 \subsection{ExpressJS / Node}
 
@@ -191,6 +230,24 @@ The Heroku procfile (\textit{As outlined in \textbf{Fig.\ref{image:herokuProcfil
 \end{center}
 
 \section{Languages}
+Working with a diverse stack naturally means an array of languages have to be employed, languages that wouldn't regularly see collaboration. This section will serve as an overview of the programming languages incorporated and provide a high-level review of each.
+
+\subsection{Python}
+Python is a high-level language, allowing developers to very efficiently express large ideas and prototype out complex functionality fast. Python is suitable for programmers of any skill-level, however has a relatively steep learning curve but is still very welcoming for beginners, described as easy to learn but hard to master.
+
+\paragraph{}
+Python has become one of the most widely used languages globally in the last decade, a result of multiple factors, not limited to but including it's extensive range of libraries, detailed and straightforward documentation \cite{PYTHON} and the overall versatility of the language.
+
+\paragraph{}
+
+\subsection{JavaScript}
+\subsection{TypeScript}
+\subsection{HTML}
+\subsection{Latex}
+
+\section{Standards}
+\subsection{JSON}
+\subsection{REST}
 
 \section{Development Environment Tools}
 This section discuss the tools and features employed during the development cycle of the project that helped ease the overall development experience and help make it as smooth as it could be.
@@ -205,4 +262,17 @@ Employing Python, JavaScript, TypeScript and other minor languages like HTML \& 
 A wide range of extensions are available for use i actually cannot bring myself to finish this
 
 \subsection{Postman}
+Postman is a specialized tool intended to help test or dissect RESTful API's. Postman allows testing of API's via a very user-friendly user interface without the chore of writing blocks of code to test the functionality.
+
+\paragraph{}
+
+\begin{figure}[H]
+	\caption{Postman API Requests}
+	\label{image:postman}
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/postman.png}
+\end{figure}	
+
+Instead of writing up various tests in Flask to test each route and it's expected responses, a simple JSON body can be created with Postman and used send requests to any available endpoint. While Postman use did fade away as the project became slightly more convoluted, during the initial and prototyping stages it was very valuable.
+
 \subsection{Ngrok}
