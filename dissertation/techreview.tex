@@ -85,7 +85,7 @@ The MEAN Stack consists of:
 \end{description}
 
 \paragraph{}
-Perhaps the greatest attribute of the MEAN Stack for developers is that it's essentially a single language development stack, which can also be one of it's most undesirable attributes depending on the developers JavaScript competency \cite{MEAN_STACK}. Other attributes that the development team considered attractive were the vast array of libraries and modules exposed via Node, it's speed, usability and flexible structure. 
+Perhaps the greatest attribute of the MEAN Stack for developers is that it's essentially a single language development stack, which can also be one of it's most undesirable attributes depending on the developer's JavaScript competency \cite{MEAN_STACK}. Other attributes that the development team considered attractive were the vast array of libraries and modules exposed via Node, it's speed, usability and flexible structure. 
 
 \subsubsection{MongoDB}
 MongoDB is essentially a document-oriented NoSQL database. It's mainly used for high volume data storage. MongoDB uses collections and documents in place of tables like classical relational databases would. Documents consist of key-value pairs which are the basic unit of data in MongoDB.
@@ -97,7 +97,7 @@ The database is considered to be ideal for projects that need to be scalable or 
 ExpressJS, or simply Express, is a web application framework for NodeJS specialized for building web applications and APIs \cite{EXPRESS}. Express forms the backend cluster of the MEAN stack, handling all interactions between the frontend and the database, making sure data is seamlessly propagated to the user. 
 
 \paragraph{}
-Express is completely reliant on API's exposed by NodeJS, acting as a thin layer over NodeJS, allowing for streamlined routing and server development with very little coding. Serving an application with Express can be accomplished with half a dozen lines of code.
+Express is completely reliant on API's exposed by NodeJS, acting as a thin layer over NodeJS, allowing for streamlined routing and server development with very little coding. Serving an application with Express can be accomplished with half a dozen lines of code, making it very lightweight.
 
 \medskip
 \begin{lstlisting}[caption=Serving with Express]
@@ -172,6 +172,14 @@ Another technology stack that piqued the attention of the developers was the MER
 \caption{Advantages and Disadvantages of React \& Angular}
 \end{table}
 
+Following the comparison of both React and Angular, the team spoke both internally and at supervisory meetings about the best route to take. Conclusively, the team felt Angular had the edge over React, the main factors being:
+
+\begin{enumerate}
+    \item[$\bullet$] Jasmine and Karma were two both very attractive testing tools that the team felt would enhance the development of the project.
+    \item[$\bullet$] Libraries like Angular-material and Angular-animations to name few of many are very compatible with a project of this nature, not to mention very well documented. 
+    \item[$\bullet$] The team previously had exposure to Angular, which was a small bonus, however it was clear following the aforementioned research that previous trials with the framework hadn't even scraped the surface of the available features. 
+\end{enumerate}
+
 \subsection{VueJS}
 VueJS is a JavaScript based framework used for building user interfaces and single page applications that can integrate seamlessly into a project at any stage. VueJS is marketed as an approachable, versatile and performant framework, boasting an incrementally adoptable system that's scaleable between a fully featured framework and a library \cite{VUE}. However a major downfall of the framework is considered to be it's steep learning curve. VueJS was trialed for two weeks by the team, and following supervisory meetings and discussions between team members, the team ultimately decided due to the steep learning curve, the intimidating documentation for beginners and lack of tutorials that it wouldn't see a place in the development stack.
 
@@ -192,7 +200,7 @@ Prior to commencing development on the project, an initial prototype was built, 
 \end{figure}	
 
 \paragraph{}
-The resulting prototype consisted of a very basic CRUD web-hosted application that would serve as a skeleton foundation for which to build the final project onto \cite{PROTOTYPE}.
+The resulting prototype as seen in \textbf{Fig.\ref{image:prototype}} consisted of a very basic CRUD web-hosted application that would serve as a skeleton foundation for which to build the final project onto \cite{PROTOTYPE}.
 
 \subsection{Prototype Technologies}
 As mentioned, the prototype was built with tools and technologies the team saw to be very likely inclusions in the final project. 
@@ -201,13 +209,13 @@ As mentioned, the prototype was built with tools and technologies the team saw t
 The application was served with \textbf{Flask}, all application logic and endpoints were defined with \textbf{Python}. Initially, \textbf{VueJS} was incorporated into early stages of the prototype, however the decision to made to remove the framework following undesirable performance, documentation and integration. Instead of serving Vue static files, Flask would serve \textbf{HTML} and \textbf{Jinja2} templates, since no frontend was incorporated into the prototype, the design naturally was very basic, with very little CSS, which was mainly used to style and format the input table.
 
 \paragraph{}
-The Python module \textbf{PyMongo} was used to connect to \textbf{MongoAtlas}, which handled the storage of data. Finally the application was (\textit{And is still}) hosted on \textbf{Heroku} \cite{PROTOTYPE_HEROKU}. 
+The Python module \textbf{PyMongo} was used to connect to \textbf{MongoDB Atlas}, which handled the storage of data. Finally the application was (\textit{And is still}) hosted on \textbf{Heroku} \cite{PROTOTYPE_HEROKU}. 
 
 \subsection{Prototype Conclusion}
 Creating and deploying the prototype turned out to be beneficial for the team when initial development of the final project began. The use of some technologies was completely ruled out and a lot of time was saved and put to use on research or development. 
 
 \paragraph{}
-The head start on the final project enabled by the decision to develop the prototype can't be understated, from creating local environments, generating requirements, creating a procfile for which to deploy the application and routing in flask to mention few benefits from a list of many, the team were glad for to have taken the prototyping route.
+The head start on the final project enabled by the decision to develop the prototype can't be understated, from creating local environments, generating requirements, creating a procfile for which to deploy the application and routing in flask to mention a few newly learned methods from a list of many, the team were glad for to have taken the prototyping route.
 
 \section{Chosen Technologies}
 Following research, input from supervisors and trials of the aforementioned technologies via the prototype, a stack was constructed that the developers felt would fit both the objective and scope of the project. This section will outline the technologies, tools, languages, frameworks and concepts that were ultimately implemented and descriptions of relevant implementations will be illustrated at a conceptual level.
@@ -237,7 +245,7 @@ def delete(_id):
 Trialed during the development of the prototype, MongoDB Atlas proved to be worthy of inclusion into the project stack. MongoDB Atlas is a DBaaS (Database as a Service) platform designed by the same team that develops MongoDB. 
 
 \paragraph{}
-Atlas provides all the features of its database counterpart without any complexities of security of maintenance \cite{MONGO_ATLAS}. Some of these features include:
+Atlas provides all the features of its database counterpart without any complexities of security or maintenance \cite{MONGO_ATLAS}. Some of these features include:
 
 \begin{enumerate}
     \item[$\bullet$] Automated Security Features.
@@ -246,7 +254,7 @@ Atlas provides all the features of its database counterpart without any complexi
     \item[$\bullet$] Monitoring and Traffic Tools.
 \end{enumerate}
 
-Integration is also simplified, a URI is provided based on the development language being used that references the cluster, libraries like PyMongo allows for the dissection of the URI, providing an array of functionality relational to the URI, allowing for control and interaction of individual collections within the cluster associated with the URI.\newline
+Integration is also simplified, a URI is provided based on the development language being used that references the cluster, libraries like PyMongo allow for the dissection of the URI, providing an array of functionality relational to the URI, allowing for the interaction and control of individual collections within the cluster associated with the URI.\newline
 
 \begin{python}[caption=Defining and Accessing a Mongo Collection with Python]
 import pymongo
@@ -272,12 +280,12 @@ Initially AWS had been the likely deployment platform for the application. While
 Generally speaking, it's highly advantageous to employ a cloud-hosted service as an array of benefits  can be made available, these include:
 
 \begin{enumerate}
-    \item[$\bullet$] \textbf{Cost Savings} - Perhaps the biggest benefit of cloud computing. Physical hardware investments aren't necessary, personnel isn't required to maintain hardware and the buying and management of equipment is handled via the service provider.
-    \item[$\bullet$] \textbf{High Speeds} - Allowing deployment to a service in a matter of clicks, cloud computing enables the gathering of resources required for the system faster than conventional means.
+    \item[$\bullet$] \textbf{Cost Savings} - Perhaps the biggest benefit of cloud-based services. Physical hardware investments aren't necessary, personnel isn't required to maintain hardware and the buying and management of equipment is handled via the service provider.
+    \item[$\bullet$] \textbf{High Speeds} - Allowing deployment of a service in a matter of clicks, cloud computing enables the gathering of resources required for the system faster than conventional means.
     \item[$\bullet$] \textbf{Reliability} - Being one of the more attractive advantages of cloud services, reliability is measured by mainly by performance, connectivity, and security, all of which are more often than not guaranteed at a high level by cloud services .
 \end{enumerate}
 
-The aforementioned advantages \cite{CLOUD} are but a few of the more major advantages of cloud computing, though it would be disingenuous to ignore some of the disadvantages of cloud computing like varying performance, potential technical issues or downtime, 
+The aforementioned advantages \cite{CLOUD} are but a few of the more major advantages of cloud computing, though it would be disingenuous to ignore some of the disadvantages of cloud-based services which can include varying performance, potential technical issues or downtime.
 
 \subsection{Honcho}
 Honcho is a Python port of Foreman, a tool for managing procfile-based applications \cite{HONCHO}. Honcho's purpose is to abstract away any complications of the procfile format and allow the application to be either deployed directly or export it to some other process management format. Another benefit of Honcho in this context and the main reason it was employed is down to it's utility of allowing multiple processes to run in unison.
@@ -306,10 +314,10 @@ The Heroku procfile (\textit{As outlined in \textbf{Fig.\ref{image:herokuProcfil
 \end{center}
 
 \section{Languages}
-Working with a diverse stack naturally means an array of languages have to be employed, languages that wouldn't regularly see collaboration. This section will serve as an overview of the programming languages incorporated and provide a high-level review of each.
+Working with a diverse stack naturally means an array of languages have to be employed, especially languages that wouldn't regularly see collaboration. This section will serve as an overview of the programming languages incorporated and provide a high-level review of each.
 
 \subsection{Python}
-Python is a high-level language, allowing developers to very efficiently express large ideas and prototype out complex functionality fast. Python is suitable for programmers of any skill-level, however has a relatively steep learning curve but is still very welcoming for beginners, described as easy to learn but hard to master.
+Python is a high-level language, allowing developers to very efficiently express large ideas and prototype out complex functionality fast. Python is suitable for programmers of any skill-level, however has a relatively steep learning curve but is still very welcoming for beginners, described as an easy to learn but hard to master programming language.
 
 \paragraph{}
 Python has become one of the most widely used languages globally in the last decade, a result of multiple factors, not limited to but including it's extensive range of libraries, detailed and straightforward documentation \cite{PYTHON} and the overall versatility of the language.
@@ -320,7 +328,7 @@ Python has become one of the most widely used languages globally in the last dec
 JavaScript is a high-level, just-in-time compiled multi-paradigm programming language. JavaScript uses curly-bracket syntax, first-class functions, prototype-based object-orientation and dynamic typing \cite{JAVASCRIPT}.
 
 \paragraph{}
-JavaScript is the backbone behind the creation and functionality of dynamic website content. If something moves, refreshes or otherwise changes on the screen is made possible with JavaScript, so naturally with the technology stack being used to develop the defined web-application, JavaScript will undoubtedly play a big role.
+JavaScript is the backbone behind the creation and functionality of dynamic website content. If something moves, refreshes or otherwise changes on the screen, it's made possible with JavaScript, so naturally with the technology stack being used to develop the defined web-application, JavaScript will undoubtedly play a big role.
 
 \subsection{TypeScript}
 TypeScript is a super-set of JavaScript, as a result, JavaScript is still permitted within a TypeScript environment. TypeScript is considered a lot more developer-friendly than JavaScript, less declaration is needed and functional errors generally won't forbid compilation, making it a lot more manageable within larger systems.
@@ -329,22 +337,16 @@ TypeScript is a super-set of JavaScript, as a result, JavaScript is still permit
 One of the bigger changes TypeScript brings is the way in which it can declare variables. In JavaScript the variable is interpreted by how the developer manages and manipulates the variable, TypeScript allows for the specific declaration, for example, 'string', 'number' and 'boolean' may be unambiguously declared.
 
 \subsection{HTML}
-Hypertext Markup Language is the standard markup language for displaying documents in a web browser. Generally HTML is assisted by technologies like Cascading Style Sheets and scripting languages like the aforementioned JavaScript.
+Hypertext Markup Language is the standard markup language for displaying documents in a web browser. Generally HTML is assisted by technologies like Cascading Style Sheets and scripting languages like the aforementioned JavaScript. Naturally, since the developed project is a web-application, HTML is prevalent throughout the frontend.
+
+\subsection{CSS}
+Cascading Style Sheets, or CSS, is a style-sheet language mainly used for the description of the presentation of a document written in a markup language, like HTML. CSS is considered a pillar technology of the web alongside HTML and JavaScript.
 
 \paragraph{}
-Naturally, since the developed project is a web-application, HTML is prevalent.
-
-
-Hypertext Markup Language is the standard markup language for documents designed to be displayed in a web browser. It can be assisted by technologies such as Cascading Style Sheets and scripting languages such as JavaScript
-
-\subsection{Latex}
-
-\section{Standards}
-\subsection{JSON}
-\subsection{REST}
+CSS is generally described as the 'skin' of an application or website, as it can control the scale, position and aesthetic of an overall system. CSS is considered an easy to use tool but is still very hard to master, so naturally those experienced and with an artistic eye can easy manipulate an initially dilapidated website into something a bit more aesthetically pleasing.
 
 \section{Development Environment Tools}
-This section discuss the tools and features employed during the development cycle of the project that helped ease the overall development experience and help make it as smooth as it could be.
+This section will discuss the tools and features employed during the development cycle of the project that helped ease the overall development experience and help make it as smooth as it could be.
 
 \subsection{Visual Studio Code}
 The primary source-code editor used throughout the project was Microsoft's Visual Studio Code \cite{VS_CODE}. There were multiple reasons the team chose Visual Studio Code as the primary code editor during the project development cycle.
@@ -353,7 +355,7 @@ The primary source-code editor used throughout the project was Microsoft's Visua
 Employing Python, JavaScript, TypeScript and other minor languages like HTML \& CSS in the project meant having a code editor that could support the debugging of all relevant languages would save a great deal of time and effort during the development cycle, not to mention improve the overall quality of the project by extension.
 
 \subsubsection{Extensions}
-A wide range of extensions are available for use i actually cannot bring myself to finish this
+A wide range of extensions are available for use with Visual Studio Code, these can include extensions to help with debugging, testing, or just language-specific extensions. During the development phase not only were all necessary language-specific extensions employed, but other quality-of-life extensions like the \textit{Angular Essentials} and \textit{Python Library Version Manager} extensions \cite{EXTENSIONS} were immensely beneficial.
 
 \subsection{Postman}
 Postman is a specialized tool intended to help test or dissect RESTful API's. Postman allows testing of API's via a very user-friendly user interface without the chore of writing blocks of code to test the functionality.
@@ -373,7 +375,7 @@ Instead of writing up various tests in Flask to test each route and it's expecte
 Ngrok is a tool that can expose local servers behind network address translations and firewalls to the public internet over secure tunnels. Ngrok was very attractive, it would in theory allow the team to work off the same externally hosted server / API simultaneously, unfortunately it didn't see much use in this regard, however there were other uses the tool would be applied to.
 
 \paragraph{}
-PyNgrok, a python module that wraps the functionality of Ngrok into an easy to use library was discovered and used during development to test deployment of the application. The API was the most troublesome cluster of the application to deploy to the cloud, Ngrok allowed the deployment of the application while having requests being directed externally to the Ngrok address, allowing the gradual deployment of the application which enabled thorough troubleshooting.
+PyNgrok, a Python module that wraps the functionality of Ngrok into an easy to use library was discovered and used during development to test deployment of the application. The API was the most troublesome cluster of the application to deploy to the cloud, Ngrok allowed the deployment of the application while having requests being directed externally to the Ngrok address, allowing the gradual deployment of the application which enabled thorough troubleshooting.
 
 \section{Testing}
 After defining the technology stack for the application, complimentary testing tools were researched that would enable continuous and efficient testing of the main attributes of the project.
@@ -398,3 +400,5 @@ describe('sorting the list of users', function() {
 \end{lstlisting}
 
 As the amount of tests grow, keeping them structured, in order and documented is vital, and Jasmine helps achieve this. The \textit{describe} function is used to group tests together while multiple individual tests, defined with the \textit{it} function can be contained within the overall describe function.
+
+\section{TODO IMPORTANT **REST**}
