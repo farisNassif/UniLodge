@@ -318,5 +318,25 @@ Instead of writing up various tests in Flask to test each route and it's expecte
 \subsection{Ngrok}
 
 \section{Testing}
+After defining the technology stack for the application, complimentary testing tools were researched that would enable continuous and efficient testing of the main attributes of the project.
+
 \subsection{Karma}
+Karma is a command-line unit testing tool that can spawn a web-server and run source code against test code for each browser connected. The results of each unit test against each connected browser are examined and displayed via the command-line, highlighting which browser specific tests passed or failed.
+
+\paragraph{}
+Karma also monitors all the specified files defined within the configuration file, and checks to see if any file changes. If changes are detected, it can trigger the test to re-execute by sending a signal to the testing server to inform all of the highlighted browsers to re-run the test code. Each browser re-loads the source files, executes the defined tests and reports the results back to the server.
+
 \subsection{Jasmine}
+Jasmine is a behavior driven development framework for JavaScript. Jasmine provides functions that can help with test structuring and assertions. 
+
+\begin{lstlisting}[caption=Test Definition with Jasmine]
+describe('sorting the list of users', function() {
+  it('sorts in descending order by default', function() {
+    var users = ['faris', 'bob', 'jeff'];
+    var sorted = sortUsers(users);
+    expect(sorted).toEqual(['bob', 'faris', 'jeff']);
+  });
+});
+\end{lstlisting}
+
+As the amount of tests grow, keeping them structured, in order and documented is vital, and Jasmine helps achieve this. The \textit{describe} function is used to group tests together while multiple individual tests, defined with the \textit{it} function can be contained within the overall describe function.
