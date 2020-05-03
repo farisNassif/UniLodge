@@ -192,10 +192,10 @@ Prior to commencing development on the project, an initial prototype was built, 
 \end{figure}	
 
 \paragraph{}
-The resulting prototype consisted of a very basic CRUD web-hosted application that would serve as a skeleton framework for which to build the final project onto \cite{PROTOTYPE}.
+The resulting prototype consisted of a very basic CRUD web-hosted application that would serve as a skeleton foundation for which to build the final project onto \cite{PROTOTYPE}.
 
 \subsection{Prototype Technologies}
-As mentioned, the prototype was build with tools and technologies the team saw to be very likely inclusions in the final project. 
+As mentioned, the prototype was built with tools and technologies the team saw to be very likely inclusions in the final project. 
 
 \paragraph{}
 The application was served with \textbf{Flask}, all application logic and endpoints were defined with \textbf{Python}. Initially, \textbf{VueJS} was incorporated into early stages of the prototype, however the decision to made to remove the framework following undesirable performance, documentation and integration. Instead of serving Vue static files, Flask would serve \textbf{HTML} and \textbf{Jinja2} templates, since no frontend was incorporated into the prototype, the design naturally was very basic, with very little CSS, which was mainly used to style and format the input table.
@@ -233,8 +233,33 @@ def delete(_id):
         return 'Error - Cant delete the object!'
 \end{python}
 
-\subsection{MongoDB}
 \subsection{ExpressJS / Node}
+
+\subsection{MongoDB Atlas}
+Trialed during the development of the prototype, MongoDB Atlas proved to be worthy of inclusion into the project stack. MongoDB Atlas is a DBaaS (Database as a Service) platform designed by the same team that develops MongoDB. 
+
+\paragraph{}
+Atlas provides all the features of its database counterpart without any complexities of security of maintenance \cite{MONGO_ATLAS}. Some of these features include:
+
+\begin{enumerate}
+    \item[$\bullet$] Automated Security Features.
+    \item[$\bullet$] Built-In Replication.
+    \item[$\bullet$] Backups and Point-In-Time Recovery.
+    \item[$\bullet$] Monitoring and Traffic Tools.
+\end{enumerate}
+
+Integration is also simplified, a URI is provided based on the development language being used that references the cluster, libraries like PyMongo allows for the dissection of the URI, providing an array of functionality relational to the URI, allowing for control and interaction of individual collections within the cluster associated with the URI.\newline
+
+\begin{python}[caption=Defining and Accessing a Mongo Collection with Python]
+import pymongo
+from pymongo import MongoClient
+
+cluster = MongoClient("MONGO_URI")
+database = cluster["example_database"]
+collection = database["example_collection"]
+
+collection.insert_one(postForCollection)
+\end{python}
 
 \section{Deployment}
 \subsection{Heroku}
@@ -316,6 +341,10 @@ Postman is a specialized tool intended to help test or dissect RESTful API's. Po
 Instead of writing up various tests in Flask to test each route and it's expected responses, a simple JSON body can be created with Postman and used send requests to any available endpoint. While Postman use did fade away as the project became slightly more convoluted, during the initial and prototyping stages it was very valuable.
 
 \subsection{Ngrok}
+Ngrok is a tool that can expose local servers behind network address translations and firewalls to the public internet over secure tunnels. Ngrok was very attractive, it would in theory allow the team to work off the same externally hosted server / API simultaneously, unfortunately it didn't see much use in this regard, however there were other uses the tool would be applied to.
+
+\paragraph{}
+PyNgrok, a python module that wraps the functionality of Ngrok into an easy to use library was discovered and used during development to test deployment of the application. The API was the most troublesome cluster of the application to deploy to the cloud, Ngrok allowed the deployment of the application while having requests being directed externally to the Ngrok address, allowing the gradual deployment of the application which enabled thorough troubleshooting.
 
 \section{Testing}
 After defining the technology stack for the application, complimentary testing tools were researched that would enable continuous and efficient testing of the main attributes of the project.
