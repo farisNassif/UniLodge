@@ -96,6 +96,40 @@ Further insight on the decisions made during the development cycle and how the o
 \section{Data Tier}
 MongoDB Atlas was employed to manage all the data-related needs of the project. Database operations are all executed by Python, based on requests made to the API by the frontend. In this section, the interactions between the aforementioned data related components will be conveyed and their inner-workings explained.
 
+\subsection{Database Models}
+Models had to be defined to represent intractable entities within the system. These models can be interacted with allowing an array of CRUD functionality. Key values were used to associate associative models, enabling the simplification of the overall cluster and allow for the employment of functions like cascading operations.
+
+\begin{lstlisting}[caption=Definiton of Database Models]
+export class Listing { 
+    public Unique_Id: any,
+    public Title: string,
+    public Seller: string,
+    public Description: any,
+    public Location: any,
+    public Price: number,
+    public ContactNumber: string,
+    public Image?: string,
+}
+export class User { 
+  _id: number;
+  Username: string;
+  Password: string;
+  Image?: any;
+}
+export class Comment { 
+    Listing_ID: string;
+    Comment_ID: any;
+    Poster: string;
+    Content: string;
+    Timestamp?: any;
+ }
+\end{lstlisting}
+
+The models were defined at a class level, permitting more control and allowing the ability to define an attribute as optional or required. With TypeScript, this was accomplished by appending a '\textbf{?}' to the name of the attribute, defining it as an optional value.
+
+\paragraph{}
+Unique values were used to associate key values to associative models, all content created by a specific user will always be associated with that user's unique ID, making operations like finding all comments or posts by that user a simplified task.
+
 \subsection{MongoDB Atlas Interactions}
 The Python library \textbf{PyMongo} was utilized to expose and allow for the use of the full suite of Mongo utility methods and crucial CRUD commands. 
 
@@ -132,18 +166,6 @@ def list_users():
 \end{python}
 
 As can be seen in \textbf{Listing.4.2}, interactions with the collection objects still remain practical and simplistic. In this specific scenario, a list of users are returned to the client as a JSON object, enabling further interaction with the collection by the client.
-
-\subsection{Database Models}
-Models had to be defined to represent intractable entities within the system. These models can be interacted with allowing an array of CRUD functionality. To prevent the creation of unnecessary models, key values were used to associate models. This approach would allow for simplification of the overall cluster and allow for the employment of functions like cascading operations.
-
-\begin{figure}[H]
-	\caption{Database Models}
-	\label{image:models}
-	\centering
-	\includegraphics[width=1\textwidth]{images/models.png}
-\end{figure}	
-
-\subsubsection{Cascading operations}
 
 \subsection{Hashing}
 To ensure sensitive user information would never be compromised, the Python library Bcrypt was employed in the backend, allowing the encryption of confidential data. \newline
