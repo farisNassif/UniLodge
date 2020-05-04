@@ -76,7 +76,7 @@ showstringspaces=false            %
 \end{figure}	
 
 \section{Architectural Overview}
-The overall design of the system changed at multiple points throughout the development cycle before arriving at the conclusive design that can be seen in \textbf{Fig.\ref{image:design}}. This section will give a brief overview of how the final architectural design came about.
+The overall design of the system changed at multiple points throughout the development cycle before arriving at the conclusive design that can be seen in \textbf{Fig.\ref{image:design}}. This section will give a brief high-level overview of how the final architectural design came to be.
 
 \subsection{Major Architectural Changes}
 Initially, the project during development consisted of Angular for the presentation layer, Flask for the server and MongoDB Atlas for the database. Routes would be defined with Angular and API calls would be directed towards Flask which would in turn interact with MongoDB Atlas and return a response to the frontend.
@@ -85,7 +85,10 @@ Initially, the project during development consisted of Angular for the presentat
 During deployment however a major shift in design occurred. Major issues were encountered whenever Heorku used Flask to serve static Angular build files, resulting in pages and components not working as they would locally. To address this, Node and Express were used to serve the Angular build files. A server proxy would redirect Express API calls to the Flask server address, allowing Flask to retain it's role as the sole API while using the Express server to serve the Angular build files. This action, while somewhat convoluted, did address the issue which had caused a blocker for multiple days.
 
 \subsection{Final Architectural Design}
-Bla bla heroku, honcho, procfile xd
+The conclusive design (\textit{Which can be seen in \textbf{Fig.\ref{image:design}}}) allows the overall system to be delivered to users via cloud services, enabling a software as a service distribution model. 
+
+\paragraph{}
+A Honcho procfile is used to enable the execution of both the Flask API server and the Express/Node server using just one worker on the cloud. Heroku will use Express/Node to serve the Angular build files while RESTful requests made to the Express server will be redirected to Flask with the use of a server proxy, allowing interactions between the primary components of the system to remain unhindered.
 
 \paragraph{}
 Further insight on the decisions made during the development cycle and how the overall system is structured, including how individual components interact with each other will be discussed throughout the chapter.
