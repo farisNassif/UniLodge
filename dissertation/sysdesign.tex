@@ -133,7 +133,18 @@ def list_users():
 
 As can be seen in \textbf{Listing.4.2}, interactions with the collection objects still remain practical and simplistic. In this specific scenario, a list of users are returned to the client as a JSON object, enabling further interaction with the collection by the client.
 
-\subsection{Schema}
+\subsection{Database Models}
+Models had to be defined to represent intractable entities within the system. These models can be interacted with allowing an array of CRUD functionality. To prevent the creation of unnecessary models, key values were used to associate models. This approach would allow for simplification of the overall cluster and allow for the employment of functions like cascading operations.
+
+\begin{figure}[H]
+	\caption{Database Models}
+	\label{image:models}
+	\centering
+	\includegraphics[width=1\textwidth]{images/models.png}
+\end{figure}	
+
+\subsubsection{Cascading operations}
+
 \subsection{Hashing}
 To ensure sensitive user information would never be compromised, the Python library Bcrypt was employed in the backend, allowing the encryption of confidential data. \newline
 
