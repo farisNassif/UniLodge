@@ -59,9 +59,9 @@ export class AccommodationComponent implements OnInit {
         big: this.image
       },
       {
-        small: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612',
-        medium: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612',
-        big: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612'
+        small: 'https://thumb.housinganywhere.com/images/listing/1609062/450x300/8baf0120-f1a0-469a-900d-7e2f53ab075b?t=crop',
+        medium: 'https://thumb.housinganywhere.com/images/listing/1609062/450x300/8baf0120-f1a0-469a-900d-7e2f53ab075b?t=crop',
+        big: 'https://thumb.housinganywhere.com/images/listing/1609062/450x300/8baf0120-f1a0-469a-900d-7e2f53ab075b?t=crop'
       },
       {
         small: this.image,
@@ -69,9 +69,9 @@ export class AccommodationComponent implements OnInit {
         big: this.image
       },
       {
-        small: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612',
-        medium: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612',
-        big: 'https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612'
+        small: 'https://thumb.housinganywhere.com/images/listing/1609062/450x300/8baf0120-f1a0-469a-900d-7e2f53ab075b?t=crop',
+        medium: 'https://thumb.housinganywhere.com/images/listing/1609062/450x300/8baf0120-f1a0-469a-900d-7e2f53ab075b?t=crop',
+        big: 'https://thumb.housinganywhere.com/images/listing/1609062/450x300/8baf0120-f1a0-469a-900d-7e2f53ab075b?t=crop'
       }
   ];
   }

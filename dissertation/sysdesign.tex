@@ -91,10 +91,48 @@ The conclusive design (\textit{Which can be seen in \textbf{Fig.\ref{image:desig
 A Honcho procfile is used to enable the execution of both the Flask API server and the Express/Node server using just one worker on the cloud. Heroku will use Express/Node to serve the Angular build files while RESTful requests made to the Express server will be redirected to Flask with the use of a server proxy, allowing interactions between the primary components of the system to remain unhindered.
 
 \paragraph{}
-Further insight on the decisions made during the development cycle and how the overall system is structured, including how individual components interact with each other will be discussed throughout the chapter.
+Further insight on the decisions made during the development cycle and how the overall system is structured, including how individual components interact with each other will be discussed throughout the chapter.\newline
 
 \section{Data Tier}
-\subsection{MongoDB Atlas}
+MongoDB Atlas was employed to manage all the data-related needs of the project. Database operations are all executed by Python, based on requests made to the API by the frontend. In this section, the interactions between the aforementioned data related components will be conveyed and their inner-workings explained.
+
+\subsection{MongoDB Atlas Interactions}
+The Python library \textbf{PyMongo} was utilized to expose and allow for the use of the full suite of Mongo utility methods and crucial CRUD commands. 
+
+\paragraph{}
+To adhere to the single responsibility principle, a specific Python class was constructed that would encapsulate the accession of specific data collections. For each collection, a method would be defined, permitting invocation of the method which will return the collection object which can be used for manipulation. \newline
+
+\begin{python}[caption=Database Accession Class]
+from flask_pymongo import MongoClient
+
+# URI for database connection was stored in a local file for security
+with open("mongo_uri.txt", "r") as uri:
+    MONGO_URI = uri.read()
+    
+cluster = MongoClient(MONGO_URI)
+database = cluster["UniLodge"]
+
+def Users():
+    users = database["Users"]
+    return users
+\end{python}
+
+Based on the defined class in \textbf{Listing.4.1}, the collections could be called externally, enabling encapsulation of the collection logic while still exposing necessary PyMongo functionality. In classes that would externally interact with the collections, the manipulation of collections would still be simplistic, they would need only to define the accession class. \newline
+
+\begin{python}[caption=Interacting with Collections]
+# Definition of Database class as d_a
+import data.database_accessor as d_a
+
+@temp_users_blueprint.route('/api/users', methods=['GET'])
+def list_users():
+    # The object d_a allows full control of the collection
+    userList = list(d_a.Users().find({}, {'_id': False}))
+
+    return jsonify(userList)
+\end{python}
+
+As can be seen in \textbf{Listing.4.2}, interactions with the collection objects still remain practical and simplistic. In this specific scenario, a list of users are returned to the client as a JSON object, enabling further interaction with the collection by the client.
+
 \subsection{Schema}
 \subsection{Hashing}
 To ensure sensitive user information would never be compromised, the Python library Bcrypt was employed in the backend, allowing the encryption of confidential data. \newline

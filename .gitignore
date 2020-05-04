@@ -3,3 +3,4 @@ password_handler.pyc
 secret_key.env
 mongo_uri.txt
 venv
+node_modules
