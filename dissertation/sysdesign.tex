@@ -195,9 +195,13 @@ def check_password(plain_text_password, hashed_password):
 The hashing algorithm used is one-way, meaning it can never be decrypted back to it's original plain text password. To verify the user in the future if for example they want to login, when their plain text password is entered it will again be hashed, this new hash will be compared against the hash stored in the database from when they previously registered. Should both hashes match, it would prove the passwords are the same considering the same input will always yield the same hash.
 
 \section{Logic Tier}
+The middle tier for the system acts as a doorway between the data tier and presentation tier. This tier consists of a mix of Python and TypeScript. API requests defined in TypeScript service files are propagated to the Flask API, depending on the undertaken user action. The API performs performs an action, generally in relation to the database and propagates a response back to the user, through the TypeScript service file. This section will break down and further explain the interlinked processes that make up this tier.
+
+\subsection{Flask API}
+
 \subsection{Login/Authentication}
 \subsection{Web Token}
-\subsection{Flask API}
+
 \subsection{Angular Routing}
 
 \section{Application Tier}

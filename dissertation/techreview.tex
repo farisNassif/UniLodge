@@ -377,6 +377,12 @@ Ngrok is a tool that can expose local servers behind network address translation
 \paragraph{}
 PyNgrok, a Python module that wraps the functionality of Ngrok into an easy to use library was discovered and used during development to test deployment of the application. The API was the most troublesome cluster of the application to deploy to the cloud, Ngrok allowed the deployment of the application while having requests being directed externally to the Ngrok address, allowing the gradual deployment of the application which enabled thorough troubleshooting.
 
+\section{Representational State Transfer}
+Representational State Transfer, or simply REST, outlines a set of constraints to be used for creating Web services and is defined as a software architectural style. Services that conform to the REST architectural style are considered RESTful services. These RESTful services provide interoperability between systems over the internet \cite{REST}.
+
+\paragraph{}
+In similar fashion to HTTP, RESTful services use request methods like GET, PUT, POST, DELETE, ensuring portability. REST is stateless, meaning  every request happens in absolute isolation. When the client makes a request, it will include all necessary information required for the surver to fulfill the request. The server will never rely on information from previous requests \cite{REST_STATE}.
+
 \section{Testing}
 After defining the technology stack for the application, complimentary testing tools were researched that would enable continuous and efficient testing of the main attributes of the project.
 
@@ -400,5 +406,3 @@ describe('sorting the list of users', function() {
 \end{lstlisting}
 
 As the amount of tests grow, keeping them structured, in order and documented is vital, and Jasmine helps achieve this. The \textit{describe} function is used to group tests together while multiple individual tests, defined with the \textit{it} function can be contained within the overall describe function.
-
-\section{TODO IMPORTANT **REST**}
