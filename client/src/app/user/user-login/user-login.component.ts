@@ -44,6 +44,7 @@ export class UserLoginComponent implements OnInit {
 
   }
 
+  // Need to secure this a bit in future :(
   checkLogin(login_result: any, username: any) {
     if (login_result == "Invalid login") {
       console.log("invalid login")

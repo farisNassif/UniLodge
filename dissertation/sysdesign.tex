@@ -260,9 +260,19 @@ def login():
         result = Invalid
     return jsonify(result)
 \end{python}
-
+      
 \newpage
-Following the issuing of the token, the now authenticated user may access routes that previously locked. This is accomplished with a simple method decorator (\textbf{@token\_required}) as well as some TypeScript logic. \newline
+Once an access token is issued, it's valid for twenty-five minutes. Until time expires, the token will be present in local storage, permitting authenticated behaviour, once expired the user must again log in.
+
+\begin{lstlisting}[caption=Storing the Authentication Token]
+if (login_result) {
+    localStorage.setItem("access_token", login_result);
+    
+    this.router.navigate(['/profile/' + username]);
+}
+\end{lstlisting}
+
+Following the issuing and validation of the token, the now authenticated user may access routes that previously locked. This is accomplished with a simple method decorator (\textbf{@token\_required}) as well as some TypeScript logic. \newline
 
 \begin{python}[caption=Issuing a limited JWT Token]
 # Create a new Listing
@@ -281,9 +291,44 @@ def new_listing(Username):
     return jsonify(result)
 \end{python}
 
+\subsection{Express Proxy}
+As mentioned previously in the section, the integration of Node/Express was required to serve the Angular static build files rather than Flask, so the use of a proxy was required to still access and interact with the Flask API without using it to serve the application.
 
+\begin{lstlisting}[caption=API Proxy]
+{
+    "/api": {
+        "target": "http://0.0.0.0:5000",
+        "secure": false, 
+    	  "changeOrigin": true
+    }
+}
+\end{lstlisting}
+
+\paragraph{}
+The proxy file defined in \textbf{Listing 4.12} is simply a JSON file that is referenced in the \textbf{package.json}, where additional compilation settings are configured. The proxy itself is defined in a local file named \textbf{proxy-conf.json}, this file must be referenced within the start script. When Heroku builds and starts the application, the proxy must be defined within the start script. 
+
+\begin{lstlisting}[caption=Proxy Reference]
+"scripts": {
+  "ng": "ng",
+  "start": "node server.js --proxy -p proxy.conf.json",
+  "build": "ng build",
+  "test": "ng test",
+  "lint": "ng lint",
+  "e2e": "ng e2e",
+  "heroku-postbuild": "ng build --prod"
+},
+\end{lstlisting}
 
 \subsection{Angular Routing}
+Angular Routing was employed for in-app navigation. 
+
+\begin{figure}[H]
+	\caption{All Accessable Routes}
+	\label{image:routing}
+	\centering
+	\includegraphics[width=1\textwidth]{images/routes.png}
+\end{figure}	
+
 
 \section{Application Tier}
 \subsection{Pages?}

@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'login', component: UserLoginComponent, data: { title: 'UniLodge - User Login' } },
   { path: 'register', component: RegisterComponent, data: { title: 'UniLodge - Register User' } },
   { path: 'profile/:Username', component: ProfileComponent, data: { title: 'UniLodge - Profile' } },
-  /* These are mainly for testing - user shouldn't see these in production */
+  /* These are mainly for testing - user shouldn't access these in production */
   { path: 'users', component: UserListComponent, data: { title: 'UniLodge - Users'} },
   { path: 'users/update/:Username', component: UserEditComponent, data: { title: 'UniLodge - Update User' } },
   /* Listings relevant routes */
@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'accommodation/:Unique_Id', component: AccommodationComponent, data: { title: 'UniLodge - Accommodation'}},
   /* Redirections */
   { path: '404', component: PageNotFoundComponent, data: { title: 'UniLodge - 404 Not Found' } },
-  { path: '**', redirectTo: '/404' } // If a random url was entered send em off to the 404 page
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({
