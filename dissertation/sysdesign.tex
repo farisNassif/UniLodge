@@ -198,6 +198,48 @@ The hashing algorithm used is one-way, meaning it can never be decrypted back to
 The middle tier for the system acts as a doorway between the data tier and presentation tier. This tier consists of a mix of Python and TypeScript. API requests defined in TypeScript service files are propagated to the Flask API, depending on the undertaken user action. The API performs performs an action, generally in relation to the database and propagates a response back to the user, through the TypeScript service file. This section will break down and further explain the interlinked processes that make up this tier.
 
 \subsection{Flask API}
+The API is completely written with Flask and documented with Swagger. TypeScript handles the sending of requests to the API. Simple methods that contain the API endpoint to invoke as well as the expected object that should be return.
+
+\begin{lstlisting}[caption=Basic Request to the API]
+getListings(): Observable<Listing[]> {
+  return this.http.get<Listing[]>(this.userUrl + '/api/listings');
+}
+\end{lstlisting}
+
+The TypeScript method in \textbf{Listing 4.6} will seek the it's defined API endpoint and will expect an array of Listings. Assuming the Flask server is running, the endpoint will be accessed and will return a Listings array for use in the frontend. \newline
+
+\begin{python}[caption=API Counterpart Route]
+@listings.route('/api/listings', methods=['GET'])
+def list_listings():
+    # Find all listings within the Database
+    listings = list(d_a.Listings().find({}, {'_id': False}))
+    
+    # Send the list of listings to the frontend
+    return jsonify(listings)
+\end{python}
+
+\subsubsection{Blueprint}
+Using the Python library \textbf{Blueprint}, routes could be categorized and coupled together in separate classes depending on their function. This allowed a single class to handle all requests and delegate a task to it's designated route and class. \newline
+
+\begin{python}[caption=Main Flask Runner]
+from routes.login_route import login_blueprint 
+from routes.register_route import register_blueprint
+from routes.temp_users_route import temp_users_blueprint
+from routes.listings_route import listings_blueprint
+
+app.register_blueprint(login_blueprint) 
+app.register_blueprint(register_blueprint)
+app.register_blueprint(users_blueprint)
+app.register_blueprint(listings_blueprint)
+
+if __name__ == "__main__":
+    app.run() 
+\end{python}
+
+\subsubsection{API Documentation}
+The view the full API documentation via Swagger, see \textit{Appendices}. 
+
+
 
 \subsection{Login/Authentication}
 \subsection{Web Token}
