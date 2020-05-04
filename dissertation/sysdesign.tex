@@ -1,18 +1,124 @@
+%----------------------------------------------------------------------------------------
+%-----------------------------------Script Stuff-----------------------------------------
+%----------------------------------------------------------------------------------------
+% JAVASCRIPT
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
+% PYTHON 
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false            % 
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+%----------------------------------------------------------------------------------------
+
 \chapter{System Design}
 
 \begin{figure}[H]
-	\caption{System Architecture}
-	\label{image:myImageName}
+	\caption{Final System Architecture}
+	\label{image:design}
 	\centering
-	\includegraphics[width=0.9\textwidth]{images/design.png}
+	\includegraphics[width=1\textwidth]{images/design.png}
 \end{figure}	
 
-\section{Overview}
-john if you're reading this i really have no idea how to go about this chapter and the evaluation chapter. i have a rough structure but have no idea if it even fits this chapter, same with the evaluation. i have no idea how to approach the evaluation would it be testing / scaling / limitations or should they be included here i hate it all
+\section{Architectural Overview}
+The overall design of the system changed at multiple points throughout the development cycle before arriving at the conclusive design that can be seen in \textbf{Fig.\ref{image:design}}. This section will give a brief overview of how the final architectural design came about.
+
+\subsection{Major Architectural Changes}
+Initially, the project during development consisted of Angular for the presentation layer, Flask for the server and MongoDB Atlas for the database. Routes would be defined with Angular and API calls would be directed towards Flask which would in turn interact with MongoDB Atlas and return a response to the frontend.
+
+\paragraph{}
+During deployment however a major shift in design occurred. Major issues were encountered whenever Heorku used Flask to serve static Angular build files, resulting in pages and components not working as they would locally. To address this, Node and Express were used to serve the Angular build files. A server proxy would redirect Express API calls to the Flask server address, allowing Flask to retain it's role as the sole API while using the Express server to serve the Angular build files. This action, while somewhat convoluted, did address the issue which had caused a blocker for multiple days.
+
+\subsection{Final Architectural Design}
+Bla bla heroku, honcho, procfile xd
+
+\paragraph{}
+Further insight on the decisions made during the development cycle and how the overall system is structured, including how individual components interact with each other will be discussed throughout the chapter.
+
 \section{Data Tier}
-\subsection{Mongo}
+\subsection{MongoDB Atlas}
 \subsection{Schema}
 \subsection{Hashing}
+To ensure sensitive user information would never be compromised, the Python library Bcrypt was employed in the backend, allowing the encryption of confidential data. \newline
+
+\begin{python}[caption=Hashing a Password with Bcrypt]
+import bcrypt as bc
+
+def generate_hash(plain_text_password):
+    pw_hash = bc.bcrypt.hashpw(plain_text_password.encode("utf-8"), bc.gensalt())
+    return pw_hash
+\end{python}
+
+\paragraph{}
+The function defined in \textbf{Listing.4.1} when provided with a plain text password, generates a salted hash and returns the hashed password to the caller. The function is called whenever a newly registered user submits a registration form with their plain-text password being the sole parameter for the function. Once called, the plain-text password is hashed and salted, before being stored in the database as the designated hash. \newline
+
+\begin{python}[caption=Verifing a Password]
+import bcrypt as bc
+
+def check_password(plain_text_password, hashed_password):
+    if bc.bcrypt.checkpw(plain_text_password, hashed_password):
+        result = True
+    else:
+        result = False # Password is wrong :(
+    return result
+\end{python}
+
+The hashing algorithm used is one-way, meaning it can never be decrypted back to it's original plain text password. To verify the user in the future if for example they want to login, when their plain text password is entered it will again be hashed, this new hash will be compared against the hash stored in the database from when they previously registered. Should both hashes match, it would prove the passwords are the same considering the same input will always yield the same hash.
 
 \section{Logic Tier}
 \subsection{Login/Authentication}
