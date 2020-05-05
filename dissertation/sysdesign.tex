@@ -292,7 +292,7 @@ def new_listing(Username):
 \end{python}
 
 \subsection{Express Proxy}
-As mentioned previously in the section, the integration of Node/Express was required to serve the Angular static build files rather than Flask, so the use of a proxy was required to still access and interact with the Flask API without using it to serve the application.
+As mentioned previously in the chapter, the integration of Node/Express was required to serve the Angular static build files rather than Flask, so the use of a proxy was required to still access and interact with the Flask API without using it to serve the application.
 
 \begin{lstlisting}[caption=API Proxy]
 {
@@ -305,7 +305,7 @@ As mentioned previously in the section, the integration of Node/Express was requ
 \end{lstlisting}
 
 \paragraph{}
-The proxy file defined in \textbf{Listing 4.12} is simply a JSON file that is referenced in the \textbf{package.json}, where additional compilation settings are configured. The proxy itself is defined in a local file named \textbf{proxy-conf.json}, this file must be referenced within the start script. When Heroku builds and starts the application, the proxy must be defined within the start script. 
+The proxy file defined in \textbf{Listing 4.12} is simply a JSON file that is referenced in the \textbf{package.json}, where additional compilation settings are configured. The proxy itself is defined in a local file named \textbf{proxy-conf.json}, this file must be referenced as a script. When Heroku builds and starts the application, the proxy must be defined within the start script. 
 
 \begin{lstlisting}[caption=Proxy Reference]
 "scripts": {
@@ -319,6 +319,39 @@ The proxy file defined in \textbf{Listing 4.12} is simply a JSON file that is re
 },
 \end{lstlisting}
 
+Once established, the start script will execute \textbf{node server.js}, starting the Express server and configuring the proxy path. Since the purpose of the server is just to serve static files, the server script doesn't need to be lengthy since any heavy work will be delegated to Flask. \newline
+
+\begin{lstlisting}[caption=Express Server Runner]
+const express = require('express');
+const path = require('path');
+const cors = require('cors')
+const apiProxy = proxy('/api', { target: 'proxy.conf.json' });
+
+const app = express();
+
+app.use(express.static(__dirname + '/dist/client'), apiProxy);
+app.use(cors())
+
+app.get('/*', function(req,res) {
+
+res.sendFile(path.join(__dirname+'/dist/client/index.html'));
+});
+
+app.listen(process.env.PORT || 8081);
+\end{lstlisting}
+
+\section{Application Tier}
+\subsection{Pages?}
+
+\begin{figure}[H]
+	\caption{Application Home Page}
+	\label{image:home}
+	\centering
+	\includegraphics[width=1\textwidth]{images/home.png}
+\end{figure}	
+
+\subsection{Styling?}
+\subsection{Deployment}
 \subsection{Angular Routing}
 Angular Routing was employed for in-app navigation. 
 
@@ -328,9 +361,3 @@ Angular Routing was employed for in-app navigation.
 	\centering
 	\includegraphics[width=1\textwidth]{images/routes.png}
 \end{figure}	
-
-
-\section{Application Tier}
-\subsection{Pages?}
-\subsection{Styling?}
-\subsection{Deployment}
