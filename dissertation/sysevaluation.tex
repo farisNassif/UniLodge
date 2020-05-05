@@ -44,14 +44,29 @@ This brief section will describe how each objective was addressed over the cours
   Unfortunately collaboration and communication between team members is something that cannot be said to be definitively maintained during development, this will be discussed further in the chapter along with system flaws and improvements.
 \end{description}
 
+\section{Limitations and Opportunities for Improvement}
+While the proposed objectives for the project were achieved, there are still multiple areas within the developed system that can be vastly improved.
 
-\section{Testing}
-Approaches to testing something something
-\subsection{Types of Testing}
-\subsection{Deployment Testing}
-\subsection{Unit Testing?}
-\subsection{System Testing}
+\subsection{Server Proxy}
+Using a proxy to redirect API calls to Flask is far from optimal. While the application works as is with Node/Express serving the static Angular files, using a proxy to incorporate the Flask API is still only a quick fix for the system. 
 
-\subsection{Some more things here I'm neglecting}
+\paragraph{}
+System testing earlier in the development life cycle would have identified the issue of Flask not correctly serving Angular build files. Angular build files weren't generated until time came to deploy the application, so Flask only ever served development files. Build files were required for Heroku to be able to host the application, meaning the workaround was necessary, but could have been avoided if system tests were incorporated earlier and builds were generated periodically to test deployment. If this was carried out, the issue with Flask would have been able to be addressed much earlier in the development cycle.
+
+\subsection{Testing}
+Although periodic unit testing with Karma and Jasmine was conducted and usability tests were incorporated along with acceptance and verification testing to validate the project objectives, overall testing could have been a lot more prevalent throughout the system.
+
+\paragraph{}
+During development with the help of fellow students, user stories were written and used to drive some areas 
+of development, this approach wasn't incorporated in all aspects of development, however some areas like commenting or browsing components were heavily designed and implemented this way. \newline
+
+\begin{lstlisting}[caption=User Story used as a base for browse functionality]
+As a Student looking for Accommodation on a budget
+I want to browse Listings in Salthill between 50 and 80 euro
+So that I can contact the Poster and inquire about the Listing
+\end{lstlisting}
+
+\paragraph{}
+Unit Testing wasn't as abundant as it should have been, however during the early stages of development Karma and Jasmine were utilized at an acceptable level to ensure functionality like navigation and intractable components worked as intended. With that said, System Testing was an area of testing that really fell short during the project life-cycle. As mentioned previously, System Testing is something that should have been practiced and seen as a larger priority than it was considered. The biggest issue faced throughout the project was undoubtedly the problem with Flask and Angular build files, should System Testing have been practiced, this could have been identified and addressed at a much earlier stage.
 
 \section{Overall Evaluation}

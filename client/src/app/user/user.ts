@@ -4,3 +4,5 @@ export class User {
   Password: string;
   Image?: any;
 }
+
+// As a STUDENT looking for ACCOMODATION
