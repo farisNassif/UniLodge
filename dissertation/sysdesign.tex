@@ -341,7 +341,50 @@ app.listen(process.env.PORT || 8081);
 \end{lstlisting}
 
 \section{Application Tier}
-\subsection{Pages?}
+Angular was used to develop the client side of the application. Using Angular allowed the client to be presented as a single-page application which allows the injection of multiple components as apposed to traditional multi-page applications. This section will cover all information related to the presentation of the application and how it's wired together.
+
+\subsection{Angular Routing}
+Angular Routing was employed to define and initialize all in-app navigational routes. Route definition was associated with a specific component, ensuring the navigation to that route displayed the relevant and corresponding component.
+
+\begin{figure}[H]
+	\caption{Angular Routing}
+	\label{image:routing}
+	\centering
+	\includegraphics[width=1\textwidth]{images/routes.png}
+\end{figure}
+
+\paragraph{}
+For individual routes that display specific listing or user data, a service call to the API is sent and specific data related to that entity is returned, populating the page with the relevant information.
+
+\subsection{Angular Services}
+Angular Services act as the doorway to the API, any query for specific data has a corresponding service method. For example, take the following component method that requests all listings currently in the database so they can be displayed:
+
+\begin{lstlisting}[caption=Method for Acquiring all Listings]
+getListings(): void {
+  this.listingService.getListings().subscribe(listings => this.listings = listings);
+}
+\end{lstlisting}
+
+\paragraph{}
+If correctly executed, the method outlined in \textbf{Listing 4.15} will acquire all listings from the backend and store them in the array \textit{listings}. In order for this to happen, it needs to access the API through the service method previously mentioned.
+
+\newpage
+
+\begin{lstlisting}[caption=Retrieving all Listings]
+private userUrl = 'http://localhost:5000'; 
+
+constructor(private http: HttpClient) { }
+
+getListings(): Observable<Listing[]> {
+  return this.http.get<Listing[]>(this.userUrl + '/api/listings');
+}
+\end{lstlisting}
+
+\paragraph{}
+The Service method which can be seen in \textbf{Listing 4.16} implements an observable interface, which is common for executing asynchronous operations. A get request is fired at the defined API endpoint, returning all listings to the Service method. 
+
+\paragraph{}
+Since the component method outlined in \textbf{Listing 4.15} is \textit{subscribed} to this Service method, it waits for the call to the API to finish. When complete, the array of listings is returned to the component can be used in the relevant component to display all listings currently in the database.. 
 
 \begin{figure}[H]
 	\caption{Application Home Page}
@@ -355,9 +398,4 @@ app.listen(process.env.PORT || 8081);
 \subsection{Angular Routing}
 Angular Routing was employed for in-app navigation. 
 
-\begin{figure}[H]
-	\caption{All Accessable Routes}
-	\label{image:routing}
-	\centering
-	\includegraphics[width=1\textwidth]{images/routes.png}
-\end{figure}	
+
