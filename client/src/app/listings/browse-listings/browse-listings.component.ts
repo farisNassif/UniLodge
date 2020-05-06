@@ -71,6 +71,8 @@ export class BrowseListingsComponent implements OnInit {
       location: location, minVal: minVal, maxVal: maxVal 
     };
 
+    // Following two api calls are very bad, had issues combining them =(
+
     // Get the actual results returned
     this.listingService.getListingByLocationAndPrice(query).subscribe(listings => this.listings = listings);
 
