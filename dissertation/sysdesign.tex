@@ -370,7 +370,7 @@ If correctly executed, the method outlined in \textbf{Listing 4.15} will acquire
 
 \newpage
 
-\begin{lstlisting}[caption=Retrieving all Listings]
+\begin{lstlisting}[caption=Service Method for Retrieving all Listings]
 private userUrl = 'http://localhost:5000'; 
 
 constructor(private http: HttpClient) { }
@@ -384,10 +384,30 @@ getListings(): Observable<Listing[]> {
 The Service method which can be seen in \textbf{Listing 4.16} implements an observable interface, which is common for executing asynchronous operations. A get request is fired at the defined API endpoint, returning all listings to the Service method. 
 
 \paragraph{}
-Since the component method outlined in \textbf{Listing 4.15} is \textit{subscribed} to this Service method, it waits for the call to the API to finish. When complete, the array of listings is returned to the component can be used in the relevant component to display all listings currently in the database.. 
+Since the component method outlined in \textbf{Listing 4.15} is \textit{subscribed} to this Service method, it waits for the call to the API to finish. When complete, the array of listings is returned to the component, it can then be used to display all listings currently in the database.
 
+\subsection{Page Views}
+This section will contain the various page views for UniLodge and the functionality tied to each individual page.
+
+\subsubsection{Navigation}
+At the top of each page, a navigation bar is present. This bar is dynamic and will change depending on the logged in state of the user. Initially, the Navigation bar provides traversal to the following pages:
+
+\begin{description}
+  \item[$\bullet$] \textbf{Home Page}
+  \item[$\bullet$] \textbf{Browse Page}
+  \item[$\bullet$] \textbf{Login Page}
+  \item[$\bullet$] \textbf{Register Page}
+  \item[$\bullet$] \textbf{Profile Page} \textit{*Available after login}
+  \item[$\bullet$] \textbf{Create Listing Page} \textit{*Available after login}
+\end{description}
+
+\paragraph{}
+Once logged in, the \textbf{Register Page} and \textbf{Login Page} buttons are replaced with \textbf{Profile} and \textbf{Create Listing} navigation buttons.
+
+\subsubsection{Home Page}
+The first page the user will see when visiting UniLodge will be the home page. Like every page, a navigation bar is present at the top. The navigation bar allows for quick access to the main pages of the application  The home page displays up to 8 listings to the user 
 \begin{figure}[H]
-	\caption{Application Home Page}
+	\caption{UniLodge Home Page}
 	\label{image:home}
 	\centering
 	\includegraphics[width=1\textwidth]{images/home.png}
