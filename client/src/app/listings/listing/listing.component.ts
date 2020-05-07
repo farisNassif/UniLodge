@@ -14,7 +14,7 @@ export class ListingComponent implements OnInit {
   Seller: string = window.location.pathname.substring(9,999);
   UserLocation : any;
   Location = ['Athenry', 'Ballybrit', 'Claregalway', 'Craughwell', 'Galway City',
-              'Gort','Loughrea'];
+              'Gort','Loughrea', 'Salthill', 'Oranmore'];
   price: number
   ContactNumber: string
   Image?: string
@@ -32,9 +32,7 @@ export class ListingComponent implements OnInit {
 
   ngOnInit() {
     // Just testing authorization
-    if (this.Seller == localStorage.getItem('username')) {
-      console.log("Authorized")
-    } else {
+    if (this.Seller != localStorage.getItem('username')) {
       this.router.navigate(['/home']);
     }
   }
