@@ -23,13 +23,25 @@
 
 
 ### About
-<b>UniLodge</b> is a service exclusively for students that bridges the gap between those looking for accomodation and those looking to advertise a room or location.
+**UniLodge** is a service exclusively for students that bridges the gap between those looking for accomodation and those looking to advertise a room or location.
 
 ### How UniLodge Works
 
 ### Running Locally
 
 #### Requirements
+
+##### Python
+
+* To aquire all of the packages(pip install [modulename]) needed for the Python Flask component of this project, use the following cmd line to **install all of the packages** that are contained in the *requirements.txt*.
+
+pip install -r requirements.txt
+
+* If you are on a Linux system it should work fine. If you are on a Windows system then open a Linux terminal such as "Git Bash" or "Cmder" and it should work fine.
+
+
+##### Angular
+
 Angular version, npm installs all that stuff, flask pip installs and so on
 
 ### Features
