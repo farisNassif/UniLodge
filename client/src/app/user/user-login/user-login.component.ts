@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router'
+import { MatSnackBar } from "@angular/material";
 
 @Component({
   selector: 'app-user-login',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router'
 /* Component that handles Login */
 export class UserLoginComponent implements OnInit {
 
-  constructor(private userService: UserService, public router: Router) { }
+  constructor(private userService: UserService, public router: Router, public snackBar: MatSnackBar) { }
   username: string
   loggedInUser: string
   password: string
@@ -45,6 +46,16 @@ export class UserLoginComponent implements OnInit {
 
       /* Nav to the profile of the user who just logged in */
       this.router.navigate(['/profile/' + username]);
+      this.openSnackBar("Welcome " + username + "!", "Ok")
+    } else {
+      this.openSnackBar(this.logged_in + "!", "Ok")
     }
+  }
+
+  /* Reusable method for displaying the snackbar popup for 4.5 seconds */
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+       duration: 4000,
+    });
   }
 }
