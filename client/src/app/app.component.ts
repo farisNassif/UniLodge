@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { AppService } from './app.service'
 import { HttpClient } from '@angular/common/http'
 import { Title } from '@angular/platform-browser';
-import { Router, NavigationEnd, RouterOutlet, ActivatedRoute, NavigationError, NavigationCancel, NavigationStart, Event } from '@angular/router';
-import { FormsModule }   from '@angular/forms';
+import { Router, NavigationEnd, ActivatedRoute} from '@angular/router';
 
 /* These imports are required for setting the tab title based on the visited route */
 import 'rxjs/add/operator/filter';
@@ -17,7 +16,7 @@ import 'rxjs/add/operator/mergeMap';
   providers: [AppService]
 })
 export class AppComponent implements OnInit{
-  msgFromTheBackend: String // Whatever is returned from python - Eg "Registration Successful/Unsuccessful"
+  msgFromTheBackend: String
   user: String;
   password: String
   username: String
@@ -26,8 +25,7 @@ export class AppComponent implements OnInit{
   private activatedRoute: ActivatedRoute, private titleService: Title) { }
   
   ngOnInit () {
-    /* Required code for setting tab title depending on the 
-    route currently accessed */
+    /* Required code for setting tab title depending on the route currently accessed */
     this.router.events
     .filter((event) => event instanceof NavigationEnd)
     .map(() => this.activatedRoute)

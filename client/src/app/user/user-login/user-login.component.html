@@ -10,30 +10,42 @@
 </head>
 <body>
   <br>
-  <div class="makeItCenter">
-  <form (submit)="loginUser($event, username, password)" class="was-validated">
-    <div class="form-group">
-      <label for="email" class="control-label">Email</label>
-      <input type="email" [(ngModel)]="username" class="form-control" name="username_input" placeholder="Email" required>
-      <div class="valid-feedback">All Good!</div>
-      <div class="invalid-feedback">Please fill out this field.</div>
-    </div>
+    <div class="container" >
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h5 class="card-title text-center"><b>Sign In</b></h5>
+              <form (submit)="loginUser($event, username, password)" class="form-signin">
 
-    <div class="form-group">
-      <label for="pwd">Password</label>
-      <input type="password" [(ngModel)]="password" class="form-control" name="password_input" placeholder="Password" required>
-      <div class="valid-feedback">Looks right</div>
-      <div class="invalid-feedback">Please fill out this field.</div>
-    </div>
+                <!-- Email input form -->
+                <div class="form-group">
+                  <label for="email" class="control-label"><b>Email *</b></label>
+                  <input type="email" [(ngModel)]="username" class="form-control rounded" name="username_input" placeholder="Email" required>
+                </div>
+  
+                <!-- Password input form -->
+                <div class="form-group">
+                  <label for="pwd"><b>Password *</b></label>
+                  <input type="password" [(ngModel)]="password" class="form-control rounded" name="password_input" placeholder="Password" required>
+                </div>
+                
+                <br>
+                <button type="submit" value="submit" class="btn btn-lg btn-primary btn-block text-uppercase">Submit</button>
+                <br>
 
-    <button type="submit" value="submit" class="btn btn-primary">Submit</button>
-    <br>
-    <br>
-    <br>
-  </form>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
 </div>
 <div class="spaceForFooter"></div>
 </body>
 </html>
+
+  
+
 
 

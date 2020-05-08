@@ -31,6 +31,7 @@
   <br>
 
 <p *ngIf="listings.length === 0" class="text-center">There are currently no listings for this account<br>Why not <u>make</u> one?</p>
+<div *ngIf="listings.length === 0" class="text-center"><br><br><br><br><br><br><br><br><br></div>
 <p *ngIf="listings.length > 0" class="text-center">All listings for this account ..</p>
 
   <div class="container-fluid bg-3 text-center" >    
