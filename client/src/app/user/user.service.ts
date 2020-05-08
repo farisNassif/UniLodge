@@ -14,7 +14,7 @@ const httpOptions = {
 export class UserService {
   test : any
   registrationConfirmation: String;
-  private userUrl = 'http://localhost:5000'; 
+  private userUrl = 'http://127.0.0.1:5000'; 
 
   constructor(private http: HttpClient) { }
 

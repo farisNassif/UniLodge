@@ -145,5 +145,4 @@ export class AccommodationComponent implements OnInit {
        duration: 3500,
     });
   } 
-
 }

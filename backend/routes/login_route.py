@@ -34,12 +34,12 @@ def login():
 
         for i in user_to_login_to_list: # Will always only loop once, this is how it ended up working with retrieving a single attribute value from mongo
             stored_hash = i["Password"] # Gets the value of "Password" from the user in mongo and stores the hash as stored_hash
-        
+    
         if (p_h.check_password(password, stored_hash)): # Return true if entered pw hash matches stored hash
             # Assign the JWT web token to the result, map the identiy to the Username and set it to expire in 25 minutes
             result = create_access_token(identity=str(username), expires_delta=(datetime.timedelta(minutes=25)))
         else:
             result = "Invalid login"
     else:
-        result = "Invalid login"
+        result = "User Doesn't Exist"
     return jsonify(result)

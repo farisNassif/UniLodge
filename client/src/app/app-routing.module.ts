@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'browse', component: BrowseListingsComponent, data: { title: 'UniLodge - Browse' } },
   { path: 'listing/:Username', component: ListingComponent, data: { title: 'UniLodge - CreateListing' } },
   { path: 'listing/:Username/:ListingTitle', component: ListingComponent, data: { title: 'UniLodge - Listing' } },
-  { path: 'listing/:Username/:ListingTitle/edit', component: EditListingsComponent, data: { title: 'UniLodge - Edit Listing' } },
+  { path: 'listing/:Username/:ListingTitle/edit', component: EditListingsComponent, data: { title: 'Edit Listing' } },
   /* Specific Accommodation view */
   { path: 'accommodation/:Unique_Id', component: AccommodationComponent, data: { title: 'UniLodge - Accommodation'}},
   /* Redirections */
