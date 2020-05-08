@@ -37,9 +37,8 @@ def login():
     
         if (p_h.check_password(password, stored_hash)): # Return true if entered pw hash matches stored hash
             # Assign the JWT web token to the result, map the identiy to the Username and set it to expire in 25 minutes
-            result = create_access_token(identity=str(username), expires_delta=(datetime.timedelta(minutes=25)))
+            return jsonify(create_access_token(identity=str(username), expires_delta=(datetime.timedelta(minutes=25)))), 200
         else:
-            result = "Invalid login"
+            return jsonify("Invalid Credentials")
     else:
-        result = "Invalid login"
-    return jsonify(result)
+        return jsonify("Invalid Credentials")
