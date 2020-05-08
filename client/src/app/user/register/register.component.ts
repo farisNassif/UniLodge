@@ -36,4 +36,13 @@ export class RegisterComponent implements OnInit {
     this.username = undefined
     this.password = undefined 
   }
+
+  get inputStatus() {
+    if (this.registrationConfirmation == "Registration Successful!") {
+      return false
+    }
+    else if (this.registrationConfirmation) {
+      return true
+    }
+  }
 }

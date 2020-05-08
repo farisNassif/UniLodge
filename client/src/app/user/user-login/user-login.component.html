@@ -10,11 +10,14 @@
 </head>
 <body>
   <br>
-    <div class="container" >
+    <!-- Lots of messy divs for styling -->
+    <div class="container">
       <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
           <div class="card card-signin my-5">
             <div class="card-body">
+
+              <!-- Form Declaration -->
               <h5 class="card-title text-center"><b>Sign In</b></h5>
               <form (submit)="loginUser($event, username, password)" class="form-signin">
 
@@ -31,6 +34,7 @@
                 </div>
                 
                 <br>
+                <!-- Submit form -->
                 <button type="submit" value="submit" class="btn btn-lg btn-primary btn-block text-uppercase">Submit</button>
                 <br>
 
@@ -39,13 +43,7 @@
           </div>
         </div>
       </div>
-
-</div>
+    </div>
 <div class="spaceForFooter"></div>
 </body>
 </html>
-
-  
-
-
-

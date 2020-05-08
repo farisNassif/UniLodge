@@ -24,6 +24,16 @@ form {
   padding-left: 2%;
 }
 
+.containerOutput {
+  text-align: center;
+  border: 2px solid red;
+}
+
+.containerOutputSuccess {
+  text-align: center;
+  border: 2px solid green;
+}
+
 body {
 background-color: rgba(42, 36, 35, 0.623);
 }

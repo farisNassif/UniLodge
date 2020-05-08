@@ -20,10 +20,12 @@ def reg():
     username_password = userLogin.split("_")
     # Username / Password setting
     username = username_password[0]
-    password = p_h.generate_hash(username_password[1])
+    password = username_password[1]
 
     # If username ends correctly (TODO At some point gotta change this to not just be '@gmit.ie')
-    if (ev.check_email(username)) and (len(password) > 4): 
+    if (ev.check_email(username)) and (len(password) > 4):
+        # Gen hash once pw is safe
+        password = p_h.generate_hash(username_password[1])
         # Basically if theres already an email in mongo the same as what was just entered
         if d_a.Users().find_one( {'Username':username} ):
             result = ("There is already an account associated with that email.")
@@ -33,7 +35,7 @@ def reg():
             try:        
                 # Posting data stored above to mongo
                 d_a.Users().insert_one(new_user)
-                result = ("Success! Added to database")
+                result = ("Registration Successful!")
             # Error Handling
             except: 
                 # If for some reason data couldn't be commit throw an error message
