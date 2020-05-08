@@ -44,7 +44,7 @@ export class BrowseListingsComponent implements OnInit {
   listing_options: string[] = ['Loughrea', 'Galway City', 'Craughwell', 'Claregalway', 'Athenry', 'Tuam', 'Gort', 'Ballybrit'];
   subject_: string;
 
-  searchRes: any = "Query Returned (" + this.listings.length + ") Results";
+  searchRes: any;
   listingsAmt: any;
 
   constructor(private listingService: ListingService, private router: Router) { }

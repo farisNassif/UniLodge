@@ -38,7 +38,12 @@ export class ProfileComponent implements OnInit {
 
   /* Gets the individual user information for which the profile is relevant */
   getUser(): void {
-		this.userService.getUser(this.username).subscribe(users => this.users = users);
+		this.userService.getUser(this.username).subscribe(users => {
+      this.users = users
+      if (!this.users[0]) {
+        this.router.navigate(['/*']);
+      }
+    });
   }
 
   /* Gets the listings information relevant to the user who's profile is currently open */
