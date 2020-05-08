@@ -46,13 +46,13 @@ export class BrowseListingsComponent implements OnInit {
   listing_options: string[] = ['Loughrea', 'Galway City', 'Craughwell', 'Claregalway', 'Athenry', 'Tuam', 'Gort', 'Ballybrit'];
   subject_: string;
 
-  searchRes: any;
+  searchRes: any = "Query Returned (" + this.listings.length + ") Results";
   listingsAmt: any;
 
   constructor(private listingService: ListingService, private router: Router) { }
 
   ngOnInit() {
-    // Autocomplete pipe function
+    /* Autocomplete pipe function for locations */
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
@@ -64,20 +64,19 @@ export class BrowseListingsComponent implements OnInit {
 
 
   // When submit is pressed, query the backend for relative params
-  async searchListings(event: void, location:string, minVal: number, maxVal: number) {
+  searchListings(event: void, location:string, minVal: number, maxVal: number) {
     this.searched = true
     // Plan to send the complete query to the backend as JSON
     let query = { 
       location: location, minVal: minVal, maxVal: maxVal 
     };
 
-    // Following two api calls are very bad, had issues combining them =(
-
-    // Get the actual results returned
-    this.listingService.getListingByLocationAndPrice(query).subscribe(listings => this.listings = listings);
-
-    // Get the amount of results returned
-    this.listingService.getListingByLocationAndPrice(query).subscribe(success => {this.searchRes = "Query Returned (" + this.listings.length + ") Results"});
+    /* Get the actual results returned */
+    this.listingService.getListingByLocationAndPrice(query).subscribe(listings => {
+      this.listings = listings
+      this.searchRes = "Query Returned (" + this.listings.length + ") Results"; 
+    });
+    
   }
 
   // Clears the page back to its original state

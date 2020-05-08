@@ -72,8 +72,14 @@ def list_listings_by_location(Query):
 
     query_data = json.loads(temp)
 
-    # Getting the listings associated with a single location
-    listingList = list(d_a.Listings().find({'Location': query_data['location'], 'Price': {"$gt": query_data['minVal'], "$lt": query_data['maxVal']} }, {'_id': False}))
+    if "location" in query_data:
+        if query_data['location']:
+            listingList = list(d_a.Listings().find({'Location': query_data['location'], 'Price': {"$gt": query_data['minVal'], "$lt": query_data['maxVal']} }, {'_id': False}))
+        else:
+            listingList = list(d_a.Listings().find({'Price': {"$gt": query_data['minVal'], "$lt": query_data['maxVal']} }, {'_id': False}))
+
+    else:
+        listingList = list(d_a.Listings().find({'Price': {"$gt": query_data['minVal'], "$lt": query_data['maxVal']} }, {'_id': False}))
 
     # Return only the listings associated with the location
     return jsonify(listingList)
