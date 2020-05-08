@@ -41,5 +41,5 @@ def login():
         else:
             result = "Invalid login"
     else:
-        result = "User Doesn't Exist"
+        result = "Invalid login"
     return jsonify(result)
