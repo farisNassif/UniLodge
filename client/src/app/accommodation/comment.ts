@@ -1,4 +1,4 @@
-export class User { 
+export class Comment { 
     Listing_ID: string;
     Comment_ID: string;
     Poster: string;
