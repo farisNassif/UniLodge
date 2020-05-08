@@ -27,6 +27,7 @@ import * as Hammer from 'hammerjs';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { EditListingsComponent } from './listings/edit-listings/edit-listings.component';
+import { TestComponent } from './test/test.component';
 
 @Injectable()
 export class CustomHammerConfig extends HammerGestureConfig {
@@ -52,7 +53,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     UserLoginComponent, 
     AccommodationComponent, 
     ListingComponent, 
-    BrowseListingsComponent, EditListingsComponent],
+    BrowseListingsComponent, EditListingsComponent, TestComponent],
   imports: [
     MatSnackBarModule,
     BrowserAnimationsModule,
