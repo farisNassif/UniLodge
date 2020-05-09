@@ -69,26 +69,101 @@ showstringspaces=false            %
 \chapter{System Design}
 
 \begin{figure}[H]
-	\caption{Final System Architecture}
-	\label{image:design}
+	\caption{Final System Architecture\newline}
+	\label{image:finaldesign}
 	\centering
-	\includegraphics[width=1\textwidth]{images/design.png}
+	\includegraphics[width=1\textwidth]{images/design_final.png}
 \end{figure}	
 
 \section{Architectural Overview}
-The overall design of the system changed at multiple points throughout the development cycle before arriving at the conclusive design that can be seen in \textbf{Fig.\ref{image:design}}. This section will give a brief high-level overview of how the final architectural design came to be.
+The overall design of the system changed at multiple points throughout the development cycle before arriving at the conclusive design that can be seen in \textbf{Fig.\ref{image:finaldesign}}. This section will give a brief high-level overview of how the final architectural design came to be.
 
 \subsection{Major Architectural Changes}
 Initially, the project during development consisted of Angular for the presentation layer, Flask for the server and MongoDB Atlas for the database. Routes would be defined with Angular and API calls would be directed towards Flask which would in turn interact with MongoDB Atlas and return a response to the frontend.
 
 \paragraph{}
-During deployment however a major shift in design occurred. Major issues were encountered whenever Heorku used Flask to serve static Angular build files, resulting in pages and components not working as they would locally. To address this, Node and Express were used to serve the Angular build files. A server proxy would redirect Express API calls to the Flask server address, allowing Flask to retain it's role as the sole API while using the Express server to serve the Angular build files. This action, while somewhat convoluted, did address the issue which had caused a blocker for multiple days.
-
-\subsection{Final Architectural Design}
-The conclusive design (\textit{Which can be seen in \textbf{Fig.\ref{image:design}}}) allows the overall system to be delivered to users via cloud services, enabling a software as a service distribution model. 
+During deployment however a major shift in design occurred. Major issues were encountered whenever Heorku used Flask to serve static Angular build files, resulting in pages and components not working as they would locally. To address this, different methods were tested and verified. 
 
 \paragraph{}
-A Honcho procfile is used to enable the execution of both the Flask API server and the Express/Node server using just one worker on the cloud. Heroku will use Express/Node to serve the Angular build files while RESTful requests made to the Express server will be redirected to Flask with the use of a server proxy, allowing interactions between the primary components of the system to remain unhindered.
+Firstly, Node and Express were used to serve the Angular build files. A server proxy would redirect Express API calls to the Flask server address, allowing Flask to retain it's role as the sole API while using the Express server to serve the Angular build files. This action, while somewhat convoluted, did address the issue which had caused a blocker for multiple days.
+
+\paragraph{}
+Following testing of the aforementioned method, the team found the application to be uncomfortably slow and choppy. The decision was then made to deploy the Client and API on separate domains. This method, while not being completely efficient, does allow the overall system to become a lot more scaleable and following trials, worked flawlessly with very comfortable speeds. 
+
+\subsection{Final Architectural Design}
+The conclusive design (\textit{Which can be seen in \textbf{Fig.\ref{image:finaldesign}}}) allows the overall system to be delivered to users efficiently via cloud services, enabling a software as a service distribution model. 
+
+\paragraph{}
+Two separate procfiles are used to enable the execution of both the Flask API server and the Express/Node server on different domains. This allows Heroku to use Express/Node to serve the Angular build files without issue while still allowing the application efficient access to API resources.
+
+\section{Initial Architecture}
+This section will briefly discuss the intial overall design before the decision was made to decouple the API and Client. 
+
+\paragraph{}
+Following trial and error, a temporary design was constructed that allowed the deployment of the overall application, however it was far from ideal. 
+
+\paragraph{}
+The design consisted of a Honcho procfile, which was used to enable the execution of both the Flask API and the Express/Node server while using just one cloud worker. Node/Express was used by Heroku to serve the Angular build files while API requests made to the express server would be redirected to flask with the use of a server proxy, allowing interactions between primary components of the system to remain unhindered. 
+
+\paragraph{}
+This initial approach did pose issues, requests made via the proxy were a lot slower than they should ideally be, prompting the team to seek other methods of deployment.
+
+\begin{figure}[H]
+	\caption{Initial Design\newline}
+	\label{image:design}
+	\centering
+	\includegraphics[width=0.83\textwidth]{images/design.png}
+\end{figure}	
+
+\subsection{Express Proxy}
+As mentioned previously in the chapter, the integration of Node/Express was required to serve the Angular static build files rather than Flask, so the use of a proxy was required to still access and interact with the Flask API without using it to serve the application.
+\newline
+
+\begin{lstlisting}[caption=API Proxy]
+{
+    "/api": {
+        "target": "http://0.0.0.0:5000",
+        "secure": false, 
+    	  "changeOrigin": true
+    }
+}
+\end{lstlisting}
+
+\paragraph{}
+The proxy file defined in \textbf{Listing 4.12} is simply a JSON file that is referenced in the \textbf{package.json}, where additional compilation settings are configured. The proxy itself is defined in a local file named \textbf{proxy-conf.json}, this file must be referenced as a script. When Heroku builds and starts the application, the proxy must be defined within the start script. 
+
+\begin{lstlisting}[caption=Proxy Reference]
+"scripts": {
+  "ng": "ng",
+  "start": "node server.js --proxy -p proxy.conf.json",
+  "build": "ng build",
+  "test": "ng test",
+  "lint": "ng lint",
+  "e2e": "ng e2e",
+  "heroku-postbuild": "ng build --prod"
+},
+\end{lstlisting}
+
+Once established, the start script will execute \textbf{node server.js}, starting the Express server and configuring the proxy path. Since the purpose of the server is just to serve static files, the server script doesn't need to be lengthy since any heavy work will be delegated to Flask. \newline
+
+\begin{lstlisting}[caption=Express Server Runner]
+const express = require('express');
+const path = require('path');
+const cors = require('cors')
+const apiProxy = proxy('/api', { target: 'proxy.conf.json' });
+
+const app = express();
+
+app.use(express.static(__dirname + '/dist/client'), apiProxy);
+app.use(cors())
+
+app.get('/*', function(req,res) {
+
+res.sendFile(path.join(__dirname+'/dist/client/index.html'));
+});
+
+app.listen(process.env.PORT || 8081);
+\end{lstlisting}
 
 \paragraph{}
 Further insight on the decisions made during the development cycle and how the overall system is structured, including how individual components interact with each other will be discussed throughout the chapter.\newline
@@ -290,55 +365,6 @@ def new_listing(Username):
     
     return jsonify(result)
 \end{python}
-
-\subsection{Express Proxy}
-As mentioned previously in the chapter, the integration of Node/Express was required to serve the Angular static build files rather than Flask, so the use of a proxy was required to still access and interact with the Flask API without using it to serve the application.
-
-\begin{lstlisting}[caption=API Proxy]
-{
-    "/api": {
-        "target": "http://0.0.0.0:5000",
-        "secure": false, 
-    	  "changeOrigin": true
-    }
-}
-\end{lstlisting}
-
-\paragraph{}
-The proxy file defined in \textbf{Listing 4.12} is simply a JSON file that is referenced in the \textbf{package.json}, where additional compilation settings are configured. The proxy itself is defined in a local file named \textbf{proxy-conf.json}, this file must be referenced as a script. When Heroku builds and starts the application, the proxy must be defined within the start script. 
-
-\begin{lstlisting}[caption=Proxy Reference]
-"scripts": {
-  "ng": "ng",
-  "start": "node server.js --proxy -p proxy.conf.json",
-  "build": "ng build",
-  "test": "ng test",
-  "lint": "ng lint",
-  "e2e": "ng e2e",
-  "heroku-postbuild": "ng build --prod"
-},
-\end{lstlisting}
-
-Once established, the start script will execute \textbf{node server.js}, starting the Express server and configuring the proxy path. Since the purpose of the server is just to serve static files, the server script doesn't need to be lengthy since any heavy work will be delegated to Flask. \newline
-
-\begin{lstlisting}[caption=Express Server Runner]
-const express = require('express');
-const path = require('path');
-const cors = require('cors')
-const apiProxy = proxy('/api', { target: 'proxy.conf.json' });
-
-const app = express();
-
-app.use(express.static(__dirname + '/dist/client'), apiProxy);
-app.use(cors())
-
-app.get('/*', function(req,res) {
-
-res.sendFile(path.join(__dirname+'/dist/client/index.html'));
-});
-
-app.listen(process.env.PORT || 8081);
-\end{lstlisting}
 
 \section{Application Tier}
 Angular was used to develop the client side of the application. Using Angular allowed the client to be presented as a single-page application which allows the injection of multiple components as apposed to traditional multi-page applications. This section will cover all information related to the presentation of the application and how it's wired together.
