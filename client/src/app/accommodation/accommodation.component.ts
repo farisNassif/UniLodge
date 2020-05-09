@@ -59,14 +59,14 @@ export class AccommodationComponent implements OnInit {
         big: this.image
       },
       {
-        small: 'https://thumb.housinganywhere.com/images/listing/1609062/450x300/8baf0120-f1a0-469a-900d-7e2f53ab075b?t=crop',
-        medium: 'https://thumb.housinganywhere.com/images/listing/1609062/450x300/8baf0120-f1a0-469a-900d-7e2f53ab075b?t=crop',
-        big: 'https://thumb.housinganywhere.com/images/listing/1609062/450x300/8baf0120-f1a0-469a-900d-7e2f53ab075b?t=crop'
+        small: 'https://a0.muscache.com/ac/pictures/20060483-5d4c-45a4-9448-455db2db0744.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70',
+        medium: 'https://a0.muscache.com/ac/pictures/20060483-5d4c-45a4-9448-455db2db0744.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70',
+        big: 'https://a0.muscache.com/ac/pictures/20060483-5d4c-45a4-9448-455db2db0744.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70'
       },
       {
-        small: this.image,
-        medium: this.image,
-        big: this.image
+        small: 'https://i.pinimg.com/originals/71/a3/fc/71a3fc9f4d297920267006ff52fcbded.jpg',
+        medium: 'https://i.pinimg.com/originals/71/a3/fc/71a3fc9f4d297920267006ff52fcbded.jpg',
+        big: 'https://i.pinimg.com/originals/71/a3/fc/71a3fc9f4d297920267006ff52fcbded.jpg'
       },
       {
         small: 'https://thumb.housinganywhere.com/images/listing/1609062/450x300/8baf0120-f1a0-469a-900d-7e2f53ab075b?t=crop',

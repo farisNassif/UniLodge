@@ -74,7 +74,9 @@ export class ListingComponent implements OnInit {
       contact_num,
       this.base64textString);
     console.log(this.model);
-    this.listingService.newListing(this.Seller, this.model).subscribe(success=>{ console.log("success?")});
+    this.listingService.newListing(this.Seller, this.model).subscribe(success=> {  
+      this.router.navigate(['accommodation/' + this.model.Unique_Id]);
+    });
   }
 
   // Listens for any changes made to the file upload space

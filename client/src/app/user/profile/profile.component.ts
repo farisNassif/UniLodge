@@ -84,7 +84,7 @@ export class ProfileComponent implements OnInit {
   }
   
   /* Redirect to the edit listing page */
-  editListingRedirect(listing_to_edit: any, seller: any): void {
-    this.router.navigate(['listing/' + seller + "/" + listing_to_edit + "/edit"]);
+  editListingRedirect(listing_id: any, seller: any): void {
+    this.router.navigate(['accommodation/' + listing_id]);
   }
 }

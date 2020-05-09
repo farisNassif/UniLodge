@@ -17,10 +17,10 @@ import { map, startWith } from 'rxjs/operators';
 export class BrowseListingsComponent implements OnInit {
   /* For the Slider */
   minValue: number = 0;
-  maxValue: number = 500;
+  maxValue: number = 2000;
   options: Options = {
     floor: 0,
-    ceil: 500,
+    ceil: 2000,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
@@ -82,7 +82,7 @@ export class BrowseListingsComponent implements OnInit {
     this.searchRes = ''
     this.selected = ''
     this.minValue = 0
-    this.maxValue = 500
+    this.maxValue = 2000
     this.getListings();
   }
 
