@@ -102,7 +102,12 @@ export class AccommodationComponent implements OnInit {
   
   /* Retrieves the specific listing (Based on which listing was viewed by the user) */
   getListing(): void {
-    this.listingService.getListingById(this.listing_id).subscribe(listings => this.listings = listings)
+    this.listingService.getListingById(this.listing_id).subscribe(listings =>{
+       this.listings = listings
+       if (!this.listings[0]) {
+        this.router.navigate(['/*']);
+      }
+    })
   }
   
   /* Retrieves the images and displays them in the Gallery */
@@ -121,12 +126,10 @@ export class AccommodationComponent implements OnInit {
         Poster: localStorage.getItem("username"), Content: content, Timestamp: ""
       };
 
-      this.listingService.newComment(comment_payload).subscribe(success => { this.getComments() });
-
-      console.log(content);
-      console.log(localStorage.getItem("username"));
-      console.log(this.listing_id);
-      this.openSnackBar("Comment successfully added", "Ok")
+      this.listingService.newComment(comment_payload).subscribe(success => { 
+        this.getComments()
+        this.openSnackBar("Comment successfully added", "Ok")
+      });
     } else {
       this.openSnackBar("Comment must be at least 15 Characters", "Ok");
     }
@@ -141,6 +144,19 @@ export class AccommodationComponent implements OnInit {
   deleteComment(CommentID: any): void {
     this.listingService.deleteComment(CommentID).subscribe(success => { this.getComments() })
     this.openSnackBar("Comment successfully deleted", "Ok")
+  }
+
+  /* Redirect to the edit listing page */
+  editListingRedirect(listing_to_edit: any, seller: any): void {
+    this.router.navigate(['listing/' + seller + "/" + listing_to_edit + "/edit"]);
+  }
+
+  /* Redirect to the edit listing page */
+  deleteListing(listing_id: any): void {
+    this.listingService.deleteListing(listing_id).subscribe(success => {
+    this.router.navigate(['/'])
+    this.openSnackBar("Listing Successfully Deleted", "Ok")
+    })
   }
 
   /* If someone tries to delete a comment that isn't theirs */

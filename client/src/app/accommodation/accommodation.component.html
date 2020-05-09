@@ -25,8 +25,8 @@
                                     <div class="inset-listing-box" *ngFor="let listing of listings; let i=index" > 
                                         <ion-slide *ngIf="i<8" >
                                                 <div class="list-group">
-                                                    <button *ngIf="listingAuth!==false" style="background-color:orange;"  class="btn btn-success btn-lg" (click)="submitComment(Comment)">Edit Listing</button>
-                                                    <button *ngIf="listingAuth!==false" style="background-color:red;" class="btn btn-success btn-lg" (click)="submitComment(Comment)">Delete Listing</button>
+                                                    <button *ngIf="listingAuth!==false" style="background-color:orange;"  class="btn btn-success btn-lg" (click)="editListingRedirect(listing.Unique_Id, listing.Seller)">Edit Listing</button>
+                                                    <button *ngIf="listingAuth!==false" style="background-color:red;" class="btn btn-success btn-lg" (click)="deleteListing(listing.Unique_Id)">Delete Listing</button>
                                                     <div class="list-group-item list-group-item-action flex-column align-items-start">
                                                         <div class="d-flex w-100 justify-content-between">
                                                             <h5 class="mb-1">Posted by <a routerLink="/profile/{{ listing.Seller }}">{{ listing.Seller }}</a></h5>

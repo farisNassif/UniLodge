@@ -65,6 +65,18 @@ def list_user_listings(Username):
     # Return only the listings made by this user
     return jsonify(specificListing)
 
+# Delete Listing by ID
+@listings_blueprint.route('/api/listings/remove/<string:Unique_Id>', methods=['DELETE'])
+def delete_listing(Unique_Id):
+    temp = request.get_data().decode() # Ignore this, something needs to store decoded data or flask whines
+    try: 
+        print(Unique_Id)
+        d_a.Listings().delete_one({'Unique_Id': Unique_Id })
+        result = "Success"
+    except:
+        result = "Failed to remove"
+    return jsonify(result)
+
 # Get Listing information for a specific location
 @listings_blueprint.route('/api/listings-query/<string:Query>', methods=['GET', 'POST'])
 def list_listings_by_location(Query):
