@@ -70,7 +70,6 @@ def list_user_listings(Username):
 def delete_listing(Unique_Id):
     temp = request.get_data().decode() # Ignore this, something needs to store decoded data or flask whines
     try: 
-        print(Unique_Id)
         d_a.Listings().delete_one({'Unique_Id': Unique_Id })
         result = "Success"
     except:
@@ -137,7 +136,6 @@ def get_comments(Listing_ID):
 @listings_blueprint.route('/api/listings-id/remove-comment/<string:Comment_ID>', methods=['DELETE'])
 def delete_comment(Comment_ID):
     try: 
-        print(Comment_ID)
         d_a.Comments().delete_one({'Comment_ID': Comment_ID })
         result = "Success"
     except:

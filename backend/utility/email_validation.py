@@ -10,7 +10,6 @@ class valid_email(Enum):
     gti = "gti"
     gcc = "gcc"
 
-
 ''' 
 Converts the enum into a list then to a string to allow for removing unnecessary 
 information within the list then back to a list to allow for iteration

@@ -11,7 +11,7 @@ import utility.password_handler as p_h
 # Local data class that defines all required database logic
 import data.database_accessor as d_a
 
-# Local route classes that seperate and tidy different routes
+# Local blueprint classes that seperate and tidy different routes
 from routes.login_route import login_blueprint 
 from routes.register_route import register_blueprint
 from routes.temp_users_route import temp_users_blueprint
@@ -21,6 +21,8 @@ from routes.listings_route import listings_blueprint
 from flask_jwt_extended import JWTManager
 
 app = Flask(__name__)
+
+# For the sake of collaboration and grading, secret key is hardcoded and not an environmental var
 app.config['SECRET_KEY'] = '9GjnhWkzY9JxjWES2OD437VBfKqj7gwuztkkPS1Js2DtM2y0hixZ9IUiHUZ8Y8TFYSEjMeSSOR3OOuyxh6aPnP9xxp2gOAKwieOt'
 # app.config.from_envvar('SECRET_KEY') # In CLI type: set SECRET_KEY=jwt_secret_key.env
 
@@ -35,18 +37,6 @@ app.register_blueprint(login_blueprint)
 app.register_blueprint(register_blueprint)
 app.register_blueprint(temp_users_blueprint)
 app.register_blueprint(listings_blueprint)
-
-# This doesn't actually even do anything right now, can remove it and profile still works fine
-@app.route('/api/profile/<string:Username>', methods=['GET'])
-def user_profile(Username):
-    new_password = request.get_data().decode()
-    email_to_update = Username
-    try: 
-        d_a.getUsers().update_one({ "Username": email_to_update }, { "$set": { "Password": new_password } } )
-        result = (email_to_update + " your password was successfully updated!")
-    except: 
-        result = ("There was an error updating " + email_to_update + ".")
-    return jsonify(result)
 
 # Runs the application
 if __name__ == "__main__":

@@ -1,17 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../user/user'
 import { UserService } from '../user/user.service';
 import { Router } from '@angular/router'
 import { ListingService } from '../listings/listing.service';
-import { Listing } from '../listings/listing';
-
 import { HomeComponent } from './home.component';
-import { debug } from 'util';
-import { url } from 'inspector';
-
-
 
 describe('HomeComponent', () => {
     let fixture: ComponentFixture<HomeComponent>;
@@ -37,9 +29,9 @@ describe('HomeComponent', () => {
     })
 
     it('checks that listings are returned', ()=> {
-    spyOn(component, "getListings");
-    component.getListings();
-    expect(component.listings).not.toEqual(null);
+        spyOn(component, "getListings");
+        component.getListings();
+        expect(component.listings).not.toEqual(null);
     })
   
     it('checks that listings navigation works', ()=> {
@@ -51,5 +43,5 @@ describe('HomeComponent', () => {
         component.listingRedirect(listing);
 
         expect(router.url).toEqual('/accommodation/6k5ypfaq0h8')
-        })
+    })
 });

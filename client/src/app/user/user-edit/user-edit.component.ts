@@ -30,8 +30,6 @@ export class UserEditComponent implements OnInit {
   save(password: string): void {
     if (this.new_password.length >= 4)  {
       this.username = window.location.pathname.substring(14,40);
-      console.log(this.username);
-      console.log(this.new_password);
       this.userService.updateUser(this.username, this.new_password).subscribe(success=> { this.location.back() });
     } else {
       this.message_from_backend = "Password must be more than 4 Characters";

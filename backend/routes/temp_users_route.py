@@ -12,6 +12,10 @@ import utility.password_handler as p_h
 # Local data class that defines all required database logic
 import data.database_accessor as d_a
 
+'''
+    Depreciated Class, used during initial testing for user testing
+'''
+
 @temp_users_blueprint.route('/api/user/<string:Username>', methods=['GET'])
 def list_user(Username):
     # Making userList equal to whatever is in the users table. So return Username/Password WITHOUT the _id

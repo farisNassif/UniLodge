@@ -56,12 +56,11 @@
               <br>
               <img src="{{ base64textString }}" class="img-responsive" alt="Image">
               <br>
-              <button title="Submit Image" (click)="displayImage()">Submit Image</button>
               <div [innerHTML]="imageStatus"></div>
           </div>
     
         </form>
-        <button type="submit" class="btn btn-success" (click)="updateListing(model.Title, model.Price, model.ContactNumber, model.Description)" [disabled]="!listingForm.form.valid">Update</button>
+        <button type="submit" class="btn btn-success" (click)="updateListing(model.Title, model.Price, model.ContactNumber, model.Description, model.Location)" [disabled]="!listingForm.form.valid">Update</button>
     </div>
     <br>
 </body>

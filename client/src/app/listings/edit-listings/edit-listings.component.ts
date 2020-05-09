@@ -59,22 +59,22 @@ export class EditListingsComponent implements OnInit {
   null,
   null);
 
-  /* Default listing model, need to initialize it */
+  /* Second Default listing model, need to initialize it */
   modeld = new Listing(
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null);
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null);
 
   /* Retrieves the specific listing (Based on which listing was viewed by the user) */
   getListing(): void {
     this.listingService.getListingById(this.Listing).subscribe(listings =>{
-       this.listings = listings
-       if (!this.listings[0] || this.listings[0].Seller != localStorage.getItem('username')) {
+      this.listings = listings
+      if (!this.listings[0] || this.listings[0].Seller != localStorage.getItem('username')) {
         this.router.navigate(['/*']);
       } else {
         this.model = new Listing(
@@ -93,9 +93,9 @@ export class EditListingsComponent implements OnInit {
   }
 
   /* Just updates old values with newly input values */
-  updateListing(title: string, price: number, contact_num: string, description: any) {
+  updateListing(title: string, price: number, contact_num: string, description: any, location: any) {
     /* Newly updated content */
-    this.modeld = new Listing(  
+    this.modeld = new Listing( 
       this.Listing,
       title,
       this.Seller,
@@ -107,8 +107,8 @@ export class EditListingsComponent implements OnInit {
 
     /* Very dirty but time is of the essence */
     this.listingService.deleteListing(this.Listing).subscribe(success=> {
-      this.listingService.newListing(this.Seller, this.model).subscribe(success=> {  
-        this.router.navigate(['accommodation/' + this.model.Unique_Id]);
+      this.listingService.newListing(this.Seller, this.modeld).subscribe(success=> {  
+        this.router.navigate(['accommodation/' + this.modeld.Unique_Id]);
         this.openSnackBar("Listing Updated Successfully", "Ok")
       });
     })

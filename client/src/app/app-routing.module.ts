@@ -22,8 +22,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, data: { title: 'UniLodge - Register User' } },
   { path: 'profile/:Username', component: ProfileComponent, data: { title: 'UniLodge - Profile' } },
   /* These are mainly for testing - user shouldn't access these in production */
-  { path: 'users', component: UserListComponent, data: { title: 'UniLodge - Users'} },
-  { path: 'users/update/:Username', component: UserEditComponent, data: { title: 'UniLodge - Update User' } },
+  //{ path: 'users', component: UserListComponent, data: { title: 'UniLodge - Users'} },
+  //{ path: 'users/update/:Username', component: UserEditComponent, data: { title: 'UniLodge - Update User' } },
   /* Listings relevant routes */
   { path: 'browse', component: BrowseListingsComponent, data: { title: 'UniLodge - Browse' } },
   { path: 'listing/:Username', component: ListingComponent, data: { title: 'UniLodge - CreateListing' } },
