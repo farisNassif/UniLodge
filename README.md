@@ -65,4 +65,4 @@ User Features
 ### Relevant Links
 Links to swaggerhub, dissertation, 
 * A link to our SwaggerHub OpenAPI. It defines the routes used in the Python flask server, as well as the data models they use and how the routes operate the CRUD functionality of the Application
-[Swaggerhub OpenAPI for Unilodge flask routes](https://app.swaggerhub.com/apis-docs/GMIT7/Unilodge-API/0.1-oas3#/)
+[Swaggerhub OpenAPI for Unilodge flask routes](https://app.swaggerhub.com/apis-docs/GMIT7/Unilodge-API/0.2-oas3#/)
