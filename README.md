@@ -11,13 +11,12 @@
 | **Project Title** | UniLodge
 | **Module**  | Applied Project & Minor Dissertation
 | **Course** | BSc (Hons) in Software Development
-| **Heroku** | https://unilodge.herokuapp.com/
+| **Heroku** | [UniLodge](https://unilodge.herokuapp.com/)
 | **Authors** | [Faris Nassif](https://github.com/farisNassif) & [Aaron Burns](https://github.com/aaronBurns59) |
 | **Supervisors** | Dr. John French & Dr. Martin Kenirons |
 
 ## Contents
 * [About](#about)
-* [How UniLodge Works](#how-unilodge-works)
 * [Running Locally and Requirements](#running-locally-and-requirements)
 * [Features](#design)
 * [Relevant Links](#relevant-links)
@@ -26,14 +25,7 @@
 ### About
 **UniLodge** is a service exclusively for students that bridges the gap between those looking for accomodation and those looking to advertise a room or location.
 
-### How UniLodge Works
-
 ### Requirements
-
-### Running Locally and Requirements
-Before you can run the program locally, you may need to install some 
-
-#### Requirements
 * [NodeJS](https://nodejs.org/en/) 6.13.6 (<i>Or Higher)</i>
 * [Python](https://www.python.org/downloads/) 3.7.1 (<i>Or Higher)</i>
 * [Angular 7](https://angular.io/) (<i>8 and above may cause issues</i>)
@@ -41,9 +33,8 @@ Before you can run the program locally, you may need to install some
     <b>Note</b>: <i>You will <b>Not</b> be able to run the application locally if you do not generate a Mongo URI and place it within       the <b>backend</b> directory in a file called </i><b>mongo_uri.txt</b>. <br><br> See the Mongo<a href="https://docs.atlas.mongodb.com/driver-connection/"> Driver Guide</a> for an overview on how to generate a Mongo URI.
 </p>
 
-
 #### Running the Program
-1. If you do <b>Not</b> have a Mongo URI, see the Requirements section.
+1. If you do <b>Not</b> have a Mongo URI or , see the Requirements section.
 2. In your command line terminal: `git clone https://github.com/farisNassif/UniLodge`
 3. Open two terminals, one for the Angular Client and one for the Flask Server
 4. In your first terminal, navigate to the `/backend` folder and type `pip install -r requirements.txt`
@@ -53,14 +44,6 @@ Before you can run the program locally, you may need to install some
 8. The application may be accessed at `http://localhost:4200/`
 
 <i>Alternatively, the application may be accessed via [Heroku](https://unilodge.herokuapp.com/)</i>
-
-##### Python
-* To aquire all of the packages(pip install [modulename]) needed for the Python Flask component of this project, use the following cmd line to **install all of the packages** that are contained in the *requirements.txt*.
-
-pip install -r requirements.txt
-
-* If you are on a Linux system it should work fine. If you are on a Windows system then open a Linux terminal such as "Git Bash" or "Cmder" and it should work fine.
-
 
 ### Features
 TODO!!! TEMP
