@@ -38,7 +38,7 @@ export class ListingService {
 
   /* Deletes a listing by ID */
   deleteListing(listing_id: any) {
-    if (confirm("Are you sure you want to delete your Listing?")) {
+    if (confirm("Are you Sure?")) {
       return this.http.delete<any>(this.userUrl + '/api/listings/remove/' + listing_id);
     }
   }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Listing } from '../listing';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { ListingService } from '../listing.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-edit-listings',
@@ -29,7 +30,7 @@ export class EditListingsComponent implements OnInit {
   imageStatus: string = ''
 
   /* Constructor with required params */
-  constructor(private listingService: ListingService, private router: Router) { }
+  constructor(private listingService: ListingService, public snackBar: MatSnackBar, public router: Router) { }
 
   /* When the page loads, get the listing to be edited */
   ngOnInit() {
@@ -42,6 +43,11 @@ export class EditListingsComponent implements OnInit {
     this.submitted = true; 
   }
 
+  /* Selected from the list, craughwell, loughrea etc */
+  setLocation(location: any) {
+    this.UserLocation = location;
+  }
+
   /* Default listing model, need to initialize it */
   model = new Listing(
   null,
@@ -52,6 +58,17 @@ export class EditListingsComponent implements OnInit {
   null,
   null,
   null);
+
+  /* Default listing model, need to initialize it */
+  modeld = new Listing(
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null);
 
   /* Retrieves the specific listing (Based on which listing was viewed by the user) */
   getListing(): void {
@@ -72,6 +89,28 @@ export class EditListingsComponent implements OnInit {
         this.base64textString = this.listings[0].Image
         this.Seller = this.listings[0].Seller
       }
+    })
+  }
+
+  /* Just updates old values with newly input values */
+  updateListing(title: string, price: number, contact_num: string, description: any) {
+    /* Newly updated content */
+    this.modeld = new Listing(  
+      this.Listing,
+      title,
+      this.Seller,
+      description,
+      this.UserLocation,
+      price,
+      contact_num,
+      this.base64textString);
+
+    /* Very dirty but time is of the essence */
+    this.listingService.deleteListing(this.Listing).subscribe(success=> {
+      this.listingService.newListing(this.Seller, this.model).subscribe(success=> {  
+        this.router.navigate(['accommodation/' + this.model.Unique_Id]);
+        this.openSnackBar("Listing Updated Successfully", "Ok")
+      });
     })
   }
 
@@ -100,5 +139,12 @@ export class EditListingsComponent implements OnInit {
       /* Just a message for the user letting them know their uploaded image was authorized */
       this.imageStatus = "Image Saved - You may still change this before you submit your Listing";
     }
+  }
+
+  /* Reusable method for displaying the snackbar popup for 4.5 seconds */
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+        duration: 4500,
+    });
   }
 }
