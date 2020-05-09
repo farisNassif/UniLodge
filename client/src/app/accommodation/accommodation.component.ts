@@ -86,6 +86,15 @@ export class AccommodationComponent implements OnInit {
     }
   }
 
+  /* Compares current logged in user against listing author */
+  get listingAuth() {
+    if (localStorage.getItem('username') == this.listings[0].Seller) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   /* Retrive all images associated with this listing */
   getImages(b64: string): void {
     this.image = b64;

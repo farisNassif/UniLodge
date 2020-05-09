@@ -52,7 +52,7 @@ export class UserLoginComponent implements OnInit {
     }
   }
 
-  /* Reusable method for displaying the snackbar popup for 4.5 seconds */
+  /* Reusable method for displaying the snackbar popup for 4 seconds */
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
        duration: 4000,
