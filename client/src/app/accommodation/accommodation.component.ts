@@ -148,7 +148,7 @@ export class AccommodationComponent implements OnInit {
 
   /* Redirect to the edit listing page */
   editListingRedirect(listing_to_edit: any, seller: any): void {
-    this.router.navigate(['listing/' + seller + "/" + listing_to_edit + "/edit"]);
+    this.router.navigate(['listing/edit/' + listing_to_edit]);
   }
 
   /* Redirect to the edit listing page */

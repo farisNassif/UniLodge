@@ -1,1 +1,68 @@
-<p>edit-listings works!</p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularBootstrap</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+</head>
+<body>
+    <div class="container">
+    <br>
+    <p><b>Seller: {{ Seller }}</b><br><b>Listing: {{ Listing }}</b></p>
+    <form (ngSubmit)="onSubmit()" #listingForm="ngForm" class="needs-validation" novalidate>
+
+        <div class="form-group">
+            <b><label for="Title">*Title</label></b>
+            <input type="text" class="form-control" id="Title" [(ngModel)]="model.Title" name="Title" #Title="ngModel">
+        </div>
+
+        <div class="form-group">
+            <b><label for="Location">*Location</label></b>
+            <select class="form-control" id="Location" (change)="setLocation($event.target.value)" required [(ngModel)]="model.Location" name="Location" >
+              <option *ngFor="let location of Location" [value]="location">{{location}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <b><label for="Description">Enter a Description or Relative Details about your Listing</label></b><br>
+            <textarea id="Description" #Description="ngModel" [(ngModel)]="model.Description" class="form-control" name="Description" placeholder="This would be a good place to really sell your Listing"></textarea>
+        </div>  
+        <div class="form-group">
+            <label for="Price"><b>*Monthly Rate </b></label>
+            <input type="text" class="form-control" placeholder="300.00" id="Price" [(ngModel)]="model.Price" name="Price" #Price="ngModel" required>
+                <div [hidden]="Price.valid || Price.pristine"
+                    class="alert alert-danger">
+                    Price is required
+                </div>
+          </div>
+    
+          <div class="form-group">
+            <b><label for="ContactNumber">*Contact Number</label></b>
+            <input type="text" class="form-control" id="ContactNumber" [(ngModel)]="model.ContactNumber" placeholder="087 123 4567" name="ContactNumber" #ContactNumber="ngModel" required>
+              <div [hidden]="ContactNumber.valid || ContactNumber.pristine"
+                class="alert alert-danger">
+                Contact Number is required
+              </div>
+          </div>
+    
+          <div class="form-group">
+              <b><label for="Image">Upload Main Image</label></b>
+              <br>
+              <input type='file' accept="image/*" (change)="changeListener($event)"> <br>
+              <br>
+              <img src="{{ base64textString }}" class="img-responsive" alt="Image">
+              <br>
+              <button title="Submit Image" (click)="displayImage()">Submit Image</button>
+              <div [innerHTML]="imageStatus"></div>
+          </div>
+    
+        </form>
+        <button type="submit" class="btn btn-success" (click)="newListing(model.Title, model.Price, model.ContactNumber, model.Description)" [disabled]="!listingForm.form.valid">Update</button>
+    </div>
+    <br>
+</body>
+</html>
