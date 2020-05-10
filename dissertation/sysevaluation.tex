@@ -44,30 +44,85 @@ This brief section will describe how each objective was addressed over the cours
   Unfortunately collaboration and communication between team members is something that could have seen improvements during development, this outcome as well as system flaws and improvements will be discussed in the following chapter and further in this chapter respectively.
 \end{description}
 
+\section{Testing}
+While the overall application was not extensively tested, various methods of testing were integrated in both a development and production environment. This section will briefly cover the methods incorporated to evaluate the robustness of the overall system.
+
+\subsection{Unit Testing}
+Unit testing was minimally incorporated using both Karma and Jasmine. These tests were carried out on various functions and components before they were fully integrated into the system. \newline
+
+\begin{lstlisting}[caption=Testing with Karma]
+beforeEach(() => {
+    TestBed.configureTestingModule({
+        providers: [
+            {
+                provide: Router,
+                useValue: {
+                   url: '/accommodation/'
+                } 
+            }
+        ]
+    });
+
+let route: ActivatedRoute
+let userService: UserService
+let router: Router
+let listingService: ListingService
+component = new HomeComponent(route,userService,router,listingService);
+})
+
+it('checks that listings are returned', ()=> {
+    spyOn(component, "getListings");
+    component.getListings();
+    expect(component.listings).toEqual(listings[]);
+})
+\end{lstlisting}
+
+\paragraph{}
+Ideally, Karma unit tests would be written to test new functions as they are implemented. If this was practised throughout development, a lot of errors would have been caught and addressed much sooner.
+
+\subsubsection{Postman}
+Additionally, Postman was used to test newly developed API endpoints. This allowed issues to be caught before full integration to the client began. This approach allowed the team to make requests to the API and ensure the expected status codes and responses were returned.
+
+\begin{figure}[H]
+	\caption{Postman Finding User Associated Comments}
+	\label{image:waterfall}
+	\centering
+	\includegraphics[width=0.70\textwidth]{images/postman_ex.png}
+\end{figure}	
+
+\subsection{System Testing}
+Selenium was used to test the overall system functionality and to validate the overall application. Selenium tests were ran against both Firefox and Chrome to test the overall functionality.
+
+\begin{figure}[H]
+	\caption{Selenium Testing Functionality}
+	\label{image:selenium}
+	\centering
+	\includegraphics[width=0.70\textwidth]{images/selenium.png}
+\end{figure}	
+
+\paragraph{}
+Selenium allowed the testing of vital functionality via automated clicks, input and submissions among other potential options. In \textbf{Figure 5.2}, a URL could be specified for Selenium to run the pre-written test against. By defining specific actions and elements to interact with by specifying their xpath, Selenium can automate an isolated test against the specified path to ensure it functions as expected.
+
 \section{Limitations and Opportunities for Improvement}
 While the proposed objectives for the project were achieved, there are still multiple areas within the developed system that can be vastly improved.
 
-\subsection{Server Proxy}
-Using a proxy to redirect API calls to Flask is far from optimal. While the application works as is with Node/Express serving the static Angular files, using a proxy to incorporate the Flask API is still only a quick fix for the system. 
+\subsection{Testing}
+Although periodic unit testing with Karma, Jasmine and Selenium was conducted and usability tests were incorporated along with acceptance and verification testing to validate the project objectives, overall testing could have been a lot more prevalent throughout the system.
+
+\paragraph{}
+Unit Testing wasn't as abundant as it should have been, however during the early stages of development Karma and Jasmine were utilized at an acceptable level to ensure functionality like navigation and intractable components worked as intended. With that said, System Testing was an area of testing that really fell short during the project life-cycle.
+
+\paragraph{}
+System Testing is something that should have been practiced and seen as a larger priority than it was considered. The biggest issue faced throughout the project was undoubtedly the problem with Flask and Angular build files, should System Testing have been practiced, this could have been identified and addressed at a much earlier stage.
 
 \paragraph{}
 System testing earlier in the development life cycle would have identified the issue of Flask not correctly serving Angular build files. Angular build files weren't generated until time came to deploy the application, so Flask only ever served development files. Build files were required for Heroku to be able to host the application, meaning the workaround was necessary, but could have been avoided if system tests were incorporated earlier and builds were generated periodically to test deployment. If this was carried out, the issue with Flask would have been able to be addressed much earlier in the development cycle.
 
-\subsection{Testing}
-Although periodic unit testing with Karma and Jasmine was conducted and usability tests were incorporated along with acceptance and verification testing to validate the project objectives, overall testing could have been a lot more prevalent throughout the system.
+\subsection{Lack of Additional Functionality}
+The developed system, while adhering to the outlined goals, does lack in the area of additional user functionality that would see it be a serious alternative to applications of a similar nature.
 
 \paragraph{}
-During development with the help of fellow students, user stories were written and used to drive some areas 
-of development, this approach wasn't incorporated in all aspects of development, however some areas like commenting or browsing components were heavily designed and implemented this way. \newline
-
-\begin{lstlisting}[caption=User Story used as a base for browse functionality]
-As a Student looking for Accommodation on a budget
-I want to browse Listings in Salthill between 50 and 80 euro
-So that I can contact the Poster and inquire about the Listing
-\end{lstlisting}
-
-\paragraph{}
-Unit Testing wasn't as abundant as it should have been, however during the early stages of development Karma and Jasmine were utilized at an acceptable level to ensure functionality like navigation and intractable components worked as intended. With that said, System Testing was an area of testing that really fell short during the project life-cycle. As mentioned previously, System Testing is something that should have been practiced and seen as a larger priority than it was considered. The biggest issue faced throughout the project was undoubtedly the problem with Flask and Angular build files, should System Testing have been practiced, this could have been identified and addressed at a much earlier stage.
+Features like profile enhancements, additional user functionality and the overall aesthetic of the application are on the list of future enhancements that will see implementation in future development cycles.
 
 \subsection{Device Portability}
 Following deployment, the application was tested on mobile, and while it works, the overall display of pages and components isn't ideal and can be improved upon. This can be solved in future by including some media and device responsive CSS on the most problematic pages.
@@ -79,10 +134,14 @@ This could have been addressed during development by consistently testing the ap
 Something that the team had attempted to address at multiple points during the development cycle is the stuttering of some API interactions. This delay would result in components loading faster than the API data could be retrieved, an undesirable feature that isn't pleasant to see in an application. 
 
 \paragraph{}
-Different methods like lazy loading and progress / loading bars were trialed and implemented to attempt to address the inconvenience, however it does still remain a problem with the application with some components more than others.
+Different methods like lazy loading and progress / loading bars were trialed and implemented to attempt to address the inconvenience, however, while it was mostly corrected with the aforementioned methods, it does still remain a slight problem with the application with some components more than others.
 
 \section{Overall Evaluation}
 Overall the system functions as was intended, a platform for both students searching for and offering accommodate services. The requirements outlined in \textbf{Section 1.1}. Even though much was accomplished, the importance of testing in a system of this scale was learned, regardless if in terms of industry standard systems the developed application is minuscule in comparison, it only highlights the importance of maintainability during development.
 
 \paragraph{}
-The overall development stack is considered by the team a worthy choice. The fact it was diverse stack not only enhanced knowledge of the individual components, but also first-hand experience on how to wire technologies together that wouldn't traditionally be coupled is a valuable learning outcome that can be applied to future projects. 
+With that being said, not extensively testing did yield a silver lining, the team did learn how to overcome unexpected issues that may arise and find unique solutions that wouldn't traditionally be sought out.
+
+\paragraph{}
+Finally, the overall development stack is considered by the team a worthy choice. The fact it was diverse stack not only enhanced knowledge of the individual components, but also first-hand experience on how to wire technologies together that wouldn't traditionally be coupled is a valuable learning outcome that can be applied to future projects. 
+

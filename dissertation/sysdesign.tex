@@ -592,7 +592,16 @@ Once logged in, the listing creation page becomes available. The page is JWT tok
 On submission, the listing is created and associated with the creator. It can be accessed and viewed by anyone but can only be edited or removed by the original poster. 
 
 \subsection{Deployment}
-The application was deployed to Heroku with both the Flask API Server and Node/Express Server being hosted on separate domains. Two separate procfiles were employed, Gunicorn, a pre-fork worker model, was used to run the Flask server while Node was used to handle the client side deployment.
+The application was deployed to Heroku with both the Flask API Server and Node/Express Server being hosted on separate domains.
+
+\begin{figure}[H]
+	\caption{Deployment Overview}
+	\label{image:deploy}
+	\centering
+	\includegraphics[width=0.93\textwidth]{images/deploy.png}
+\end{figure}
+
+Two separate procfiles were employed, Gunicorn, a pre-fork worker model, was used to run the Flask server while Node was used to handle the client side deployment.
 
 \begin{figure}[H]
     \centering
@@ -609,11 +618,4 @@ The application was deployed to Heroku with both the Flask API Server and Node/E
 \end{figure}
 
 \paragraph{}
-While initially the team felt it would be ideal to deploy both processes on the same domain, following supervisory meetings felt decoupling processes enhanced the overall scalability and would make the overall application much easier to maintain and test in future.
-
-\begin{figure}[H]
-	\caption{Deployment Overview}
-	\label{image:deploy}
-	\centering
-	\includegraphics[width=0.93\textwidth]{images/deploy.png}
-\end{figure}
+While initially the team felt it would be ideal to deploy both processes on the same domain, following supervisory meetings felt decoupling processes enhanced the overall scalability and would make the overall application much easier to maintain and test in the future.
