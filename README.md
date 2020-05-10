@@ -3,7 +3,7 @@
 </p>
 
 <i align="center">
-  <h4>An Exclusive Accomodation Sharing Service for Students in Galway</h4>
+  <h4>An Exclusive Accommodation Sharing Service for Students in Galway</h4>
 </i>
 
 | Details  |   |
@@ -23,7 +23,7 @@
 * [Relevant Links](#relevant-links)
 
 ### About	
-**UniLodge** is a service exclusively for students. The application is designed to bridge the gap between those looking for accomodation and those looking to advertise a room or location. The features of the application are described [below](#goals-and-features) and a [screencast](www.youtube.com) of the application is available for viewing.
+**UniLodge** is a service exclusively for students. The application is designed to bridge the gap between those looking for accommodation and those looking to advertise a room or location. The features of the application are described [below](#goals-and-features) and a [screencast](www.youtube.com) of the application is available for viewing.
 
 ### Requirements
 * [NodeJS](https://nodejs.org/en/) 6.13.6 (<i>Or Higher)</i>
@@ -60,7 +60,7 @@ At a minimum, the application would allow:
 1. Student Login & Registration
 2. Creation of Listings including full CRUD functionality
 3. Communication with other users via messages or alternative means
-4. Searching for listings based on specific paramaters
+4. Searching for listings based on specific parameters
 
 #### Main Implemented Features
 * Secure Registration (<I>With a Galway college email address</i>)
@@ -71,6 +71,12 @@ At a minimum, the application would allow:
 * User profiles
 * Encrypted user data
 * Cloud hosted
+
+#### Project Deisgn
+<h3 align="center">Final Architectural Design</h3>
+<p align="center">
+    <img src = "https://i.imgur.com/rn31yX9.png">
+</p>
 
 ### Relevant Links
 * [Deployed Web-App](https://unilodge.herokuapp.com/)
