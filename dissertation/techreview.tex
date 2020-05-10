@@ -189,36 +189,8 @@ Redis, meaning REmote DIctionary Server is an in-memory distributed key-value da
 \paragraph{}
 At early stages in the project, various machine learning implementations were being considered. Redis would have been a perfect inclusion should the project have adopted artificial intelligence in any form, allowing for rapid access and storage of short-lived large scale machine learning data.
 
-\section{Prototyping}
-Prior to commencing development on the project, an initial prototype was built, incorporating technologies and frameworks that the team felt would compliment the scope and nature of the established project. The goal of constructing the prototype was mainly to become familiar with integrating the technologies that were heavily considered and to see if they complimented each other in practice as well as they did in theory.
-
-\begin{figure}[H]
-	\caption{Basic CRUD Prototype}
-	\label{image:prototype}
-	\centering
-	\includegraphics[width=0.8\textwidth]{images/prototype.png}
-\end{figure}	
-
-\paragraph{}
-The resulting prototype as seen in \textbf{Fig.\ref{image:prototype}} consisted of a very basic CRUD web-hosted application that would serve as a skeleton foundation for which to build the final project onto \cite{PROTOTYPE}.
-
-\subsection{Prototype Technologies}
-As mentioned, the prototype was built with tools and technologies the team saw to be very likely inclusions in the final project. 
-
-\paragraph{}
-The application was served with \textbf{Flask}, all application logic and endpoints were defined with \textbf{Python}. Initially, \textbf{VueJS} was incorporated into early stages of the prototype, however the decision to made to remove the framework following undesirable performance, documentation and integration. Instead of serving Vue static files, Flask would serve \textbf{HTML} and \textbf{Jinja2} templates, since no frontend was incorporated into the prototype, the design naturally was very basic, with very little CSS, which was mainly used to style and format the input table.
-
-\paragraph{}
-The Python module \textbf{PyMongo} was used to connect to \textbf{MongoDB Atlas}, which handled the storage of data. Finally the application was (\textit{And is still}) hosted on \textbf{Heroku} \cite{PROTOTYPE_HEROKU}. 
-
-\subsection{Prototype Conclusion}
-Creating and deploying the prototype turned out to be beneficial for the team when initial development of the final project began. The use of some technologies was completely ruled out and a lot of time was saved and put to use on research or development. 
-
-\paragraph{}
-The head start on the final project enabled by the decision to develop the prototype can't be understated, from creating local environments, generating requirements, creating a procfile for which to deploy the application and routing in flask to mention a few newly learned methods from a list of many, the team were glad for to have taken the prototyping route.
-
 \section{Chosen Technologies}
-Following research, input from supervisors and trials of the aforementioned technologies via the prototype, a stack was constructed that the developers felt would fit both the objective and scope of the project. This section will outline the technologies, tools, languages, frameworks and concepts that were ultimately implemented and descriptions of relevant implementations will be illustrated at a conceptual level.
+Following research, input from supervisors and trials of the aforementioned technologies via a developed prototype, a stack was constructed that the developers felt would fit both the objective and scope of the project. This section will outline the technologies, tools, languages, frameworks and concepts that were ultimately implemented and descriptions of relevant implementations will be illustrated at a conceptual level.
 
 \subsection{Angular}
 After the elimination of the possibility of VueJS from the prototype and the ruling out of React, Angular was the strongest contender remaining. Following trials and integration with the prototype, the team found Angular to be a very nice fit. While a stack with Flask, Python and Angular isn't traditionally common, the Angular documentation allowed for a very smooth integration \cite{ANGULAR_DOCUMENTATION}.

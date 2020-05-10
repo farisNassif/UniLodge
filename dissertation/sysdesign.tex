@@ -96,8 +96,36 @@ The conclusive design (\textit{Which can be seen in \textbf{Fig.\ref{image:final
 \paragraph{}
 Two separate procfiles are used to enable the execution of both the Flask API server and the Express/Node server on different domains. This allows Heroku to use Express/Node to serve the Angular build files without issue while still allowing the application efficient access to API resources.
 
+\section{Prototyping}
+Prior to commencing development on the project, an initial prototype was built, incorporating technologies and frameworks that the team felt would compliment the scope and nature of the established project \cite{PROTOTYPE_HEROKU}. The goal of constructing the prototype was mainly to become familiar with integrating the technologies that were heavily considered and to see if they complimented each other in practice as well as they did in theory.
+
+\begin{figure}[H]
+	\caption{Basic CRUD Prototype}
+	\label{image:prototype}
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/prototype.png}
+\end{figure}	
+
+\paragraph{}
+The resulting prototype as seen in \textbf{Fig.\ref{image:prototype}} consisted of a very basic CRUD web-hosted application that would serve as a skeleton foundation for which to build the final project onto \cite{PROTOTYPE}.
+
+\subsection{Prototype Technologies}
+As mentioned, the prototype was built with tools and technologies the team saw to be very likely inclusions in the final project. 
+
+\paragraph{}
+The application was served with \textbf{Flask}, all application logic and endpoints were defined with \textbf{Python}. Initially, \textbf{VueJS} was incorporated into early stages of the prototype, however the decision to made to remove the framework following undesirable performance, documentation and integration. Instead of serving Vue static files, Flask would serve \textbf{HTML} and \textbf{Jinja2} templates, since no frontend was incorporated into the prototype, the design naturally was very basic, with very little CSS, which was mainly used to style and format the input table.
+
+\paragraph{}
+The Python module \textbf{PyMongo} was used to connect to \textbf{MongoDB Atlas}, which handled the storage of data. Finally the application was (\textit{And is still}) hosted on \textbf{Heroku} \cite{PROTOTYPE_HEROKU}. 
+
+\subsection{Prototype Conclusion}
+Creating and deploying the prototype turned out to be beneficial for the team when initial development of the final project began. The use of some technologies was completely ruled out and a lot of time was saved and put to use on research or development. 
+
+\paragraph{}
+The head start on the final project enabled by the decision to develop the prototype can't be understated, from creating local environments, generating requirements, creating a procfile for which to deploy the application and routing in flask to mention a few newly learned methods from a list of many, the team were glad for to have taken the prototyping route.
+
 \section{Initial Architecture}
-This section will briefly discuss the intial overall design before the decision was made to decouple the API and Client. 
+This section will briefly discuss the initial overall design before the decision was made to decouple the API and Client. 
 
 \paragraph{}
 Following trial and error, a temporary design was constructed that allowed the deployment of the overall application, however it was far from ideal. 
