@@ -21,6 +21,9 @@
 * [Goals and Features](#goals-and-features)
 * [Relevant Links](#relevant-links)
 
+### About	
+**UniLodge** is a service exclusively for students that bridges the gap between those looking for accomodation and those looking to advertise a room or location.
+
 ### Requirements
 * [NodeJS](https://nodejs.org/en/) 6.13.6 (<i>Or Higher)</i>
 * [Python](https://www.python.org/downloads/) 3.7.1 (<i>Or Higher)</i>
@@ -46,15 +49,6 @@
 
 #### End-to-End Tests
 * `ng e2e`
-
-### Features
-TODO!!! TEMP
-Application features
--Encryption
--JWT login tokens
--Data retrieved directly from flask queries
--Crud, swagger etc
--Heroku deployment hopefully
 
 ### Goals and Features
 For the team members initially, the end goal for the project was to create a platform for students in the Galway area to both advertise and search for accommodative services. 
