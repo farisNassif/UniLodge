@@ -158,7 +158,7 @@ As mentioned previously in the chapter, the integration of Node/Express was requ
 \end{lstlisting}
 
 \paragraph{}
-The proxy file defined in \textbf{Listing 4.12} is simply a JSON file that is referenced in the \textbf{package.json}, where additional compilation settings are configured. The proxy itself is defined in a local file named \textbf{proxy-conf.json}, this file must be referenced as a script. When Heroku builds and starts the application, the proxy must be defined within the start script. 
+The proxy file defined in \textbf{Listing 4.1} is simply a JSON file that is referenced in the \textbf{package.json}, where additional compilation settings are configured. The proxy itself is defined in a local file named \textbf{proxy-conf.json}, this file must be referenced as a script. When Heroku builds and starts the application, the proxy must be defined within the start script. 
 
 \begin{lstlisting}[caption=Proxy Reference]
 "scripts": {
@@ -194,7 +194,11 @@ app.listen(process.env.PORT || 8081);
 \end{lstlisting}
 
 \paragraph{}
-Further insight on the decisions made during the development cycle and how the overall system is structured, including how individual components interact with each other will be discussed throughout the chapter.\newline
+Further insight on the decisions made during the development cycle and how the overall system is structured, including how individual components interact with each other will be discussed throughout the chapter.
+
+\paragraph{}
+\textit{The remainder of this chapter will cover and discuss the overall Final Design.}
+
 
 \section{Data Tier}
 MongoDB Atlas was employed to manage all the data-related needs of the project. Database operations are all executed by Python, based on requests made to the API by the frontend. In this section, the interactions between the aforementioned data related components will be conveyed and their inner-workings explained.
@@ -254,7 +258,7 @@ def Users():
     return users
 \end{python}
 
-Based on the defined class in \textbf{Listing.4.2}, the collections could be called externally, enabling encapsulation of the collection logic while still exposing necessary PyMongo functionality. In classes that would externally interact with the collections, the manipulation of collections would still be simplistic, they would need only to import and define the accession class. \newline
+Based on the defined class in \textbf{Listing.4.5}, the collections could be called externally, enabling encapsulation of the collection logic while still exposing necessary PyMongo functionality. In classes that would externally interact with the collections, the manipulation of collections would still be simplistic, they would need only to import and define the accession class. \newline
 
 \begin{python}[caption=Interacting with Collections]
 # Definition of Database class as d_a
@@ -268,7 +272,7 @@ def list_users():
     return jsonify(userList)
 \end{python}
 
-As can be seen in \textbf{Listing.4.3}, interactions with the collection objects still remain practical and simplistic. In this specific scenario, a list of users are returned to the client as a JSON object, enabling further interaction with the collection by the client.
+As can be seen in \textbf{Listing.4.6}, interactions with the collection objects still remain practical and simplistic. In this specific scenario, a list of users are returned to the client as a JSON object, enabling further interaction with the collection by the client.
 
 \subsection{Hashing}
 To ensure sensitive user information would never be compromised, the Python library Bcrypt was employed in the backend, allowing the encryption of confidential data. \newline
@@ -282,7 +286,7 @@ def generate_hash(plain_text_password):
 \end{python}
 
 \paragraph{}
-The function defined in \textbf{Listing.4.1} when provided with a plain text password, generates a salted hash and returns the hashed password to the caller. The function is called whenever a newly registered user submits a registration form with their plain-text password being the sole parameter for the function. Once called, the plain-text password is hashed and salted, before being stored in the database as the designated hash. \newline
+The function defined in \textbf{Listing.4.7} when provided with a plain text password, generates a salted hash and returns the hashed password to the caller. The function is called whenever a newly registered user submits a registration form with their plain-text password being the sole parameter for the function. Once called, the plain-text password is hashed and salted, before being stored in the database as the designated hash. \newline
 
 \begin{python}[caption=Verifing a Password]
 import bcrypt as bc
@@ -309,7 +313,7 @@ getListings(): Observable<Listing[]> {
 }
 \end{lstlisting}
 
-The TypeScript method in \textbf{Listing 4.6} will seek the it's defined API endpoint and will expect an array of Listings. Assuming the Flask server is running, the endpoint will be accessed and will return a Listings array for use in the frontend. \newline
+The TypeScript method in \textbf{Listing 4.9} will seek the defined API endpoint and will expect an array of Listings. Assuming the Flask server is running, the endpoint will be accessed and will return a Listings array for use in the frontend. \newline
 
 \begin{python}[caption=API Counterpart Route]
 @listings.route('/api/listings', methods=['GET'])
@@ -365,7 +369,7 @@ def login():
 \end{python}
       
 \newpage
-Once an access token is issued, it's valid for twenty-five minutes. Until time expires, the token will be present in local storage, permitting authenticated behaviour, once expired the user must again log in.
+Once an access token is issued, it's valid for twenty-five minutes. Until the time expires, the token will be present in local storage, permitting authenticated behaviour, once expired the user must again log in.
 
 \begin{lstlisting}[caption=Storing the Authentication Token]
 if (login_result) {
@@ -394,22 +398,6 @@ def new_listing(Username):
     return jsonify(result)
 \end{python}
 
-\section{Application Tier}
-Angular was used to develop the client side of the application. Using Angular allowed the client to be presented as a single-page application which allows the injection of multiple components as apposed to traditional multi-page applications. This section will cover all information related to the presentation of the application and how it's wired together.
-
-\subsection{Angular Routing}
-Angular Routing was employed to define and initialize all in-app navigational routes. Route definition was associated with a specific component, ensuring the navigation to that route displayed the relevant and corresponding component.
-
-\begin{figure}[H]
-	\caption{Angular Routing}
-	\label{image:routing}
-	\centering
-	\includegraphics[width=1\textwidth]{images/routes.png}
-\end{figure}
-
-\paragraph{}
-For individual routes that display specific listing or user data, a service call to the API is sent and specific data related to that entity is returned, populating the page with the relevant information.
-
 \subsection{Angular Services}
 Angular Services act as the doorway to the API, any query for specific data has a corresponding service method. For example, take the following component method that requests all listings currently in the database so they can be displayed:
 
@@ -420,9 +408,7 @@ getListings(): void {
 \end{lstlisting}
 
 \paragraph{}
-If correctly executed, the method outlined in \textbf{Listing 4.15} will acquire all listings from the backend and store them in the array \textit{listings}. In order for this to happen, it needs to access the API through the service method previously mentioned.
-
-\newpage
+If correctly executed, the method outlined in \textbf{Listing 4.15} will acquire all listings from the backend and store them in the array \textit{listings}. In order for this to happen, it needs to access the API through the service method previously mentioned. \newline
 
 \begin{lstlisting}[caption=Service Method for Retrieving all Listings]
 private userUrl = 'http://localhost:5000'; 
@@ -440,6 +426,24 @@ The Service method which can be seen in \textbf{Listing 4.16} implements an obse
 \paragraph{}
 Since the component method outlined in \textbf{Listing 4.15} is \textit{subscribed} to this Service method, it waits for the call to the API to finish. When complete, the array of listings is returned to the component, it can then be used to display all listings currently in the database.
 
+\section{Application Tier}
+Angular was used to develop the client side of the application. Using Angular allowed the client to be presented as a single-page application which allows the injection of multiple components as apposed to traditional multi-page applications. This section will cover all information related to the presentation of the application and how it's wired together.
+
+\subsection{Angular Routing}
+Angular Routing was employed to define and initialize all in-app navigational routes. Route definition was associated with a specific component, ensuring the navigation to that route displayed the relevant and corresponding component.
+
+\begin{figure}[H]
+	\caption{Angular Routing}
+	\label{image:routing}
+	\centering
+	\includegraphics[width=1\textwidth]{images/routes.png}
+\end{figure}
+
+\paragraph{}
+For individual routes that display specific listing or user data, a service call to the API is sent and specific data related to that entity is returned, populating the page with the relevant information.
+
+
+
 \subsection{Page Views}
 This section will contain the various page views for UniLodge and the functionality tied to each individual page.
 
@@ -447,12 +451,12 @@ This section will contain the various page views for UniLodge and the functional
 At the top of each page, a navigation bar is present. This bar is dynamic and will change depending on the logged in state of the user. Initially, the Navigation bar provides traversal to the following pages:
 
 \begin{description}
-  \item[$\bullet$] \textbf{Home Page}
-  \item[$\bullet$] \textbf{Browse Page}
-  \item[$\bullet$] \textbf{Login Page}
-  \item[$\bullet$] \textbf{Register Page}
-  \item[$\bullet$] \textbf{Profile Page} \textit{*Available after login}
-  \item[$\bullet$] \textbf{Create Listing Page} \textit{*Available after login}
+  \item[$\bullet$] Home Page
+  \item[$\bullet$] Browse Page
+  \item[$\bullet$] Login Page
+  \item[$\bullet$] Register Page
+  \item[$\bullet$] Profile Page \textit{*Available after login}
+  \item[$\bullet$] Create Listing Page \textit{*Available after login}
 \end{description}
 
 \begin{figure}[H]
@@ -500,7 +504,7 @@ Each image is also clickable, navigating the user to the specific listing page f
 As mentioned, once a listing is clicked the user is navigated to the specific page for that listing. This page will display some additional information about that listing, like the description, the contact information of the poster and all comments associated with that listing.
 
 \paragraph{}
-Comments may be posted by any logged in user, and are validated so only those who made the comment may delete them. As well as this, the associated images are displayed in a gallery component, allowing a more pleasant viewing experience for the user.
+Comments may be posted by any logged in user, and are validated so only those who made the comment may delete them. As well as this, the associated images are displayed via an interactive gallery component, allowing a more pleasant viewing experience for the user.
 
 \begin{figure}[H]
 	\caption{Individual Listing Page}
@@ -525,9 +529,7 @@ def list_listings_by_location(Query):
 \end{python}
 
 \paragraph{}
-The location data may be input via a text box, and both the minimum and maximum price range values are adjustable via a double-edged slider.
-
-maybe change this section a bit
+The location data may be input via a text box, and both the minimum and maximum price range values are adjustable via a double-edged slider. Queries are fully validated and input is fully responsive, searching for 'Galway' will return both 'Galway City' and 'Claregalway'.
 
 \begin{figure}[H]
 	\caption{Browse Page}
@@ -535,6 +537,9 @@ maybe change this section a bit
 	\centering
 	\includegraphics[width=0.93\textwidth]{images/browse.png}
 \end{figure}
+
+\subsection{Login and Registration Pages}
+
 
 \subsection{Bootstrap \& CSS}
 
