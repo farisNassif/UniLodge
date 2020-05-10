@@ -11,6 +11,7 @@
 | **Project Title** | UniLodge
 | **Module**  | Applied Project & Minor Dissertation
 | **Course** | BSc (Hons) in Software Development
+| **Video** | [Demo Video](https://www.youtube.com/watch?v=VaFmgG3MCNk)
 | **Heroku** | [UniLodge](https://unilodge.herokuapp.com/)
 | **Authors** | [Faris Nassif](https://github.com/farisNassif) & [Aaron Burns](https://github.com/aaronBurns59) |
 | **Supervisors** | Dr. John French & Dr. Martin Kenirons |
@@ -74,5 +75,5 @@ At a minimum, the application would allow:
 ### Relevant Links
 * [Deployed Web-App](https://unilodge.herokuapp.com/)
 * [Dissertation](https://github.com/farisNassif/UniLodge/blob/master/Dissertation.pdf)
-* [Screencast](www.youtube.com)
+* [Screencast](https://www.youtube.com/watch?v=VaFmgG3MCNk)
 * [Swagger API](https://app.swaggerhub.com/apis-docs/GMIT7/Unilodge-API/0.2-oas3#/)

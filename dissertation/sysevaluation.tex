@@ -38,7 +38,7 @@ This brief section will describe how each objective was addressed over the cours
   \textbf{N}ot only does the developed platform allow users to exchange services and communicate with each other, achieving the end-goal of the project, but additional functionality was implemented based on previously gathered information and researched technologies, including login authentication, password security, user profiles and a gallery for images to name a few additional features.
   
   \paragraph{}
-  While the application isn't perfect and has it's flaws, which the team are fully aware of, in terms of accomplishing a previously identified goal the application has absolutely accomplished it's objective. 
+  While there is scope for improvement within the overall system, in terms of accomplishing a previously identified goal the application has absolutely accomplished it's objective. 
   
   \paragraph{}
   Unfortunately collaboration and communication between team members is something that could have seen improvements during development, this outcome as well as system flaws and improvements will be discussed in the following chapter and further in this chapter respectively.
@@ -78,7 +78,7 @@ it('checks that listings are returned', ()=> {
 \end{lstlisting}
 
 \paragraph{}
-Ideally, Karma unit tests would be written to test new functions as they are implemented. If this was practised throughout development, a lot of errors would have been caught and addressed much sooner.
+Ideally, Karma unit tests would be written to test new functions as they were implemented. If this was practised throughout development, a lot of errors would have been caught and addressed much sooner.
 
 \subsubsection{Postman}
 Additionally, Postman was used to test newly developed API endpoints. This allowed issues to be caught before full integration to the client began. This approach allowed the team to make requests to the API and ensure the expected status codes and responses were returned.
@@ -113,13 +113,12 @@ Although periodic unit testing with Karma, Jasmine and Selenium was conducted an
 Unit Testing wasn't as abundant as it should have been, however during the early stages of development Karma and Jasmine were utilized at an acceptable level to ensure functionality like navigation and intractable components worked as intended. With that said, System Testing was an area of testing that really fell short during the project life-cycle.
 
 \paragraph{}
-System Testing is something that should have been practiced and seen as a larger priority than it was considered. The biggest issue faced throughout the project was undoubtedly the problem with Flask and Angular build files, should System Testing have been practiced, this could have been identified and addressed at a much earlier stage.
-
-\paragraph{}
 System testing earlier in the development life cycle would have identified the issue of Flask not correctly serving Angular build files. Angular build files weren't generated until time came to deploy the application, so Flask only ever served development files. Build files were required for Heroku to be able to host the application, meaning the workaround was necessary, but could have been avoided if system tests were incorporated earlier and builds were generated periodically to test deployment. If this was carried out, the issue with Flask would have been able to be addressed much earlier in the development cycle.
 
 \subsection{Lack of Additional Functionality}
 The developed system, while adhering to the outlined goals, does lack in the area of additional user functionality that would see it be a serious alternative to applications of a similar nature.
+
+\newpage
 
 \paragraph{}
 Features like profile enhancements, additional user functionality and the overall aesthetic of the application are on the list of future enhancements that will see implementation in future development cycles.
