@@ -22,7 +22,7 @@
 * [Relevant Links](#relevant-links)
 
 ### About	
-**UniLodge** is a service exclusively for students that bridges the gap between those looking for accomodation and those looking to advertise a room or location.
+**UniLodge** is a service exclusively for students. The application is designed to bridge the gap between those looking for accomodation and those looking to advertise a room or location. The features of the application are described [below](#goals-and-features) and a [screencast](www.youtube.com) of the application is available for viewing.
 
 ### Requirements
 * [NodeJS](https://nodejs.org/en/) 6.13.6 (<i>Or Higher)</i>
@@ -72,6 +72,7 @@ At a minimum, the application would allow:
 * Cloud hosted
 
 ### Relevant Links
-* [Swagger API](https://app.swaggerhub.com/apis-docs/GMIT7/Unilodge-API/0.2-oas3#/)
+* [Deployed Web-App](https://unilodge.herokuapp.com/)
 * [Dissertation](https://github.com/farisNassif/UniLodge/blob/master/Dissertation.pdf)
 * [Screencast](www.youtube.com)
+* [Swagger API](https://app.swaggerhub.com/apis-docs/GMIT7/Unilodge-API/0.2-oas3#/)
