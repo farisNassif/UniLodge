@@ -18,7 +18,7 @@
 ## Contents
 * [About](#about)
 * [Running Locally and Requirements](#running-locally-and-requirements)
-* [Features](#design)
+* [Goals and Features](#goals-and-features)
 * [Relevant Links](#relevant-links)
 
 
@@ -54,15 +54,28 @@ Application features
 -Crud, swagger etc
 -Heroku deployment hopefully
 
-User Features
--Login/Register
--Profile
--Comments on listings
--Make a listing
--Can stay logged in session storage etc
+### Goals and Features
+For the team members initially, the end goal for the project was to create a platform for students in the Galway area to both advertise and search for accommodative services. 
 
+#### Initial Goals 
+At a minimum, the application would allow:
+
+1. Student Login & Registration
+2. Creation of Listings including full CRUD functionality
+3. Communication with other users via messages or alternative means
+4. Searching for listings based on specific paramaters
+
+#### Main Implemented Features
+* Secure Registration (<I>With a Galway college email address</i>)
+* JWT Authenticated Routing / Login
+* Creation of Listings with full CRUD functionality implemented
+* User comments on Listings (<i>With authentication</i>)
+* Searching for Listings based on price / location
+* User profiles
+* Encrypted user data
+* Cloud hosted
 
 ### Relevant Links
-Links to swaggerhub, dissertation, 
-* A link to our SwaggerHub OpenAPI. It defines the routes used in the Python flask server, as well as the data models they use and how the routes operate the CRUD functionality of the Application
-[Swaggerhub OpenAPI for Unilodge flask routes](https://app.swaggerhub.com/apis-docs/GMIT7/Unilodge-API/0.2-oas3#/)
+* [Swagger API](https://app.swaggerhub.com/apis-docs/GMIT7/Unilodge-API/0.2-oas3#/)
+* [Dissertation](https://github.com/farisNassif/UniLodge/blob/master/Dissertation.pdf)
+* [Screencast](www.youtube.com)
