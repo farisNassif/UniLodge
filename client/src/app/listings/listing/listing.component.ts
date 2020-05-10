@@ -102,7 +102,7 @@ export class ListingComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.Seller != localStorage.getItem('username')) {
+    if (this.Seller != localStorage.getItem('username') || !localStorage.getItem('access_token')) {
       this.router.navigate(['/home']);
     }
   }

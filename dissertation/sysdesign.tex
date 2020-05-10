@@ -344,11 +344,18 @@ if __name__ == "__main__":
 \end{python}
 
 \subsubsection{API Documentation}
+The API was documented using Swagger. The API is RESTful, allowing full user application access via the Client.  
+\begin{figure}[H]
+	\caption{Swagger API}
+	\label{image:routing}
+	\centering
+	\includegraphics[width=1\textwidth]{images/api.png}
+\end{figure}
 The view the full API documentation via Swagger, see \textit{Appendices}. 
 
 \subsection{Authentication}
 To further secure and authenticate the overall system, JSON Web Tokens were employed with the help of the Python library Flask\_JWT, which would only allow the accession of sensitive routes if the user had a specific access token saved in their local browser storage. The token will be stored locally whenever a login is successful, allowing the navigation of sensitive routes.  \newline
-
+\newpage
 \begin{python}[caption=Issuing a limited JWT Token ]
 from flask_jwt_extended import JWTManager
 
@@ -368,7 +375,6 @@ def login():
     return jsonify(result)
 \end{python}
       
-\newpage
 Once an access token is issued, it's valid for twenty-five minutes. Until the time expires, the token will be present in local storage, permitting authenticated behaviour, once expired the user must again log in.
 
 \begin{lstlisting}[caption=Storing the Authentication Token]
@@ -381,7 +387,7 @@ if (login_result) {
 
 Following the issuing and validation of the token, the now authenticated user may access routes that previously locked. This is accomplished with a simple method decorator (\textbf{@token\_required}) as well as some TypeScript logic. \newline
 
-\begin{python}[caption=Issuing a limited JWT Token]
+\begin{python}[caption=Method with Token Annotation]
 # Create a new Listing
 @listings_blueprint.route('/api/new-listing/<string:Username>', methods=['POST'])
 @token_required
@@ -441,8 +447,6 @@ Angular Routing was employed to define and initialize all in-app navigational ro
 
 \paragraph{}
 For individual routes that display specific listing or user data, a service call to the API is sent and specific data related to that entity is returned, populating the page with the relevant information.
-
-
 
 \subsection{Page Views}
 This section will contain the various page views for UniLodge and the functionality tied to each individual page.
@@ -504,11 +508,14 @@ Each image is also clickable, navigating the user to the specific listing page f
 As mentioned, once a listing is clicked the user is navigated to the specific page for that listing. This page will display some additional information about that listing, like the description, the contact information of the poster and all comments associated with that listing.
 
 \paragraph{}
+Based on the currently logged in user, delete and edit buttons may or may not be available. To make sure only the user who issued the listing can interfere with the listing, the currently logged in user is compared against the seller associated with the listing.
+
+\paragraph{}
 Comments may be posted by any logged in user, and are validated so only those who made the comment may delete them. As well as this, the associated images are displayed via an interactive gallery component, allowing a more pleasant viewing experience for the user.
 
 \begin{figure}[H]
 	\caption{Individual Listing Page}
-	\label{image:home}
+	\label{image:indlisting}
 	\centering
 	\includegraphics[width=0.93\textwidth]{images/indiv_listing.png}
 \end{figure}
@@ -538,15 +545,71 @@ The location data may be input via a text box, and both the minimum and maximum 
 	\includegraphics[width=0.93\textwidth]{images/browse.png}
 \end{figure}
 
-\subsection{Login and Registration Pages}
+\subsubsection{Registration and Login Pages}
+Both the Registration and Login components are very similar, however are separated into their respective page routes. (\textit{For the sake of simplicity, the components are illustrated side by side in \textbf{Figure 4.9}}).
+
+\subsubsection{Registration}
+The registration form only accepts email addresses associated with colleges situated in Galway and input validators are displayed depending on the specified input (\textit{Password must be a specified length, or email must be a valid address for example)}. Once successfuly registered, the user will be prompted with the option to Login.
+
+\subsubsection{Login}
+After an account has been made, the user may log in with their registered email address. Like the Registration component, the Login component is fully responsive with Angular Snackbar popups. Once a log in is successful, the user will be redirected to their Profile and a JWT token received from the server will be saved in their browser, allowing authorization to functionality and routes like listing creation.
+
+\begin{figure}[H]
+	\caption{Registration and Login Forms}
+	\label{image:login}
+	\centering
+	\includegraphics[width=0.93\textwidth]{images/login_reg.png}
+\end{figure}
+
+\subsubsection{Profile Page}
+
+Once registered, the user may access their profile which shows all listings associated with them. User profiles weren't initially considered but following feedback from students it was ultimately implemented. The idea is to have a space where the user can easily access and manage their listings.
+
+\begin{figure}[H]
+	\caption{User Profile}
+	\label{image:userprofile}
+	\centering
+	\includegraphics[width=0.93\textwidth]{images/profile.png}
+\end{figure}
+
+\paragraph{}
+Since the profile was one of the later inclusions and wasn't a priority, it lacks areas for user interaction. Currently the profile page is static depending on listings associated with the user, it allows for traversal to the listing via the listing image and allows for minimal personalization via a profile image.
+
+\paragraph{}
+In future iterations, more personalization via the user profile would be ideal, features like page views, user feedback and a self description section would enhance the overall user experience.
 
 
-\subsection{Bootstrap \& CSS}
+\subsubsection{Create Listing Page}
+Once logged in, the listing creation page becomes available. The page is JWT token authenticated, meaning only the logged in user has access to their specific creation page. The listing form is fully validated and allows for the input relevant seller information and any additional notable listing information. 
 
+\begin{figure}[H]
+	\caption{Create Listing Page}
+	\label{image:userprofile}
+	\centering
+	\includegraphics[width=0.93\textwidth]{images/new_listing.png}
+\end{figure}
+
+On submission, the listing is created and associated with the creator. It can be accessed and viewed by anyone but can only be edited or removed by the original poster. 
 
 \subsection{Deployment}
-This is how heroku went up etc ..
+The application was deployed to Heroku with both the Flask API Server and Node/Express Server being hosted on separate domains. Two separate procfiles were employed, Gunicorn, a pre-fork worker model, was used to run the Flask server while Node was used to handle the client side deployment.
 
+\begin{figure}[H]
+    \centering
+    \textbf{web: gunicorn runner:app -b 0.0.0.0:8087}
+    \caption{Flask Procfile}
+    \label{image:honchoProcfile}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \textbf{web: npm install \&\& npm start -b 0.0.0.0:8080}
+    \caption{Node/Express Procfile}
+    \label{image:honchoProcfile}
+\end{figure}
+
+\paragraph{}
+While initially the team felt it would be ideal to deploy both processes on the same domain, following supervisory meetings felt decoupling processes enhanced the overall scalability and would make the overall application much easier to maintain and test in future.
 
 \begin{figure}[H]
 	\caption{Deployment Overview}
