@@ -21,10 +21,6 @@
 * [Goals and Features](#goals-and-features)
 * [Relevant Links](#relevant-links)
 
-
-### About
-**UniLodge** is a service exclusively for students that bridges the gap between those looking for accomodation and those looking to advertise a room or location.
-
 ### Requirements
 * [NodeJS](https://nodejs.org/en/) 6.13.6 (<i>Or Higher)</i>
 * [Python](https://www.python.org/downloads/) 3.7.1 (<i>Or Higher)</i>
@@ -44,6 +40,12 @@
 8. The application may be accessed at `http://localhost:4200/`
 
 <i>Alternatively, the application may be accessed via [Heroku](https://unilodge.herokuapp.com/)</i>
+
+#### Unit Tests
+* `ng test`
+
+#### End-to-End Tests
+* `ng e2e`
 
 ### Features
 TODO!!! TEMP
